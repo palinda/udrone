@@ -1,0 +1,12 @@
+<dx-popup class="popup" [width]="options.size.width" [height]="options.size.height" [showTitle]="true" [title]="options.title" [dragEnabled]="options.draggable" [closeOnOutsideClick]="options.closeOnOutFocus" [(visible)]="popupVisible">
+    <div *dxTemplate="let data of 'content'">
+        <div fxLayout="column" class="content">
+            <div fxFlex="grow">
+                <app-dcl-wrapper [componentDef]="content"></app-dcl-wrapper>
+            </div>
+            <div fxFlex="50px" class="footer">
+                <dx-button class="pull-left footer-btn" *ngFor="let action of actions" [text]="action.name" [type]="action.type" (onClick)="onAction(action)"></dx-button>
+            </div>
+        </div>
+    </div>
+</dx-popup>

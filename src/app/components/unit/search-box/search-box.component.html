@@ -1,0 +1,16 @@
+<div>
+    <div class="search-box-container">
+        <div class="editor-container inline"><textarea #queryArea (click)="onQueryChange(queryArea)" (keyup)="onQueryChange(queryArea)" rows="1" (keydown)="focusMenu($event)" spellcheck="false" [(ngModel)]="queryString" (blur)="hidePopup(true)" [ngClass]="{'error-bg': !isValidQuery}" [attr.placeholder]="placeholder"></textarea></div>
+        <div class="pointer inline search-btn"><span class="k-icon k-i-zoom" (click)="onQueryChange(queryArea)"></span></div>
+        <div class="pointer inline search-status"><span class="k-icon k-i-check-circle"></span></div>
+        <div [hidden]="hideAutoComplete || suggessionList.length == 0">
+            <div class="dropdown">
+                <div *ngFor="let item of suggessionList let idx=index">
+                    <div [tabindex]="idx" class="element" [appFocus]="idx == focusedIdx" (click)="selectItem(item, queryArea)" (keyup.enter)="selectItem(item, queryArea)" (keydown)="focusMenu($event)" (focus)="hidePopup(false)">
+                        {{item.name}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

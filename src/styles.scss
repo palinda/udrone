@@ -1,0 +1,37 @@
+/* You can add global styles to this file, and also import other style files */
+
+.h-seperator {
+    border-bottom: 1px solid #eaeaea;
+    margin: 0px 10px;
+}
+
+.inline {
+    display: inline-block;
+}
+
+#footer {
+    .icon {
+        font-size: 25px;
+    }
+}
+
+.pull-left {
+    float: left;
+}
+
+.pull-right {
+    float: right;
+}
+
+#logo_image {
+    background: url("assets/imgs/logo.png") no-repeat;
+    border-right: 2px solid white;
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.dx-toolbar .dx-button .dx-icon {
+    box-sizing: border-box !important;
+}

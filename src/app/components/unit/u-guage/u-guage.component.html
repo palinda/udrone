@@ -1,0 +1,18 @@
+<div>
+    <dx-circular-gauge [value]="value.mean" [subvalues]="[value.min, value.max]">
+
+        <dxo-range-container>
+            <dxi-range [startValue]="colorStep" [endValue]="colorStep*2" color="#0077BE"></dxi-range>
+            <dxi-range [startValue]="colorStep*2" [endValue]="colorStep*3" color="#E6E200"></dxi-range>
+            <dxi-range [startValue]="colorStep*3" [endValue]="colorStep*4" color="#77DD77"></dxi-range>
+        </dxo-range-container>
+
+        <dxo-scale [startValue]="options.start" [endValue]="options.end" [tickInterval]="options.stepSize">
+            <dxo-label [customizeText]="customizeText"></dxo-label>
+        </dxo-scale>
+        <dxo-tooltip [enabled]="true"></dxo-tooltip>
+        <dxo-title [text]="options.title">
+            <dxo-font [size]="options.titleSize"></dxo-font>
+        </dxo-title>
+    </dx-circular-gauge>
+</div>

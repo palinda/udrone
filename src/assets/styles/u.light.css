@@ -1,0 +1,27 @@
+@import url("../devextreme/css/dx.light.css");
+.text-info-h1 {
+    color: #1695D8 !important;
+}
+
+#header {
+    height: 50px;
+    background-color: #F7F7F7;
+    color: #526066;
+}
+
+#footer {
+    height: 50px;
+    background-color: #FFFFFF;
+}
+
+#container-body {
+    background-color: #E7EDEF;
+}
+
+.u-icon-btn:hover {
+    color: #168CCA;
+}
+
+.icon-btn-active {
+    background-color: #E7EDEF !important;
+}

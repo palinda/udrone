@@ -1,0 +1,24 @@
+<dx-tab-panel #tabPanel height="100%" [dataSource]="tabs" [selectedIndex]="0" [loop]="false" [animationEnabled]="true" [swipeEnabled]="true">
+    <div *dxTemplate="let setting of 'title'">
+        <span>{{setting.title}}</span>
+    </div>
+    <div *dxTemplate="let setting of 'item'">
+        <div class="tabpanel-item">
+
+            <form action="action" (submit)="onSave($event)">
+                <dx-form id="form" [formData]="preference" [readOnly]="false" [showColonAfterLabel]="false" [showValidationSummary]="true" validationGroup="customerData" [colCount]="2">
+                    <dxi-item dataField="Theme" editorType="dxSelectBox" [editorOptions]="{
+                      dataSource: themeStore.supportedThemes, 
+                      value: preference.theme,
+                      displayExpr: 'name',
+                      valueExpr: 'id',
+                      onValueChanged: onThemeChanged
+                    }">
+                        <dxi-validation-rule type="required" message="Theme is required">
+                        </dxi-validation-rule>
+                    </dxi-item>
+                </dx-form>
+            </form>
+        </div>
+    </div>
+</dx-tab-panel>

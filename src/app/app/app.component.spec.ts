@@ -1,12 +1,30 @@
+import { UGuageComponent } from '@components/unit/u-guage/u-guage.component';
+import { MockIntervalService } from '@mock/interval-service.mock';
+import { TpDepModule } from '@modules/tp-dep.module';
 import { TestBed, async } from '@angular/core/testing';
 
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
+
+  let mockIntervalService: MockIntervalService;
+
   beforeEach(async(() => {
+
+    mockIntervalService = new MockIntervalService();
+
+        TestBed.overrideComponent( AppComponent,
+          {
+            set : {
+              providers: [ MockIntervalService ]
+          }
+        });
+
     TestBed.configureTestingModule({
+      imports: [ TpDepModule ],
       declarations: [
-        AppComponent
+        AppComponent,
+        UGuageComponent
       ],
     }).compileComponents();
   }));

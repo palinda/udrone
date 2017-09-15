@@ -1,0 +1,28 @@
+#main-container {
+    height: 100% !important;
+    #header {
+        height: 60px;
+    }
+    #footer {
+        height: 60px;
+        .task-item {
+            margin-right: 3px;
+        }
+    }
+    #window-title {
+        font-size: 25px;
+        height: 60px;
+        line-height: 60px;
+        padding: 0px 15px;
+    }
+    #container-body {
+        margin: 5px;
+        margin-bottom: 0px;
+    }
+    #logo_image {
+        height: 100%;
+        width: 186px;
+        background-size: contain;
+        margin: 0px 10px;
+    }
+}

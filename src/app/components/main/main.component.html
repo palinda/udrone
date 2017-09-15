@@ -1,0 +1,19 @@
+<div fxLayout="column" id="main-container" class="dx-clearfix">
+    <div fxFlex="60px" id="header">
+        <div class="pull-left" id="logo_image"></div>
+        <div class="pull-left" id="window-title">{{activeTitle}}</div>
+
+        <app-u-icon-btn class="pull-right" iconClass="dx-icon-preferences" [size]="60" bakColor="transparent" (click)="openPreferencesWnd()"></app-u-icon-btn>
+        <app-u-icon-btn class="pull-right" iconClass="dx-icon-user" [size]="60" bakColor="transparent" (click)="onStartMenuOpen()"></app-u-icon-btn>
+        <app-u-icon-btn class="pull-right" iconClass="icon-notifications" [size]="60" bakColor="transparent" (click)="onStartMenuOpen()"></app-u-icon-btn>
+    </div>
+    <div fxFlex="grow" id="container-body">
+        <div #mainbody></div>
+    </div>
+    <div fxFlex="60px" id="footer">
+        <app-u-icon-btn class="pull-left task-item" iconClass="icon-desktop_windows" [size]="60" bakColor="#A7DBDB" (click)="onStartMenuOpen()"></app-u-icon-btn>
+        <app-u-icon-btn class="pull-left" [isSelected]="activeIndex === i" [iconClass]="def.inputs.icon" [size]="60" bakColor="white" (click)="maximizeComponent(i, def)" *ngFor="let def of minimizedDefs; let i = index"></app-u-icon-btn>
+    </div>
+</div>
+
+<app-u-popup></app-u-popup>

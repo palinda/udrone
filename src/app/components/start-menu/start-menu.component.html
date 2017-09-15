@@ -1,0 +1,5 @@
+<dx-tile-view class="dx-tile-content start-menu" direction="vertical">
+    <dxi-item [widthRatio]="1" [heightRatio]="1" *ngFor='let comp of containerDefList'>
+        <app-u-icon-btn [iconClass]="comp.inputs.icon" [size]="98" bakColor="white" [text]="comp.inputs.heading" (click)="openComponent(comp)"></app-u-icon-btn>
+    </dxi-item>
+</dx-tile-view>

@@ -1,0 +1,9 @@
+<div class="dx-clearfix">
+    <div class="icon-vertical_align_bottom mini-btn pointer" (click)="onMinimizeComponent()"></div>
+    <div class="icon-close close-btn pointer" (click)="onCloseComponent()"></div>
+    <dx-tile-view class="dx-tile-content" direction="vertical">
+        <dxi-item [widthRatio]="comp.size.width" [heightRatio]="comp.size.height" *ngFor='let comp of componentDefList'>
+            <app-dcl-wrapper [componentDef]="comp"></app-dcl-wrapper>
+        </dxi-item>
+    </dx-tile-view>
+</div>
