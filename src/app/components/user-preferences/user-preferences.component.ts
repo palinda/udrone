@@ -1,8 +1,14 @@
-import { UserContextService } from './../../services/user-context.service';
+import {
+  CounterSparklineComponent,
+  CounterSparklineTemplateDef
+} from '@components/widget-templates/counter-sparkline/counter-sparkline.component';
+import { WidgetTemplateDef } from './../query-template.component';
+import { UserContextService } from '@services/user-context.service';
 import { PreferenceDef } from '@defs/preference-def';
-import { ThemeStoreService } from './../../services/theme-store.service';
-import { Component, OnInit } from '@angular/core';
+import { ThemeStoreService } from '@services/theme-store.service';
+import { Component, OnInit, ComponentFactoryResolver, Type } from '@angular/core';
 import DxThemes from 'devextreme/ui/themes';
+import {} from 'reflect-metadata';
 
 @Component({
   selector: 'app-user-preferences',
@@ -12,23 +18,32 @@ import DxThemes from 'devextreme/ui/themes';
 export class UserPreferencesComponent implements OnInit {
 
   themeStore: ThemeStoreService;
-  preference: PreferenceDef;
+  userContext: UserContextService;
+  widgetTemplateDefs: Type<WidgetTemplateDef>[];
+
+  selectedIndex = 0;
 
   tabs = [
     {'title': 'General'},
+    {'title': 'Widget Templates'},
+    {'title': 'Query Templates'},
     {'title': 'Containers'}
   ];
 
-  constructor(_themeStore: ThemeStoreService, _userContext: UserContextService) {
+  constructor(_themeStore: ThemeStoreService, _userContext: UserContextService, private _resolver: ComponentFactoryResolver) {
     this.themeStore = _themeStore;
-    this.preference = _userContext.userPreference;
+    this.userContext = _userContext;
+    const x = Reflect.getMetadata('annotations', CounterSparklineComponent);
+    const y = Reflect.getMetadata('parameters', CounterSparklineComponent);
+    const z = Reflect.getMetadata('propMetadata', CounterSparklineComponent);
+    const info = Reflect.getMetadata('design:type', new CounterSparklineTemplateDef(), 'countQuery');
   }
 
   ngOnInit() {
   }
 
   public onThemeChanged (event) {
-    DxThemes.current(event.value);
+    DxThemes.current(event.value.id);
   }
 
 }

@@ -1,17 +1,14 @@
-<dx-tab-panel #tabPanel height="100%" [dataSource]="tabs" [selectedIndex]="0" [loop]="false" [animationEnabled]="true" [swipeEnabled]="true">
+<dx-tab-panel #tabPanel height="100%" [dataSource]="tabs" [(selectedIndex)]="selectedIndex" [loop]="false" [animationEnabled]="true" [swipeEnabled]="true">
     <div *dxTemplate="let setting of 'title'">
         <span>{{setting.title}}</span>
     </div>
-    <div *dxTemplate="let setting of 'item'">
-        <div class="tabpanel-item">
-
+    <div *dxTemplate="let setting of 'item';">
+        <div class="tabpanel-item" *ngIf="selectedIndex === 0">
             <form action="action" (submit)="onSave($event)">
-                <dx-form id="form" [formData]="preference" [readOnly]="false" [showColonAfterLabel]="false" [showValidationSummary]="true" validationGroup="customerData" [colCount]="2">
-                    <dxi-item dataField="Theme" editorType="dxSelectBox" [editorOptions]="{
-                      dataSource: themeStore.supportedThemes, 
-                      value: preference.theme,
+                <dx-form id="form" [(formData)]="userContext.userPreference" [readOnly]="false" [showColonAfterLabel]="false" [showValidationSummary]="true" validationGroup="customerData" [colCount]="2">
+                    <dxi-item dataField="theme" editorType="dxSelectBox" [editorOptions]="{
+                      dataSource: themeStore.supportedThemes,
                       displayExpr: 'name',
-                      valueExpr: 'id',
                       onValueChanged: onThemeChanged
                     }">
                         <dxi-validation-rule type="required" message="Theme is required">
@@ -20,5 +17,10 @@
                 </dx-form>
             </form>
         </div>
+
+        <div class="tabpanel-item" *ngIf="selectedIndex === 1">
+            <!-- <dx-select-box [items]="themes" [value]="themes[0]" (onValueChanged)="processValueChange($event)" displayExpr="name" valueExpr="id"></dx-select-box> -->
+        </div>
+
     </div>
 </dx-tab-panel>

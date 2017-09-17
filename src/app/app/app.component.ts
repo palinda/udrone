@@ -15,7 +15,7 @@ import { TableOptions } from './../components/unit/u-table/u-table.component';
 import { IntervalService } from '@services/interval.service';
 import { GaugeData, GaugeOptions } from '@components/unit/u-guage/u-guage.component';
 import { Component, OnInit } from '@angular/core';
-import DxThemes from 'devextreme/ui/themes';
+
 import { Theme } from '@defs/theme';
 
 @Component({

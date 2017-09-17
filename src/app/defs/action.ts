@@ -1,6 +1,7 @@
 export class Action {
 
-  constructor(private _name: string, private _isDefualt: boolean, private _cb: (action) => any, private _type: string, private _closeOnSelect: boolean) {
+  constructor(private _name: string, private _isDefualt: boolean, private _cb: (action) => any, private _type: string,
+    private _closeOnSelect: boolean) {
   }
 
   get name(): string {
