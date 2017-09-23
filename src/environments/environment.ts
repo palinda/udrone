@@ -6,7 +6,8 @@
 export const environment = {
   production: false,
   logLevel: 'ALL',
-  reqBaseUrl: 'http://localhost:5556/res',
-  reqMethod: 'GET',
-  serviceQueryClass: 'ServiceQueryMock'
+  reqBaseUrl: 'http://localhost:9000/res',
+  reqMethod: 'POST',
+  contentType: 'application/json',
+  serviceQueryClass: 'SimpleServiceQuery'
 };

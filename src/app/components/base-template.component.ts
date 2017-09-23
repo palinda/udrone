@@ -1,3 +1,4 @@
+import { TrackType } from '@defs/track-type';
 import { LogService } from '@services/log.service';
 import { Component, Input } from '@angular/core';
 import {PermissionType} from '@defs/permission-type';
@@ -10,8 +11,10 @@ import {PermissionType} from '@defs/permission-type';
 })
 export class BaseTemplateComponent {
 
-  @Input()id: string;
+  @TrackType(String)
+  @Input()componentID: string;
 
+  @TrackType(String)
   @Input()permissions: PermissionType = new PermissionType([], false);
 
   constructor(protected logService: LogService) {

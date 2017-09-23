@@ -1,7 +1,8 @@
 export const environment = {
   production: true,
   logLevel: 'WARN',
-  reqBaseUrl: 'http://localhost:5556/res',
+  reqBaseUrl: 'http://localhost:9000/res',
   reqMethod: 'POST',
-  serviceQueryClass: 'ServiceQueryMock'
+  contentType: 'application/json',
+  serviceQueryClass: 'SimpleServiceQuery'
 };

@@ -1,3 +1,4 @@
+import { TrackType } from '@app/defs/track-type';
 import { ComponentDef } from './../defs/component-def';
 import { LogService } from '@services/log.service';
 import { Component, Input } from '@angular/core';
@@ -12,24 +13,23 @@ import { BaseTemplateComponent } from './base-template.component';
 })
 export class ContainerTemplateComponent extends BaseTemplateComponent {
 
-  /**
-   * Child component definition list
-   */
-@Input() componentDefList: Array<ComponentDef>;
 
 /**
  * Heading after component open
  */
+@TrackType(String)
 @Input() heading: string;
 
 /**
  * Short name on tile
  */
+@TrackType(String)
 @Input() shortname: string;
 
 /**
  * Icon name
  */
+@TrackType(String)
 @Input() icon: string;
 
   constructor(logService: LogService) {

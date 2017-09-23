@@ -36,7 +36,7 @@ export class MainComponent implements AfterViewInit, OnDestroy {
   private _isViewInitialized = false;
   private _isComponentMaximized = false;
 
-  constructor(private _componentFactoryResolver: ComponentFactoryResolver, private _cdRef: ChangeDetectorRef, public _renderer: Renderer, 
+  constructor(private _componentFactoryResolver: ComponentFactoryResolver, private _cdRef: ChangeDetectorRef, public _renderer: Renderer,
     private _popupDriver: PopupDriverService) {
     this.minimizedDefs = [];
     this._minimizedComponents = [];
@@ -136,9 +136,10 @@ export class MainComponent implements AfterViewInit, OnDestroy {
     openPreferencesWnd() {
       const options = new PopupOptions('User Preferences');
       options.size = new Size('60%', '80%');
-      this._popupDriver.openPopup(options, new ComponentDef(UserPreferencesComponent,
-        new Size('300', '300'), new DynamicMsg()), [new Action('Save', true, (action) => {}, 'success', true),
-        new Action('Cancel', false, (action) => {}, 'normal', true)]);
+      this._popupDriver.openPopup(options, new ComponentDef('UserPreferencesComponent', UserPreferencesComponent,
+        new Size('300', '300'), new DynamicMsg()), [
+          new Action('Close', false, (action) => {}, 'normal', true)
+      ]);
     }
 
 }

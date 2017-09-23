@@ -5,10 +5,11 @@
  * TODO : Implement data type support
  */
 export enum DataType {
-    string,
-    number,
-    date,
-    boolean,
-    object,
-    enum
+    String,
+    Number,
+    Date,
+    Boolean,
+    Object,
+    enum,
+    MultiSelect
 }

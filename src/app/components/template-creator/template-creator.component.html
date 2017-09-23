@@ -1,0 +1,14 @@
+<dx-select-box [items]="templateDefs" [value]="updatingTemplate.type" (onValueChanged)="onWidgetTemplateSelect($event)" displayExpr="name"></dx-select-box>
+<form action="" class="u-form" (submit)="onAddWidgetTemplate($event)" *ngIf="updatingTemplate !== undefined && updatingTemplate.type !== undefined">
+    <dx-form [id]="formID" [(formData)]="updatingTemplate.inputs" [readOnly]="false" [showColonAfterLabel]="false" [showValidationSummary]="false" [validationGroup]="validationGroup" [colCount]="1">
+        <dxi-item itemType="group" [caption]="row.group" *ngFor="let row of selectedInputs">
+            <dxi-item [dataField]="entry.name" [editorType]="getEditorType(entry.dataType)" *ngFor="let entry of row.inputDefList" [editorOptions]="entry.options">
+                <dxi-validation-rule type="required" message="Required field"></dxi-validation-rule>
+            </dxi-item>
+        </dxi-item>
+    </dx-form>
+    <br />
+    <dx-button text="Add" type="success" [validationGroup]="validationGroup" [useSubmitBehavior]="true">
+    </dx-button>
+</form>
+<div [hidden]="true" #dummy></div>

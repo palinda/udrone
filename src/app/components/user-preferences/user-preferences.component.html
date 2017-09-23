@@ -1,11 +1,12 @@
-<dx-tab-panel #tabPanel height="100%" [dataSource]="tabs" [(selectedIndex)]="selectedIndex" [loop]="false" [animationEnabled]="true" [swipeEnabled]="true">
+<dx-tab-panel #tabPanel class="tab-panel" height="100%" [dataSource]="tabs" [(selectedIndex)]="selectedIndex" [loop]="false" [animationEnabled]="true" [swipeEnabled]="true" [scrollByContent]="true">
     <div *dxTemplate="let setting of 'title'">
         <span>{{setting.title}}</span>
     </div>
     <div *dxTemplate="let setting of 'item';">
-        <div class="tabpanel-item" *ngIf="selectedIndex === 0">
+        <div class="tabpanel-item" [hidden]="selectedIndex !== 0">
             <form action="action" (submit)="onSave($event)">
                 <dx-form id="form" [(formData)]="userContext.userPreference" [readOnly]="false" [showColonAfterLabel]="false" [showValidationSummary]="true" validationGroup="customerData" [colCount]="2">
+
                     <dxi-item dataField="theme" editorType="dxSelectBox" [editorOptions]="{
                       dataSource: themeStore.supportedThemes,
                       displayExpr: 'name',
@@ -18,8 +19,15 @@
             </form>
         </div>
 
-        <div class="tabpanel-item" *ngIf="selectedIndex === 1">
-            <!-- <dx-select-box [items]="themes" [value]="themes[0]" (onValueChanged)="processValueChange($event)" displayExpr="name" valueExpr="id"></dx-select-box> -->
+        <div class="tabpanel-item" [hidden]="selectedIndex !== 1">
+            <app-template-creator [templateDefs]="widgetTemplateDefs" [saveCB]="widgetSave"></app-template-creator>
+        </div>
+        <div class="tabpanel-item" [hidden]="selectedIndex !== 2">
+            <app-template-creator [templateDefs]="queryTemplateDefs"></app-template-creator>
+        </div>
+
+        <div class="tabpanel-item" [hidden]="selectedIndex !== 3">
+            <app-template-creator [templateDefs]="containerTemplateDefs" [saveCB]="containerSave"></app-template-creator>
         </div>
 
     </div>

@@ -1,3 +1,4 @@
+import { TemplateCreatorComponent } from './components/template-creator/template-creator.component';
 import { UserPreferencesComponent } from './components/user-preferences/user-preferences.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { BaseTemplateComponent } from '@components/base-template.component';
@@ -61,14 +62,16 @@ import { ThemeStoreService } from '@services/theme-store.service';
     StartMenuComponent,
     UPopupComponent,
     UFormComponent,
-    UserPreferencesComponent
+    UserPreferencesComponent,
+    TemplateCreatorComponent
   ],
   entryComponents: [
     CounterSparklineComponent,
     DashboardContainerComponent,
     StartMenuComponent,
     UTextComponent,
-    UserPreferencesComponent
+    UserPreferencesComponent,
+    TemplateCreatorComponent
   ],
   imports: [
     BrowserModule,

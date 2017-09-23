@@ -82,7 +82,8 @@ export class RefreshService {
   public subscribeForRefresh(id: string, requests: Array<RefreshRequest<any>>) {
 
     if (Utils.isUndefined(id)) {
-      throw new Error('Subcription received from undefined id');
+      this._logService.printError('Subcription received from undefined id');
+      return;
     }
     this._logService.printTrace('Subscribe for refresh:', id);
     this._subscribers.put(id, '');

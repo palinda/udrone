@@ -1,3 +1,5 @@
+import { RequestOptions, Headers } from '@angular/http';
+import { HttpService } from './../services/http.service';
 import { Entry } from '@defs/entry';
 import { DynamicMsg } from './../defs/dynamic-msg';
 import { SparkResp } from './../defs/spark-resp';
@@ -8,10 +10,12 @@ import { TableResponse } from '@components/unit/u-table/table-response';
 import { Observable } from 'rxjs/Rx';
 import { Query } from '@defs/query';
 import { IServiceQuery } from '@services/service-query.interface';
+import * as Constants from '@app/defs/constants';
 
 export class ServiceQueryMock implements IServiceQuery {
 
-    constructor() {
+    globalRepo: Object = {};
+    constructor(private _httpService: HttpService) {
     }
 
     query<R>(query: Query<any>): Observable<R> {

@@ -1,25 +1,34 @@
-import {
-  CounterSparklineComponent,
-  CounterSparklineTemplateDef
-} from '@components/widget-templates/counter-sparkline/counter-sparkline.component';
-import { WidgetTemplateDef } from './../query-template.component';
+import { DynamicMsg } from '@defs/dynamic-msg';
+import { Size } from '@app/defs/size';
+import { ComponentDef } from './../../defs/component-def';
+import { QueryTemplateComponent } from '@components/query-template.component';
+import { WidgetTemplateComponent } from '@components/widget-template.component';
+import { CounterSparklineComponent} from '@components/widget-templates/counter-sparkline/counter-sparkline.component';
 import { UserContextService } from '@services/user-context.service';
 import { PreferenceDef } from '@defs/preference-def';
 import { ThemeStoreService } from '@services/theme-store.service';
-import { Component, OnInit, ComponentFactoryResolver, Type } from '@angular/core';
+import { Component, OnInit, ComponentFactoryResolver, Type, ViewChild, ViewContainerRef, OnDestroy } from '@angular/core';
 import DxThemes from 'devextreme/ui/themes';
 import {} from 'reflect-metadata';
+import { InputDef } from '@defs/input-def';
+import { InputDefGroup } from '@defs/input-def-group';
+import * as Utils from '@utilities/utils';
+
+let cmpScope;
 
 @Component({
   selector: 'app-user-preferences',
   templateUrl: './user-preferences.component.html',
   styleUrls: ['./user-preferences.component.scss']
 })
-export class UserPreferencesComponent implements OnInit {
+
+export class UserPreferencesComponent implements OnInit, OnDestroy {
 
   themeStore: ThemeStoreService;
   userContext: UserContextService;
-  widgetTemplateDefs: Type<WidgetTemplateDef>[];
+  widgetTemplateDefs: Type<Component>[];
+  queryTemplateDefs: Type<Component>[];
+  containerTemplateDefs: Type<Component>[];
 
   selectedIndex = 0;
 
@@ -30,13 +39,14 @@ export class UserPreferencesComponent implements OnInit {
     {'title': 'Containers'}
   ];
 
-  constructor(_themeStore: ThemeStoreService, _userContext: UserContextService, private _resolver: ComponentFactoryResolver) {
+  constructor(_themeStore: ThemeStoreService, _userContext: UserContextService) {
     this.themeStore = _themeStore;
     this.userContext = _userContext;
-    const x = Reflect.getMetadata('annotations', CounterSparklineComponent);
-    const y = Reflect.getMetadata('parameters', CounterSparklineComponent);
-    const z = Reflect.getMetadata('propMetadata', CounterSparklineComponent);
-    const info = Reflect.getMetadata('design:type', new CounterSparklineTemplateDef(), 'countQuery');
+    this.widgetTemplateDefs = [];
+    this.queryTemplateDefs = [];
+    this.containerTemplateDefs = [];
+    this.loadComponents();
+    cmpScope = this;
   }
 
   ngOnInit() {
@@ -44,6 +54,43 @@ export class UserPreferencesComponent implements OnInit {
 
   public onThemeChanged (event) {
     DxThemes.current(event.value.id);
+  }
+
+  loadComponents() {
+
+    this.userContext.allComponents.forEach( val => {
+        if (val['__proto__'].name === 'WidgetTemplateComponent') {
+          this.widgetTemplateDefs.push(val);
+        } else if (val['__proto__'].name === 'QueryTemplateComponent') {
+          this.queryTemplateDefs.push(val);
+        } else if (val['__proto__'].name === 'ContainerTemplateComponent') {
+          this.containerTemplateDefs.push(val);
+        }
+      });
+  }
+
+  ngOnDestroy() {
+
+  }
+
+  widgetSave(def: ComponentDef) {
+    cmpScope.userContext.addWidgetTemplate(def, (data, err) => {
+      if (Utils.isUndefined(err)) {
+        Utils.notifyPop('Successfully added widget template', 'success');
+      } else {
+        Utils.notifyPop('Failed to add widget template: Error: ' + err, 'error');
+      }
+    });
+  }
+
+  containerSave(def: ComponentDef) {
+    cmpScope.userContext.addContainerTemplate(def, (data, err) => {
+      if (Utils.isUndefined(err)) {
+        Utils.notifyPop('Successfully added container template', 'success');
+      } else {
+        Utils.notifyPop('Failed to add container template: Error: ' + err, 'error');
+      }
+    });
   }
 
 }

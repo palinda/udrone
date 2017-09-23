@@ -51,7 +51,7 @@ export class HttpService {
     this.logService.printTrace('Send http get request:', msg);
 
     const headers = new Headers();
-    headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+    headers.append('Content-Type', environment.contentType);
 
     const options = new RequestOptions({
         headers: headers,
@@ -74,15 +74,16 @@ export class HttpService {
   public sendPostRequest(reqUrl: string, msg: UMsg ): Observable<any> {
     this.logService.printTrace('Send http post request:', msg);
 
-    const headers = new Headers();
-    headers.append('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+    const headers = new Headers({ 'Content-Type': environment.contentType });
+    const options = new RequestOptions({ headers: headers });
 
-    const options = new RequestOptions({
-        headers: headers,
-        search: this.createQueryParam(msg)
-    });
-    return this.http.post(reqUrl, options)
+    return this.http.post(reqUrl, msg, options)
     .map(response => response.json());
+  }
+
+  public sendGet(reqUrl: string, options: RequestOptions) {
+    this.logService.printTrace('Send http get request:', reqUrl);
+    return this.http.get(reqUrl, options);
   }
 
   private createQueryParam(msg: UMsg): URLSearchParams {

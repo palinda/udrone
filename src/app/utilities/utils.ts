@@ -1,4 +1,7 @@
 
+import notify from 'devextreme/ui/notify';
+import { saveAs } from 'file-saver';
+
 /**
  * Object cast to given class type
  * @param obj Object to cast
@@ -57,3 +60,25 @@ const _hasOwnProperty = Object.prototype.hasOwnProperty;
 export const has = function(obj: any, prop: any) {
     return _hasOwnProperty.call(obj, prop);
 };
+
+
+export function toTitleStr(camelcaseStr: string) {
+  const result = camelcaseStr.replace( /([A-Z])/g, ' $1' );
+  return result.charAt(0).toUpperCase() + result.slice(1);
+}
+
+export function saveToFile(data, filename: string) {
+  const file = new Blob([data], { type: 'text/csv;charset=utf-8' });
+  saveAs(file, filename);
+}
+
+
+export function notifyPop(msg: string, type: string) {
+  notify({
+    message: msg,
+    position: {
+        my: 'center top',
+        at: 'center top'
+    }
+  }, type, 3000);
+}

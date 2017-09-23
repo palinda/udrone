@@ -1,7 +1,17 @@
+import { TrackType } from '@app/defs/track-type';
 import { UMsg } from './umsg';
 
 export class Query <T extends UMsg> {
-    constructor(private _path: string, private _params: T) {
+
+    @TrackType(String)
+    private _path: string;
+
+    @TrackType(Object)
+    private _params: T;
+
+    constructor(_path: string, _params: T) {
+        this._path = _path;
+        this._params = _params;
     }
 
     public get path(): string {

@@ -10,6 +10,7 @@ import { PermissionType } from '@defs/permission-type';
 import { WidgetTemplateComponent } from '@components/widget-template.component';
 import { Component, OnInit, Input } from '@angular/core';
 import { CountResp } from '@defs/count-resp';
+import { TrackType } from '@app/defs/track-type';
 
 @Component({
   selector: 'app-counter-sparkline',
@@ -43,13 +44,17 @@ export class CounterSparklineComponent extends WidgetTemplateComponent implement
   /**
    * Widget heading
    */
+  @TrackType(String)
   @Input() heading: string;
 
+  @TrackType(Number)
+  @Input() refreshInterval = 10;
+
+  @TrackType(Query)
   @Input() countQuery: Query<DynamicMsg>;
 
+  @TrackType(Query)
   @Input() sparkQuery: Query<DynamicMsg>;
-
-  @Input() refreshInterval = 10;
 
   sparkOptions = new SparkLinkOptions('key', 'value', 'spline', '#9ab57e', '#e55253', '4', undefined, '#ebdd8f',
   'currency', new Size('120', '30'));
@@ -66,7 +71,7 @@ export class CounterSparklineComponent extends WidgetTemplateComponent implement
   }
 
   ngOnInit() {
-    this.refreshService.subscribeForRefresh(this.id, [
+    this.refreshService.subscribeForRefresh(this.componentID, [
       new RefreshRequest<CountResp>(this.refreshInterval, this.countQuery, (data, err) => {
         if (err !== undefined) {
           this.onError(err, this.countQuery);

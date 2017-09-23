@@ -1,7 +1,7 @@
 <dx-popup class="popup" [width]="options.size.width" [height]="options.size.height" [showTitle]="true" [title]="options.title" [dragEnabled]="options.draggable" [closeOnOutsideClick]="options.closeOnOutFocus" [(visible)]="popupVisible">
     <div *dxTemplate="let data of 'content'">
         <div fxLayout="column" class="content">
-            <div fxFlex="grow">
+            <div fxFlex="grow" style="overflow: auto;">
                 <app-dcl-wrapper [componentDef]="content"></app-dcl-wrapper>
             </div>
             <div fxFlex="50px" class="footer">

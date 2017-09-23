@@ -1,0 +1,25 @@
+﻿{
+	"WIDGET_TEMPLATES": {
+		"Test": {
+			"_size": {
+				"width": "2",
+				"height": "1"
+			},
+			"_inputs": {
+				"countQuery": {
+					"_path": "res/orderCount",
+					"_params": "{}"
+				},
+				"sparkQuery": {
+					"_path": "res/orderCountHist",
+					"_params": "{}"
+				},
+				"id": "Test",
+				"permissions": "Test",
+				"heading": "Test",
+				"refreshInterval": 10
+			},
+			"name": "CounterSparklineComponent"
+		}
+	}
+}
