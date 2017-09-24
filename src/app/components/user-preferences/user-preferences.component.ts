@@ -1,3 +1,4 @@
+import { ComponentStore } from './../../services/component-store';
 import { DynamicMsg } from '@defs/dynamic-msg';
 import { Size } from '@app/defs/size';
 import { ComponentDef } from './../../defs/component-def';
@@ -7,7 +8,7 @@ import { CounterSparklineComponent} from '@components/widget-templates/counter-s
 import { UserContextService } from '@services/user-context.service';
 import { PreferenceDef } from '@defs/preference-def';
 import { ThemeStoreService } from '@services/theme-store.service';
-import { Component, OnInit, ComponentFactoryResolver, Type, ViewChild, ViewContainerRef, OnDestroy } from '@angular/core';
+import { Component, OnInit, Type, ViewChild, ViewContainerRef, OnDestroy } from '@angular/core';
 import DxThemes from 'devextreme/ui/themes';
 import {} from 'reflect-metadata';
 import { InputDef } from '@defs/input-def';
@@ -39,7 +40,7 @@ export class UserPreferencesComponent implements OnInit, OnDestroy {
     {'title': 'Containers'}
   ];
 
-  constructor(_themeStore: ThemeStoreService, _userContext: UserContextService) {
+  constructor(_themeStore: ThemeStoreService, _userContext: UserContextService, private _componentStore: ComponentStore) {
     this.themeStore = _themeStore;
     this.userContext = _userContext;
     this.widgetTemplateDefs = [];
@@ -58,7 +59,7 @@ export class UserPreferencesComponent implements OnInit, OnDestroy {
 
   loadComponents() {
 
-    this.userContext.allComponents.forEach( val => {
+    this._componentStore.allComponents.forEach( val => {
         if (val['__proto__'].name === 'WidgetTemplateComponent') {
           this.widgetTemplateDefs.push(val);
         } else if (val['__proto__'].name === 'QueryTemplateComponent') {

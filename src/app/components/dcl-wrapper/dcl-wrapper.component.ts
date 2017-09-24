@@ -1,3 +1,4 @@
+import { ComponentStore } from './../../services/component-store';
 import { ComponentDef } from '@defs/component-def';
 import {
   ChangeDetectorRef,
@@ -26,7 +27,8 @@ export class DclWrapperComponent implements OnChanges, AfterViewInit, OnDestroy 
   cmpRef: ComponentRef<any>;
   private isViewInitialized = false;
 
-  constructor(private componentFactoryResolver: ComponentFactoryResolver, private cdRef: ChangeDetectorRef) {}
+  constructor(private componentFactoryResolver: ComponentFactoryResolver, private cdRef: ChangeDetectorRef, 
+    private _compStore: ComponentStore) {}
 
   updateComponent() {
     if (!this.isViewInitialized) {
@@ -36,7 +38,11 @@ export class DclWrapperComponent implements OnChanges, AfterViewInit, OnDestroy 
       this.cmpRef.destroy();
     }
 
-    const factory = this.componentFactoryResolver.resolveComponentFactory(this.componentDef.type);
+    if (!this._compStore.contains(this.componentDef.name)) {
+      return;
+    }
+
+    const factory = this.componentFactoryResolver.resolveComponentFactory(this._compStore.findComponentByName(this.componentDef.name));
     this.target.clear();
     this.cmpRef = this.target.createComponent(factory);
 

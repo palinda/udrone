@@ -1,3 +1,4 @@
+import { LogService } from '@services/log.service';
 import { UserContextService } from '@services/user-context.service';
 import { DynamicMsg } from '@defs/dynamic-msg';
 import { Size } from '@defs/size';
@@ -25,7 +26,7 @@ export class TemplateCreatorComponent implements OnInit {
 
   @ViewChild('dummy', {read: ViewContainerRef}) dummy;
 
-  constructor(private _userContext: UserContextService, private _resolver: ComponentFactoryResolver) {
+  constructor(private _userContext: UserContextService, private _resolver: ComponentFactoryResolver, private _log: LogService) {
     this.updatingTemplate = new ComponentDef(undefined, undefined, undefined, undefined);
   }
 
@@ -33,12 +34,11 @@ export class TemplateCreatorComponent implements OnInit {
   }
 
   onWidgetTemplateSelect(event) {
-    this.updatingTemplate = new ComponentDef(undefined, event.value, new Size('2', '1'), new DynamicMsg());
+    this.updatingTemplate = new ComponentDef(undefined, event.value.name, new Size('2', '1'), new DynamicMsg());
     this.loadInputTypes(event.value);
   }
 
   loadInputTypes(comp: Type<Component>)  {
-    this.selectedInputs = [];
 
     const factory = this._resolver.resolveComponentFactory(comp);
     const dummyComp = this.dummy.createComponent(factory);
@@ -61,6 +61,22 @@ export class TemplateCreatorComponent implements OnInit {
   onAddWidgetTemplate ($event) {
     $event.preventDefault();
     this.updatingTemplate.id = this.updatingTemplate.inputs['componentID'];
+    this.selectedInputs.forEach( (val) => {
+      val.inputDefList.forEach( val2 => {
+        if (val2.dataType === 'Object') {
+          try {
+
+            if (val2.group === undefined) {
+              this.updatingTemplate.inputs[val2.leafName] = JSON.parse(this.updatingTemplate.inputs[val2.leafName]);
+            } else {
+              this.updatingTemplate.inputs[val2.group][val2.leafName] = JSON.parse(this.updatingTemplate.inputs[val2.group][val2.leafName]);
+            }
+          } catch (e) {
+              this._log.printError('Failed to convert to JSON', e);
+          }
+        }
+      });
+    });
     this.saveCB(this.updatingTemplate);
     this.clearAdd();
   }
@@ -100,7 +116,7 @@ export class TemplateCreatorComponent implements OnInit {
           key: 'id'
       });
 
-      const options = { 'dataSource': dataSource, 'displayExpr': 'name'};
+      const options = { 'dataSource': dataSource, 'displayExpr': 'id', 'valueExpr': 'id'};
       this.selectedInputs.push(new InputDefGroup(undefined, [new InputDef(propName, 'MultiSelect', undefined, options)]));
       return true;
     }
@@ -115,7 +131,7 @@ export class TemplateCreatorComponent implements OnInit {
     for (const para in inst) {
         if (inst.hasOwnProperty(para)) {
           const subInfo = Reflect.getMetadata('design:type', inst, para);
-          array.push(new InputDef(propName + '.' + para, subInfo.name, propName, undefined));
+          array.push(new InputDef(para, subInfo.name, propName, undefined));
         }
     }
     if (array.length > 0) {

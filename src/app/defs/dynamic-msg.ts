@@ -23,4 +23,12 @@ export class DynamicMsg extends UMsg {
             }
         }
     }
+
+    public assign(obj: Object) {
+        for (const key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                this.setValue(key, obj[key]);
+            }
+        }
+    }
 }

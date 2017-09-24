@@ -1,10 +1,11 @@
+import { ComponentStore } from '@services/component-store';
 import { UserPreferencesComponent } from '@components/user-preferences/user-preferences.component';
 import { Action } from '@defs/action';
 import { Entry } from '@defs/entry';
 import { Size } from '@defs/size';
 import { UTextComponent } from '@components/unit/u-text/u-text.component';
 import { PopupOptions } from '@components/unit/u-popup/u-popup.component';
-import { PopupDriverService } from './../../services/popup-driver.service';
+import { PopupDriverService } from '@services/popup-driver.service';
 import { UMap } from '@utilities/umap';
 import { ComponentDef } from '@defs/component-def';
 import { DynamicMsg } from '@defs/dynamic-msg';
@@ -37,7 +38,7 @@ export class MainComponent implements AfterViewInit, OnDestroy {
   private _isComponentMaximized = false;
 
   constructor(private _componentFactoryResolver: ComponentFactoryResolver, private _cdRef: ChangeDetectorRef, public _renderer: Renderer,
-    private _popupDriver: PopupDriverService) {
+    private _popupDriver: PopupDriverService, private _compStore: ComponentStore) {
     this.minimizedDefs = [];
     this._minimizedComponents = [];
   }
@@ -93,7 +94,10 @@ export class MainComponent implements AfterViewInit, OnDestroy {
         this._startMenuRef = this.createComponent(StartMenuComponent, new DynamicMsg());
         this._startMenuRef.instance['onSelectContainer'].subscribe( def => {
           if (def instanceof ComponentDef) {
-            this.createComponent(def.type, def.inputs);
+            if (!this._compStore.contains(def.name)) {
+              return;
+            }
+            this.createComponent(this._compStore.findComponentByName(def.name), def.inputs);
             this.activeComponentDef = def;
             this._isComponentMaximized = false;
             this.activeTitle = def.inputs['shortname'];
@@ -136,7 +140,7 @@ export class MainComponent implements AfterViewInit, OnDestroy {
     openPreferencesWnd() {
       const options = new PopupOptions('User Preferences');
       options.size = new Size('60%', '80%');
-      this._popupDriver.openPopup(options, new ComponentDef('UserPreferencesComponent', UserPreferencesComponent,
+      this._popupDriver.openPopup(options, new ComponentDef('UserPreferencesComponent', 'UserPreferencesComponent',
         new Size('300', '300'), new DynamicMsg()), [
           new Action('Close', false, (action) => {}, 'normal', true)
       ]);

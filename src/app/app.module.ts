@@ -1,3 +1,4 @@
+import { ComponentStore } from '@services/component-store';
 import { TemplateCreatorComponent } from './components/template-creator/template-creator.component';
 import { UserPreferencesComponent } from './components/user-preferences/user-preferences.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -85,6 +86,7 @@ import { ThemeStoreService } from '@services/theme-store.service';
         HttpService,
         IntervalService,
         RefreshService,
+        ComponentStore,
         PushChannelService,
         serviceQueryProvider,
         UserContextService,

@@ -4,21 +4,14 @@ import { UMsg } from './umsg';
 export class Query <T extends UMsg> {
 
     @TrackType(String)
-    private _path: string;
+    path: string;
 
     @TrackType(Object)
-    private _params: T;
+    params: T;
 
     constructor(_path: string, _params: T) {
-        this._path = _path;
-        this._params = _params;
+        this.path = _path;
+        this.params = _params;
     }
 
-    public get path(): string {
-        return this._path;
-    }
-
-    public get params(): T {
-        return this._params;
-    }
 }

@@ -3,16 +3,6 @@ import notify from 'devextreme/ui/notify';
 import { saveAs } from 'file-saver';
 
 /**
- * Object cast to given class type
- * @param obj Object to cast
- * @param cl Object cast in to this object type
- */
-export function cast<T>(obj, cl): T {
-  obj.__proto__ = cl.prototype;
-  return obj;
-}
-
-/**
  * Generate random number within min and max
  * @param min Lower bound
  * @param max Upper bound

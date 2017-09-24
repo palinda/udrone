@@ -4,7 +4,7 @@ import 'rxjs/Rx';
 import { URLSearchParams, RequestOptions,  Http,   Headers,   Response } from '@angular/http';
 import { LogService } from './log.service';
 import { UMsg } from '@defs/umsg';
-import {forwardRef, Inject,  Injectable} from '@angular/core';
+import { forwardRef, Inject, Injectable, Type } from '@angular/core';
 
 /**
  * Send HTTP GET and POST requests. Prefered to use this service for all http communications.
@@ -25,7 +25,7 @@ export class HttpService {
  * Base URL = http://localhost:5556
  * So Request URL = http://localhost:5556/testQuery/Count
  */
-  public send(reqPath: string, msg: UMsg ): Observable<any> {
+  public send<T>(reqPath: string, msg: UMsg): Observable<T> {
     this.logService.printTrace('Send http request:', msg);
     const reqMethod = environment.reqMethod;
     const reqBaseUrl = environment.reqBaseUrl;
@@ -47,7 +47,7 @@ export class HttpService {
  * send('http://localhost:5556/testQuery/Count', new UMsg());
  *
  */
-  public sendGetRequest(reqUrl: string, msg: UMsg ): Observable<any> {
+  public sendGetRequest(reqUrl: string, msg: UMsg): Observable<any> {
     this.logService.printTrace('Send http get request:', msg);
 
     const headers = new Headers();
@@ -71,7 +71,7 @@ export class HttpService {
  * send('http://localhost:5556/testQuery/Count', new UMsg());
  *
  */
-  public sendPostRequest(reqUrl: string, msg: UMsg ): Observable<any> {
+  public sendPostRequest(reqUrl: string, msg: UMsg): Observable<any> {
     this.logService.printTrace('Send http post request:', msg);
 
     const headers = new Headers({ 'Content-Type': environment.contentType });

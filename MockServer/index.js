@@ -20,7 +20,7 @@ console.log('Server started! At http://localhost:' + port);
 
 app.post('/res/orderCount', function(req, res) {
     res.status(200).json({
-        '_count': Math.ceil((Math.random() * 100 + 1))
+        'count': Math.ceil((Math.random() * 100 + 1))
     });
 })
 
@@ -29,13 +29,13 @@ app.post('/res/orderCountHist', function(req, res) {
     const dyMsg = req.body;
     const dataList = [];
 
-    console.log('Request:' + req);
+    console.log('Request:' + dyMsg);
     for (let i = 0; i < dyMsg['limit']; i++) {
-        dataList.push({ '_key': 'X ' + i, '_value': Math.ceil((Math.random() * 100 + 1)) });
+        dataList.push({ 'key': 'X ' + i, 'value': Math.ceil((Math.random() * 100 + 1)) });
     }
 
     res.status(200).json({
-        '_data': dataList
+        'data': dataList
     });
 
 })
@@ -46,10 +46,10 @@ app.post('/res/globalComponentRepo/:id', function(req, res) {
 
     console.log('globalComponentRepo:' + req.params['id']);
     if (globalRepoFile[req.params['id']] === undefined) {
-        globalRepoFile[req.params['id']] = {};
+        globalRepoFile[req.params['id']] = [];
     }
 
-    globalRepoFile[req.params['id']][compDef._id] = compDef
+    globalRepoFile[req.params['id']].push(compDef);
     fs.writeFile(fileName, JSON.stringify(globalRepoFile), function(err) {
         if (err) return console.log(err);
         console.log(JSON.stringify(globalRepoFile));

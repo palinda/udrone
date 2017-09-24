@@ -1,5 +1,5 @@
 <dx-select-box [items]="templateDefs" [value]="updatingTemplate.type" (onValueChanged)="onWidgetTemplateSelect($event)" displayExpr="name"></dx-select-box>
-<form action="" class="u-form" (submit)="onAddWidgetTemplate($event)" *ngIf="updatingTemplate !== undefined && updatingTemplate.type !== undefined">
+<form action="" class="u-form" (submit)="onAddWidgetTemplate($event)" *ngIf="updatingTemplate !== undefined && updatingTemplate.name !== undefined">
     <dx-form [id]="formID" [(formData)]="updatingTemplate.inputs" [readOnly]="false" [showColonAfterLabel]="false" [showValidationSummary]="false" [validationGroup]="validationGroup" [colCount]="1">
         <dxi-item itemType="group" [caption]="row.group" *ngFor="let row of selectedInputs">
             <dxi-item [dataField]="entry.name" [editorType]="getEditorType(entry.dataType)" *ngFor="let entry of row.inputDefList" [editorOptions]="entry.options">

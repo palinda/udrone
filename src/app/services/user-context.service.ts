@@ -1,3 +1,4 @@
+import { Decoder } from './decoder';
 import * as Utils from '@utilities/utils';
 import * as Constants from '@defs/constants';
 import { GLOBAL_REPO_UPLOAD_PATH, CONTAINER_TEMPLATE_TAG, WIDGET_TEMPLATE_TAG, QUERY_TEMPLATE_TAG } from './../defs/constants';
@@ -17,28 +18,22 @@ import { Entry } from '@defs/entry';
 import { ComponentDef } from '@defs/component-def';
 import { DynamicMsg } from '@defs/dynamic-msg';
 import { UMap } from '@utilities/umap';
-import { Injectable, Inject, ComponentFactoryResolver, Type, Component } from '@angular/core';
+import { Injectable, Inject, Type, Component } from '@angular/core';
 import { Query } from '@defs/query';
 import { RepoDef } from '@defs/repo-def';
 
 @Injectable()
 export class UserContextService {
 
-  allComponents: Array<Type<Component>>;
-  componentsMap: UMap<string, Type<Component>>;
   widgetTemplateInsts: Array<ComponentDef> = [];
+  widgetTemplateInstsMap: UMap<string, ComponentDef> = new UMap<string, ComponentDef>();
   containerComponantInsts: Array<ComponentDef> = [];
   queryComponantInsts: Array<ComponentDef> = [];
   userPreference: PreferenceDef;
 
   constructor(private _themeStore: ThemeStoreService, @Inject(SERVICE_QUERY) private _serviceQuery: IServiceQuery,
-  private _logService: LogService, private _httpService: HttpService, private _resolver: ComponentFactoryResolver) {
+  private _logService: LogService, private _httpService: HttpService) {
     this.userPreference = new PreferenceDef();
-    this.componentsMap = new UMap<string, Type<Component>>();
-    this.allComponents = Array.from<Type<Component>>(this._resolver['_factories'].keys());
-    this.allComponents.forEach( element => {
-      this.componentsMap.put(element.name, element);
-    });
     this.loadProfile();
   }
 
@@ -46,43 +41,24 @@ export class UserContextService {
   private loadProfile() {
     this.userPreference.theme = this._themeStore.supportedThemes[0];
 
-    this._serviceQuery.query(new Query<RepoDef>(Constants.GLOBAL_REPO_DOWNLOAD_PATH, undefined)).subscribe(
+    this._serviceQuery.query(new Query<RepoDef>(Constants.GLOBAL_REPO_DOWNLOAD_PATH, undefined))
+    .map(res => Decoder.decode(RepoDef, res as Object[])).subscribe(
         (data: RepoDef) => {
-          this.loadTemplateForTag(this.widgetTemplateInsts, data[Constants.WIDGET_TEMPLATE_TAG]);
-          this.loadTemplateForTag(this.queryComponantInsts, data[Constants.QUERY_TEMPLATE_TAG]);
-          this.loadTemplateForTag(this.containerComponantInsts, data[Constants.CONTAINER_TEMPLATE_TAG]);
+          data.widgetTemplate.forEach(el => {
+            this.widgetTemplateInsts.push(Decoder.decode(ComponentDef, el));
+            this.widgetTemplateInstsMap.put(el.id, el);
+          });
+          // this.widgetTemplateInsts.push.apply(this.widgetTemplateInsts, data.widgetTemplate);
+          this.queryComponantInsts.push.apply(this.queryComponantInsts, data.queryTemplate);
+          // this.containerComponantInsts.push.apply(this.containerComponantInsts, data.containerTemplate);
+          data.containerTemplate.forEach(el => {
+            this.containerComponantInsts.push(Decoder.decode(ComponentDef, el));
+          });
         },
         (err) => {
           this._logService.printError('Global repo file load fail');
         }
     );
-
-    // this.containerComponantInsts.push(this.createMockContainer('Business Dashboard', 'Business Dashboard', 'dx-icon-globe'));
-    // this.containerComponantInsts.push(this.createMockContainer('Compliance Dashboard', 'Compliance Dashboard', 'dx-icon-group'));
-    // this.containerComponantInsts.push(this.createMockContainer('පරිශීලක විමසුම', 'Normal Query', 'dx-icon-user'));
-  }
-
-  private loadTemplateForTag(dataStore: Array<ComponentDef>, data: Object) {
-    if (Utils.isUndefined(data)) {
-      return;
-    }
-
-    for (const key in data) {
-      if (data.hasOwnProperty(key)) {
-        dataStore.push(this.decodeToComponent(data[key]));
-      }
-    }
-  }
-
-  public decodeToComponent(component: ComponentDef) {
-    const compName = this.componentsMap.get(component['_name']);
-    if (compName === undefined) {
-      this._logService.printError('Unknown component found in repo file:', component.name);
-      return undefined;
-    }
-
-    component.type = compName;
-    return component;
   }
 
   public addContainerTemplate(containerDef: ComponentDef, cb: (data: Object, err: Error) => void) {
@@ -113,23 +89,7 @@ export class UserContextService {
     );
   }
 
-
-  // private createMockContainer(heading: string, shortname: string, icon: string) {
-  //   const countQuery = new Query<DynamicMsg>('res/orderCount', new DynamicMsg());
-  //   const sparkQuery = new Query<DynamicMsg>('res/orderCountHist', new DynamicMsg(new Entry('limit', 5)));
-
-  //   const compDefList = [
-  //       new ComponentDef('test1', CounterSparklineComponent, new Size('2', '1'),
-  //         new DynamicMsg(new Entry('heading', 'Order Count'), new Entry('countQuery', countQuery),
-  //         new Entry('sparkQuery', sparkQuery), new Entry('id', 'test1'))),
-  //         new ComponentDef('test2', CounterSparklineComponent, new Size('2', '1'),
-  //         new DynamicMsg(new Entry('heading', 'Trade Count'), new Entry('countQuery', countQuery),
-  //         new Entry('sparkQuery', sparkQuery), new Entry('id', 'test2')))
-  //     ];
-
-  //     return new ComponentDef('cont_' + heading, DashboardContainerComponent, new Size('100', '100'),
-  //     new DynamicMsg(new Entry('componentDefList', compDefList),
-  //     new Entry('heading', heading), new Entry('shortname', shortname), new Entry('icon', icon), new Entry('id', 'cont_' + heading)));
-  // }
-
+  public findWidgetDef(id: string) {
+    return this.widgetTemplateInstsMap.get(id);
+  }
 }
