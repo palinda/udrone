@@ -1,5 +1,5 @@
-<dx-tile-view class="dx-tile-content start-menu" direction="vertical">
-    <dxi-item [widthRatio]="1" [heightRatio]="1" *ngFor='let comp of containerDefList'>
-        <app-u-icon-btn [iconClass]="comp.inputs.icon" [size]="98" bakColor="white" [text]="comp.inputs.heading" (click)="openComponent(comp)"></app-u-icon-btn>
-    </dxi-item>
+<dx-tile-view class="dx-tile-content start-menu" direction="vertical" [dataSource]="dataSource" itemTemplate="tile">
+    <div *dxTemplate="let comp of 'tile'" [hasPermission]="comp.data.permissions.permissionGroups">
+        <app-u-icon-btn [iconClass]="comp.data.inputs.icon" [size]="98" bakColor="white" [text]="comp.data.inputs.heading" (click)="openComponent(comp.data)"></app-u-icon-btn>
+    </div>
 </dx-tile-view>

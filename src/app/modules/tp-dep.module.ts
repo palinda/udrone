@@ -1,4 +1,5 @@
 import { NgModule, Injectable } from '@angular/core';
+import { Ng2Permission } from 'angular2-permission';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {
@@ -37,7 +38,8 @@ import {
     DxPopupModule,
     DxNumberBoxModule,
     DxFormModule,
-    DxTabPanelModule
+    DxTabPanelModule,
+    Ng2Permission
   ]
 })
 export class TpDepModule { }

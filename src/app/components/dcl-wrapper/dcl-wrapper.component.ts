@@ -27,7 +27,7 @@ export class DclWrapperComponent implements OnChanges, AfterViewInit, OnDestroy 
   cmpRef: ComponentRef<any>;
   private isViewInitialized = false;
 
-  constructor(private componentFactoryResolver: ComponentFactoryResolver, private cdRef: ChangeDetectorRef, 
+  constructor(private componentFactoryResolver: ComponentFactoryResolver, private cdRef: ChangeDetectorRef,
     private _compStore: ComponentStore) {}
 
   updateComponent() {

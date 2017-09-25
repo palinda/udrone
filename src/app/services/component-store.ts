@@ -1,11 +1,12 @@
 import { UMap } from '@utilities/umap';
-import { Component, Type, ComponentFactoryResolver, Inject } from '@angular/core';
+import { Component, Type, ComponentFactoryResolver, Inject, Injectable } from '@angular/core';
 
+@Injectable()
 export class ComponentStore {
     allComponents: Array<Type<Component>>;
     componentsMap: UMap<string, Type<Component>> = new UMap<string, Type<Component>>();
 
-    constructor(@Inject(ComponentFactoryResolver) _resolver: ComponentFactoryResolver) {
+    constructor(private _resolver: ComponentFactoryResolver) {
         this.allComponents = Array.from<Type<Component>>(_resolver['_factories'].keys());
         this.allComponents.forEach( element => {
           this.componentsMap.put(element.name, element);

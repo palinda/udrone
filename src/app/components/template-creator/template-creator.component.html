@@ -1,8 +1,25 @@
 <dx-select-box [items]="templateDefs" [value]="updatingTemplate.type" (onValueChanged)="onWidgetTemplateSelect($event)" displayExpr="name"></dx-select-box>
 <form action="" class="u-form" (submit)="onAddWidgetTemplate($event)" *ngIf="updatingTemplate !== undefined && updatingTemplate.name !== undefined">
-    <dx-form [id]="formID" [(formData)]="updatingTemplate.inputs" [readOnly]="false" [showColonAfterLabel]="false" [showValidationSummary]="false" [validationGroup]="validationGroup" [colCount]="1">
-        <dxi-item itemType="group" [caption]="row.group" *ngFor="let row of selectedInputs">
-            <dxi-item [dataField]="entry.name" [editorType]="getEditorType(entry.dataType)" *ngFor="let entry of row.inputDefList" [editorOptions]="entry.options">
+    <dx-form [id]="formID" [(formData)]="updatingTemplate" [readOnly]="false" [showColonAfterLabel]="false" [showValidationSummary]="false" [validationGroup]="validationGroup" [colCount]="2">
+
+
+        <dxi-item itemType="group" caption="Size">
+            <dxi-item dataField="size.width" editorType="dxTextBox" [label]="{text: 'Width'}">
+                <dxi-validation-rule type="required" message="Required field"></dxi-validation-rule>
+            </dxi-item>
+            <dxi-item dataField="size.height" editorType="dxTextBox" [label]="{text: 'Height'}">
+                <dxi-validation-rule type="required" message="Required field"></dxi-validation-rule>
+            </dxi-item>
+        </dxi-item>
+        <dxi-item itemType="group" caption="Permissions" [colSpan]="2">
+            <dxi-item dataField="permissions.permissionGroups" editorType="dxTagBox" [editorOptions]="permissionOptions" [label]="{text: 'Groups'}">
+                <dxi-validation-rule type="required" message="Required field"></dxi-validation-rule>
+            </dxi-item>
+            <dxi-item dataField="permissions.isExcept" editorType="dxCheckBox" [label]="{text: 'Excepted'}">
+            </dxi-item>
+        </dxi-item>
+        <dxi-item itemType="group" [caption]="row.group" *ngFor="let row of selectedInputs" [colSpan]="2">
+            <dxi-item [dataField]="'inputs.' + entry.name" [editorType]="getEditorType(entry.dataType)" *ngFor="let entry of row.inputDefList" [editorOptions]="entry.options" [colSpan]="2" [label]="{text: toTitleStr(entry.leafName)}">
                 <dxi-validation-rule type="required" message="Required field"></dxi-validation-rule>
             </dxi-item>
         </dxi-item>

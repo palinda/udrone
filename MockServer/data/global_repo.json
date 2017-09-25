@@ -1,1 +1,260 @@
-{"widgetTemplate":[{"id":"w1","size":{"width":"2","height":"1"},"inputs":{"countQuery":{"path":"orderCount","params":"{}"},"sparkQuery":{"path":"orderCountHist","params":{"limit":10}},"componentID":"w1","permissions":"VIEW","heading":"Order Count","refreshInterval":10},"name":"CounterSparklineComponent"},{"id":"w2","size":{"width":"2","height":"1"},"inputs":{"countQuery":{"path":"orderCount","params":"{}"},"sparkQuery":{"path":"orderCountHist","params":{"limit":10}},"componentID":"w2","permissions":"VIEW","heading":"Trade Count","refreshInterval":20},"name":"CounterSparklineComponent"},{"id":"w3","size":{"width":"2","height":"1"},"inputs":{"countQuery":{"path":"orderCount","params":"{}"},"sparkQuery":{"path":"orderCountHist","params":{"limit":5}},"componentID":"w3","permissions":"VIEW","heading":"Open Count","refreshInterval":15},"name":"CounterSparklineComponent"},{"id":"w4","size":{"width":"2","height":"1"},"inputs":{"countQuery":{"path":"orderCount","params":"{}"},"sparkQuery":{"path":"orderCountHist","params":{"limit":10}},"componentID":"w4","permissions":"VIEW","heading":"TRF Count","refreshInterval":10},"name":"CounterSparklineComponent"},{"id":"w6","size":{"width":"2","height":"1"},"inputs":{"countQuery":{"path":"orderCount","params":"{}"},"sparkQuery":{"path":"orderCountHist","params":{"limit":10}},"componentID":"w6","permissions":"VIEW","heading":"Order Trade Count","refreshInterval":10,"countQuery.params":{},"sparkQuery.params":{"limit":10}},"name":"CounterSparklineComponent"},{"id":"w8","size":{"width":"2","height":"1"},"inputs":{"countQuery":{"path":"orderCount","params":{}},"sparkQuery":{"path":"orderCountHist","params":{"limit":10}},"componentID":"w8","permissions":"VIEW","heading":"Deposts","refreshInterval":20},"name":"CounterSparklineComponent"}],"containerTemplate":[{"id":"c1","size":{"width":"2","height":"1"},"inputs":{"componentID":"c1","permissions":"VIEW","heading":"Business Dashboard","shortname":"Business Dashboard","icon":"icon-poll","componentDefIDList":["w1"]},"name":"DashboardContainerComponent"},{"id":"Compliance Dashboard","size":{"width":"2","height":"1"},"inputs":{"componentID":"Compliance Dashboard","permissions":"VIEW","heading":"Compliance Dashboard","shortname":"Compliance Dashboard","icon":"icon-security","componentDefIDList":["w2","w3","w4","w6","w8"]},"name":"DashboardContainerComponent"},{"id":"System Dashboard","size":{"width":"2","height":"1"},"inputs":{"componentID":"System Dashboard","heading":"System Dashboard","shortname":"System Dashboard","permissions":"VIEW","icon":"icon-verified_user","componentDefIDList":["w4","w1","w8"]},"name":"DashboardContainerComponent"}]}
+{
+	"widgetTemplate": [{
+		"id": "w1",
+		"size": {
+			"width": "2",
+			"height": "1"
+		},
+		"inputs": {
+			"countQuery": {
+				"path": "orderCount",
+				"params": "{}"
+			},
+			"sparkQuery": {
+				"path": "orderCountHist",
+				"params": {
+					"limit": 10
+				}
+			},
+			"componentID": "w1",
+			"permissions": "VIEW",
+			"heading": "Order Count",
+			"refreshInterval": 10
+		},
+		"name": "CounterSparklineComponent"
+	},
+	{
+		"id": "w2",
+		"size": {
+			"width": "2",
+			"height": "1"
+		},
+		"inputs": {
+			"countQuery": {
+				"path": "orderCount",
+				"params": "{}"
+			},
+			"sparkQuery": {
+				"path": "orderCountHist",
+				"params": {
+					"limit": 10
+				}
+			},
+			"componentID": "w2",
+			"permissions": "VIEW",
+			"heading": "Trade Count",
+			"refreshInterval": 20
+		},
+		"name": "CounterSparklineComponent"
+	},
+	{
+		"id": "w3",
+		"size": {
+			"width": "2",
+			"height": "1"
+		},
+		"inputs": {
+			"countQuery": {
+				"path": "orderCount",
+				"params": "{}"
+			},
+			"sparkQuery": {
+				"path": "orderCountHist",
+				"params": {
+					"limit": 5
+				}
+			},
+			"componentID": "w3",
+			"permissions": "VIEW",
+			"heading": "Open Count",
+			"refreshInterval": 15
+		},
+		"name": "CounterSparklineComponent"
+	},
+	{
+		"id": "w4",
+		"size": {
+			"width": "2",
+			"height": "1"
+		},
+		"inputs": {
+			"countQuery": {
+				"path": "orderCount",
+				"params": "{}"
+			},
+			"sparkQuery": {
+				"path": "orderCountHist",
+				"params": {
+					"limit": 10
+				}
+			},
+			"componentID": "w4",
+			"permissions": "VIEW",
+			"heading": "TRF Count",
+			"refreshInterval": 10
+		},
+		"name": "CounterSparklineComponent"
+	},
+	{
+		"id": "w6",
+		"size": {
+			"width": "2",
+			"height": "1"
+		},
+		"inputs": {
+			"countQuery": {
+				"path": "orderCount",
+				"params": "{}"
+			},
+			"sparkQuery": {
+				"path": "orderCountHist",
+				"params": {
+					"limit": 10
+				}
+			},
+			"componentID": "w6",
+			"permissions": "VIEW",
+			"heading": "Order Trade Count",
+			"refreshInterval": 10,
+			"countQuery.params": {
+				
+			},
+			"sparkQuery.params": {
+				"limit": 10
+			}
+		},
+		"name": "CounterSparklineComponent"
+	},
+	{
+		"id": "w8",
+		"size": {
+			"width": "2",
+			"height": "1"
+		},
+		"inputs": {
+			"countQuery": {
+				"path": "orderCount",
+				"params": {
+					
+				}
+			},
+			"sparkQuery": {
+				"path": "orderCountHist",
+				"params": {
+					"limit": 10
+				}
+			},
+			"componentID": "w8",
+			"permissions": "VIEW",
+			"heading": "Deposts",
+			"refreshInterval": 20
+		},
+		"name": "CounterSparklineComponent"
+	},
+	{
+		"permissions": {
+			"onAuthorizedPermission": "show",
+			"onUnauthorizedPermission": "hide",
+			"isExcept": false,
+			"permissionGroups": ["BUSINESS_STATS"]
+		},
+		"id": "User Count",
+		"size": {
+			"width": "3",
+			"height": "1"
+		},
+		"inputs": {
+			"countQuery": {
+				"path": "orderCount",
+				"params": {
+					
+				}
+			},
+			"sparkQuery": {
+				"path": "orderCountHist",
+				"params": {
+					"limit": 10
+				}
+			},
+			"componentID": "User Count",
+			"heading": "User Count",
+			"refreshInterval": 30
+		},
+		"name": "CounterSparklineComponent"
+	}],
+	"containerTemplate": [{
+		"id": "c1",
+		"size": {
+			"width": "2",
+			"height": "1"
+		},
+		"inputs": {
+			"componentID": "c1",
+			"permissions": "VIEW",
+			"heading": "Business Dashboard",
+			"shortname": "Business Dashboard",
+			"icon": "icon-poll",
+			"componentDefIDList": ["w1"]
+		},
+		"name": "DashboardContainerComponent"
+	},
+	{
+		"id": "Compliance Dashboard",
+		"size": {
+			"width": "2",
+			"height": "1"
+		},
+		"inputs": {
+			"componentID": "Compliance Dashboard",
+			"permissions": "VIEW",
+			"heading": "Compliance Dashboard",
+			"shortname": "Compliance Dashboard",
+			"icon": "icon-security",
+			"componentDefIDList": ["w2",
+			"w3",
+			"w4",
+			"w6",
+			"w8"]
+		},
+		"name": "DashboardContainerComponent"
+	},
+	{
+		"id": "System Dashboard",
+		"size": {
+			"width": "2",
+			"height": "1"
+		},
+		"inputs": {
+			"componentID": "System Dashboard",
+			"heading": "System Dashboard",
+			"shortname": "System Dashboard",
+			"permissions": "VIEW",
+			"icon": "icon-verified_user",
+			"componentDefIDList": ["w4",
+			"w1",
+			"w8"]
+		},
+		"name": "DashboardContainerComponent"
+	},
+	{
+		"permissions": {
+			"onAuthorizedPermission": "show",
+			"onUnauthorizedPermission": "hide",
+			"isExcept": false,
+			"permissionGroups": ["BUSINESS_STATS"]
+		},
+		"id": "Business Stats",
+		"size": {
+			"width": "2",
+			"height": "1"
+		},
+		"inputs": {
+			"componentID": "Business Stats",
+			"heading": "Business Stats",
+			"shortname": "Business Stats",
+			"icon": "icon-public",
+			"componentDefIDList": ["User Count"]
+		},
+		"name": "DashboardContainerComponent"
+	}]
+}

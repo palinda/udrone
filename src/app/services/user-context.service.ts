@@ -1,3 +1,5 @@
+import { PermissionManagerService } from './permission-manager.service';
+import { UserInfo } from '@defs/user-info';
 import { Decoder } from './decoder';
 import * as Utils from '@utilities/utils';
 import * as Constants from '@defs/constants';
@@ -30,10 +32,12 @@ export class UserContextService {
   containerComponantInsts: Array<ComponentDef> = [];
   queryComponantInsts: Array<ComponentDef> = [];
   userPreference: PreferenceDef;
+  userInfo: UserInfo;
 
   constructor(private _themeStore: ThemeStoreService, @Inject(SERVICE_QUERY) private _serviceQuery: IServiceQuery,
-  private _logService: LogService, private _httpService: HttpService) {
+  private _logService: LogService, private _httpService: HttpService, private _permissionService: PermissionManagerService) {
     this.userPreference = new PreferenceDef();
+    this.userInfo = new UserInfo('Test User', 'admin');
     this.loadProfile();
   }
 
@@ -50,10 +54,7 @@ export class UserContextService {
           });
           // this.widgetTemplateInsts.push.apply(this.widgetTemplateInsts, data.widgetTemplate);
           this.queryComponantInsts.push.apply(this.queryComponantInsts, data.queryTemplate);
-          // this.containerComponantInsts.push.apply(this.containerComponantInsts, data.containerTemplate);
-          data.containerTemplate.forEach(el => {
-            this.containerComponantInsts.push(Decoder.decode(ComponentDef, el));
-          });
+          this.containerComponantInsts.push.apply(this.containerComponantInsts, data.containerTemplate);
         },
         (err) => {
           this._logService.printError('Global repo file load fail');

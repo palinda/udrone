@@ -1,3 +1,4 @@
+import { PermissionType } from '@defs/permission-type';
 import { Type } from 'class-transformer';
 import { UMsg } from '@defs/umsg';
 import { DynamicMsg } from '@defs/dynamic-msg';
@@ -13,6 +14,9 @@ export class ComponentDef extends UMsg {
 
     @Type(() => DynamicMsg)
     inputs: DynamicMsg;
+
+    @Type(() => PermissionType)
+    permissions: PermissionType = new PermissionType([]);
 
     constructor(id: string, name: string, size: Size, inputs: DynamicMsg) {
         super();

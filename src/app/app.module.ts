@@ -1,3 +1,4 @@
+import { PermissionManagerService } from '@services/permission-manager.service';
 import { ComponentStore } from '@services/component-store';
 import { TemplateCreatorComponent } from './components/template-creator/template-creator.component';
 import { UserPreferencesComponent } from './components/user-preferences/user-preferences.component';
@@ -91,7 +92,8 @@ import { ThemeStoreService } from '@services/theme-store.service';
         serviceQueryProvider,
         UserContextService,
         PopupDriverService,
-        ThemeStoreService
+        ThemeStoreService,
+        PermissionManagerService
   ],
   bootstrap: [MainComponent]
 })

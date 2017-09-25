@@ -1,3 +1,4 @@
+import { PermissionManagerService } from '@services/permission-manager.service';
 import { LogService } from '@services/log.service';
 import { UserContextService } from '@services/user-context.service';
 import { DynamicMsg } from '@defs/dynamic-msg';
@@ -9,6 +10,7 @@ import { Component, OnInit, Type, ViewChild, ViewContainerRef, ComponentFactoryR
 import * as Utils from '@utilities/utils';
 import ArrayStore from 'devextreme/data/array_store';
 
+let compScope;
 @Component({
   selector: 'app-template-creator',
   templateUrl: './template-creator.component.html',
@@ -26,8 +28,30 @@ export class TemplateCreatorComponent implements OnInit {
 
   @ViewChild('dummy', {read: ViewContainerRef}) dummy;
 
-  constructor(private _userContext: UserContextService, private _resolver: ComponentFactoryResolver, private _log: LogService) {
-    this.updatingTemplate = new ComponentDef(undefined, undefined, undefined, undefined);
+  permissionOptions: Object;
+
+  constructor(private _userContext: UserContextService, private _resolver: ComponentFactoryResolver, private _log: LogService,
+    private _permissionManager: PermissionManagerService) {
+    this.updatingTemplate = new ComponentDef(undefined, undefined, new Size('2', '1'), undefined);
+    compScope = this;
+    const dataSource = new ArrayStore({
+        data: this._permissionManager.getAllowedPermissions(),
+    });
+
+    this.permissionOptions = {
+      'dataSource': dataSource,
+      'acceptCustomValue': true,
+      'onCustomItemCreating': function(args) {
+          const newValue = args.text,
+          component = args.component,
+          currentItems = component.option('items');
+          currentItems.unshift(newValue);
+          component.option('items', currentItems);
+          compScope._permissionManager.addPermission(newValue);
+          return newValue;
+      }
+    };
+
   }
 
   ngOnInit() {
@@ -140,7 +164,11 @@ export class TemplateCreatorComponent implements OnInit {
   }
 
   clearAdd() {
-    this.updatingTemplate = new ComponentDef(undefined, undefined, undefined, undefined);
+    this.updatingTemplate = new ComponentDef(undefined, undefined, new Size('2', '1'), undefined);
     this.selectedInputs.splice(0, this.selectedInputs.length);
+  }
+
+  toTitleStr(str: string) {
+    return Utils.toTitleStr(str);
   }
 }

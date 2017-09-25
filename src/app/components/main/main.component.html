@@ -12,7 +12,7 @@
     </div>
     <div fxFlex="60px" id="footer">
         <app-u-icon-btn class="pull-left task-item" iconClass="icon-desktop_windows" [size]="60" bakColor="#A7DBDB" (click)="onStartMenuOpen()"></app-u-icon-btn>
-        <app-u-icon-btn class="pull-left" [isSelected]="activeIndex === i" [iconClass]="def.inputs.icon" [size]="60" bakColor="white" (click)="maximizeComponent(i, def)" *ngFor="let def of minimizedDefs; let i = index"></app-u-icon-btn>
+        <app-u-icon-btn class="pull-left" [isSelected]="activeIndex === i" [iconClass]="def.inputs.icon" [size]="60" bakColor="white" (click)="maximizeComponent(i, def)" *ngFor="let def of minimizedDefs; let i = index" [hasPermission]="def.permissions.permissionGroups"></app-u-icon-btn>
     </div>
 </div>
 
