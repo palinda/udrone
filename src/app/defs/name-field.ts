@@ -1,15 +1,12 @@
 import { UMsg } from '@defs/umsg';
 export class NameField extends UMsg {
 
-    constructor(private key: string, private name: string) {
+    key: string;
+    name: string;
+
+    constructor(key: string, name: string) {
         super();
-    }
-
-    public get $key(): string {
-        return this.key;
-    }
-
-    public get $name(): string {
-        return this.name;
+        this.key = key;
+        this.name = name;
     }
 }

@@ -1,3 +1,4 @@
+import { Type } from 'class-transformer';
 import { PermissionType } from '@defs/permission-type';
 import { NameField } from '@defs/name-field';
 import { Query } from '@defs/query';
@@ -6,46 +7,36 @@ import { Sort } from '@defs/sort';
 
 export class ColumnOptions extends NameField {
 
-    constructor(key: string, name: string, private datatype: DataType, private query: Query<any>, private visibleCol: boolean,
-        private editable, private visible: boolean, private defaultCol: boolean, private defaultSort: Sort, private filterable: boolean,
-        private permission: PermissionType
+    dataType: DataType;
+
+    @Type(() => Query)
+    query: Query<any>;
+
+    visibleCol = true;
+    editable = false;
+    visible = true;
+    defaultCol = false;
+    filterable = true;
+
+    @Type(() => Sort)
+    defaultSort: Sort;
+
+    @Type(() => PermissionType)
+    permission: PermissionType;
+
+    constructor(_key: string, _name: string, _datatype: DataType, _query: Query<any>, _visibleCol: boolean,
+        _editable: boolean, _visible: boolean, _defaultCol: boolean, _defaultSort: Sort, _filterable: boolean,
+        _permission: PermissionType
     ) {
-        super(key, name);
-    }
-
-    public get $datatype(): DataType {
-        return this.datatype;
-    }
-
-    public get $query(): Query<any> {
-        return this.query;
-    }
-
-    public get $visibleCol(): boolean {
-        return this.visibleCol;
-    }
-
-    public get $editable(): boolean {
-        return this.editable;
-    }
-
-    public get $visible(): boolean {
-        return this.visible;
-    }
-
-    public get $defaultCol(): boolean {
-        return this.defaultCol;
-    }
-
-    public get $defaultSort(): Sort {
-        return this.defaultSort;
-    }
-
-    public get $filterable(): boolean {
-        return this.filterable;
-    }
-
-    public get $permission(): PermissionType {
-        return this.permission;
+        super(_key, _name);
+        this.dataType = _datatype;
+        this.query  = _query;
+        this.visibleCol = _visibleCol;
+        this.editable = _editable;
+        this.visible = _visible;
+        this.defaultCol = _defaultCol;
+        this.filterable = _filterable;
+        this.defaultSort = _defaultSort;
+        this.permission = _permission;
     }
 }

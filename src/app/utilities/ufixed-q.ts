@@ -1,7 +1,7 @@
 export class UFixedQ<T> {
 
-  private _size = 0;
-  private _data: Array<T> = [];
+  size = 0;
+  data: Array<T> = [];
 
   constructor(private _fixedSize: number) {
   }
@@ -10,20 +10,12 @@ export class UFixedQ<T> {
     return this._fixedSize;
   }
 
-  public size(): number {
-    return this._size;
-  }
-
-  public data(): Array<T> {
-    return this._data;
-  }
-
   public add(item: T): void {
-    if (this._size >= this._fixedSize) {
-      this._data.shift();
+    if (this.size >= this._fixedSize) {
+      this.data.shift();
     } else {
-      this._size++;
+      this.size++;
     }
-    this._data.push(item);
+    this.data.push(item);
   }
 }

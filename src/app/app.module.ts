@@ -1,3 +1,4 @@
+import { ContainerTemplateComponent } from './components/container-template.component';
 import { PermissionManagerService } from '@services/permission-manager.service';
 import { ComponentStore } from '@services/component-store';
 import { TemplateCreatorComponent } from './components/template-creator/template-creator.component';
@@ -38,6 +39,10 @@ import { UPopupComponent } from '@components/unit/u-popup/u-popup.component';
 import { UFormComponent } from '@components/unit/u-form/u-form.component';
 import { PopupDriverService } from '@services/popup-driver.service';
 import { ThemeStoreService } from '@services/theme-store.service';
+import { CounterGuageComponent } from '@components/widget-templates/counter-guage/counter-guage.component';
+import { RealtimeSplineComponent } from '@components/widget-templates/realtime-spline/realtime-spline.component';
+import { AdvanceQueryTableComponent } from '@components/query-templates/advance-query-table/advance-query-table.component';
+import { QueryContainerComponent } from '@components/container-templates/query-container/query-container.component';
 
 /**
  * Main app module
@@ -65,15 +70,25 @@ import { ThemeStoreService } from '@services/theme-store.service';
     UPopupComponent,
     UFormComponent,
     UserPreferencesComponent,
-    TemplateCreatorComponent
+    TemplateCreatorComponent,
+    ContainerTemplateComponent,
+    CounterGuageComponent,
+    RealtimeSplineComponent,
+    AdvanceQueryTableComponent,
+    QueryContainerComponent
   ],
   entryComponents: [
     CounterSparklineComponent,
+    CounterGuageComponent,
     DashboardContainerComponent,
+    ContainerTemplateComponent,
     StartMenuComponent,
     UTextComponent,
     UserPreferencesComponent,
-    TemplateCreatorComponent
+    TemplateCreatorComponent,
+    RealtimeSplineComponent,
+    AdvanceQueryTableComponent,
+    QueryContainerComponent
   ],
   imports: [
     BrowserModule,

@@ -29,8 +29,9 @@ export class UserContextService {
 
   widgetTemplateInsts: Array<ComponentDef> = [];
   widgetTemplateInstsMap: UMap<string, ComponentDef> = new UMap<string, ComponentDef>();
-  containerComponantInsts: Array<ComponentDef> = [];
   queryComponantInsts: Array<ComponentDef> = [];
+  queryTemplateInstsMap: UMap<string, ComponentDef> = new UMap<string, ComponentDef>();
+  containerComponantInsts: Array<ComponentDef> = [];
   userPreference: PreferenceDef;
   userInfo: UserInfo;
 
@@ -48,12 +49,19 @@ export class UserContextService {
     this._serviceQuery.query(new Query<RepoDef>(Constants.GLOBAL_REPO_DOWNLOAD_PATH, undefined))
     .map(res => Decoder.decode(RepoDef, res as Object[])).subscribe(
         (data: RepoDef) => {
-          data.widgetTemplate.forEach(el => {
-            this.widgetTemplateInsts.push(Decoder.decode(ComponentDef, el));
-            this.widgetTemplateInstsMap.put(el.id, el);
-          });
-          // this.widgetTemplateInsts.push.apply(this.widgetTemplateInsts, data.widgetTemplate);
-          this.queryComponantInsts.push.apply(this.queryComponantInsts, data.queryTemplate);
+
+          if (!Utils.isUndefined(data.widgetTemplate)) {
+            data.widgetTemplate.forEach(el => {
+              this.addWidgetDef(Decoder.decode(ComponentDef, el));
+            });
+          }
+
+          if (!Utils.isUndefined(data.queryTemplate)) {
+            data.queryTemplate.forEach(el => {
+              this.addQueryDef(Decoder.decode(ComponentDef, el));
+            });
+          }
+
           this.containerComponantInsts.push.apply(this.containerComponantInsts, data.containerTemplate);
         },
         (err) => {
@@ -81,8 +89,22 @@ export class UserContextService {
     this._serviceQuery.query(new Query<ComponentDef>(Constants.GLOBAL_REPO_UPLOAD_PATH + '/' + Constants.WIDGET_TEMPLATE_TAG, copy))
     .subscribe(
       (resp) => {
-        this.widgetTemplateInsts.push(widgetDef);
+        this.addWidgetDef(widgetDef);
         cb(widgetDef, undefined);
+      },
+      (err) => {
+        cb(undefined, err);
+      }
+    );
+  }
+
+  public addQueryTemplate(queryDef: ComponentDef, cb: (data: Object, err: Error) => void) {
+    const copy = queryDef;
+    this._serviceQuery.query(new Query<ComponentDef>(Constants.GLOBAL_REPO_UPLOAD_PATH + '/' + Constants.QUERY_TEMPLATE_TAG, copy))
+    .subscribe(
+      (resp) => {
+        this.addQueryDef(queryDef);
+        cb(queryDef, undefined);
       },
       (err) => {
         cb(undefined, err);
@@ -92,5 +114,19 @@ export class UserContextService {
 
   public findWidgetDef(id: string) {
     return this.widgetTemplateInstsMap.get(id);
+  }
+
+  public findQueryDef(id: string) {
+    return this.queryTemplateInstsMap.get(id);
+  }
+
+  public addWidgetDef(def: ComponentDef) {
+    this.widgetTemplateInsts.push(def);
+    this.widgetTemplateInstsMap.put(def.id, def);
+  }
+
+  public addQueryDef(def: ComponentDef) {
+    this.queryComponantInsts.push(def);
+    this.queryTemplateInstsMap.put(def.id, def);
   }
 }

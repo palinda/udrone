@@ -1,3 +1,4 @@
+import { ComponentDef } from '@defs/component-def';
 import { TrackType } from '@defs/track-type';
 import { LogService } from '@services/log.service';
 import { Component, Input } from '@angular/core';
@@ -14,6 +15,8 @@ export class BaseTemplateComponent {
 
   @TrackType(String)
   @Input()componentID: string;
+
+  protected componentDef: ComponentDef;
 
   constructor(protected logService: LogService) {
   }

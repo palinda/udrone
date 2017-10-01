@@ -1,5 +1,5 @@
 <div>
-    <dx-circular-gauge [value]="value.mean" [subvalues]="[value.min, value.max]">
+    <dx-circular-gauge [value]="value.mean" [subvalues]="[value.min, value.max]" [size]="options.size">
 
         <dxo-range-container>
             <dxi-range [startValue]="colorStep" [endValue]="colorStep*2" color="#0077BE"></dxi-range>

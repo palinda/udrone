@@ -23,7 +23,7 @@
             <app-template-creator [templateDefs]="widgetTemplateDefs" [saveCB]="widgetSave"></app-template-creator>
         </div>
         <div class="tabpanel-item" [hidden]="selectedIndex !== 2">
-            <app-template-creator [templateDefs]="queryTemplateDefs"></app-template-creator>
+            <app-template-creator [templateDefs]="queryTemplateDefs" [saveCB]="querySave"></app-template-creator>
         </div>
 
         <div class="tabpanel-item" [hidden]="selectedIndex !== 3">

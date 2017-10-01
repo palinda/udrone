@@ -25,3 +25,7 @@
 .icon-btn-active {
     background-color: #E7EDEF !important;
 }
+
+.dx-widget {
+    font-family: 'Segoe UI Light', 'Helvetica Neue Light', 'Segoe UI', 'Helvetica Neue', 'Trebuchet MS', Verdana;
+}

@@ -1,4 +1,4 @@
-<dx-select-box [items]="templateDefs" [value]="updatingTemplate.type" (onValueChanged)="onWidgetTemplateSelect($event)" displayExpr="name"></dx-select-box>
+<dx-select-box [items]="templateDefs" [value]="updatingTemplate.name" (onValueChanged)="onWidgetTemplateSelect($event)" displayExpr="name" valueExpr="name"></dx-select-box>
 <form action="" class="u-form" (submit)="onAddWidgetTemplate($event)" *ngIf="updatingTemplate !== undefined && updatingTemplate.name !== undefined">
     <dx-form [id]="formID" [(formData)]="updatingTemplate" [readOnly]="false" [showColonAfterLabel]="false" [showValidationSummary]="false" [validationGroup]="validationGroup" [colCount]="2">
 

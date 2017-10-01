@@ -1,3 +1,5 @@
+import * as Utils from '@utilities/utils';
+import { PermissionManagerService } from '@services/permission-manager.service';
 import { UserContextService } from '@services/user-context.service';
 import { DynamicMsg } from '@defs/dynamic-msg';
 import { TrackType } from '@app/defs/track-type';
@@ -22,18 +24,11 @@ export class DashboardContainerComponent extends ContainerTemplateComponent impl
   @Input() componentDefIDList: Array<string>;
 
  componentDefList: Array<ComponentDef> = [];
+
  differ: any;
-  /**
-   * Window close event emitter
-   */
-  @Output() onClose: EventEmitter<ContainerTemplateComponent> = new EventEmitter<ContainerTemplateComponent>();
 
-  /**
-   * Window minimize event emitter
-   */
-  @Output() onMinimize: EventEmitter<ContainerTemplateComponent> = new EventEmitter<ContainerTemplateComponent>();
-
-  constructor(logService: LogService, private _userContext: UserContextService, differs: IterableDiffers) {
+  constructor(logService: LogService, private _userContext: UserContextService, differs: IterableDiffers,
+    private _permissionMan: PermissionManagerService) {
     super(logService);
     this.differ = differs.find([]).create(null);
     if (this.componentDefIDList === undefined) {
@@ -55,17 +50,10 @@ export class DashboardContainerComponent extends ContainerTemplateComponent impl
   private updateComponentDefs() {
     this.componentDefIDList.forEach( id => {
       const def: ComponentDef = this._userContext.findWidgetDef(id);
-      if (def !== undefined) {
+      if (!Utils.isUndefined(def) && this._permissionMan.hasOnePermission(def.permissions.permissionGroups)) {
         this.componentDefList.push(def);
       }
     });
   }
 
-  onCloseComponent() {
-    this.onClose.emit(this);
-  }
-
-  onMinimizeComponent() {
-    this.onMinimize.emit(this);
-  }
 }

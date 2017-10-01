@@ -58,8 +58,8 @@ export class UTableComponent implements OnInit {
 
                 const query = cmpScope.tableOptions.$query;
                 const params: TableQuery = query.params;
-                params.$limit = loadOptions.take;
-                params.$offset = loadOptions.skip;
+                params.limit = loadOptions.take;
+                params.offset = loadOptions.skip;
 
                 if (loadOptions.sort) {
                     params.addSort(new Sort(loadOptions.sort[0].selector, loadOptions.sort[0].desc));
@@ -70,8 +70,8 @@ export class UTableComponent implements OnInit {
                     .then(response => {
                         console.log(response);
                         return {
-                            data: response.$data,
-                            totalCount: response.$total
+                            data: response.data,
+                            totalCount: response.total
                         };
                     })
                     .catch(error => {

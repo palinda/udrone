@@ -1,3 +1,5 @@
+import { Size } from '@defs/size';
+import { TrackType } from '@defs/track-type';
 import * as Utils from '@utilities/utils';
 import { Component, OnInit, Input } from '@angular/core';
 
@@ -35,38 +37,47 @@ export class GaugeOptions {
   /**
    * Component title
    */
+  @TrackType(String)
   title: String;
 
   /**
    * Title font size
    */
+  @TrackType(Number)
   titleSize = 24;
   /**
    * Prefix for label
    */
+  @TrackType(String)
   labelPrefix: String = '';
 
   /**
    * Sufix for label
    */
+  @TrackType(String)
   labelSuffix: String = '';
 
   /**
    * Lower value
    */
+  @TrackType(Number)
   start = 0;
 
   /**
    * Upper value
    */
+  @TrackType(Number)
   end = 100;
 
   /**
    * Gauge step size
    */
+  @TrackType(Number)
   stepSize = 10;
 
-  constructor(_title: String, _titleSize: number, _labelPrefix: String, _labelSuffix: String, 
+  size: Size;
+
+  constructor(_title: String, _titleSize: number, _labelPrefix: String, _labelSuffix: String,
     _start: number, _end: number, _stepSize: number) {
     this.title  = _title;
     this.titleSize = _titleSize;

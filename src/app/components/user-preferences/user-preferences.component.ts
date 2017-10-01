@@ -94,4 +94,14 @@ export class UserPreferencesComponent implements OnInit, OnDestroy {
     });
   }
 
+  querySave(def: ComponentDef) {
+    cmpScope.userContext.addQueryTemplate(def, (data, err) => {
+      if (Utils.isUndefined(err)) {
+        Utils.notifyPop('Successfully added query template', 'success');
+      } else {
+        Utils.notifyPop('Failed to add query template: Error: ' + err, 'error');
+      }
+    });
+  }
+
 }

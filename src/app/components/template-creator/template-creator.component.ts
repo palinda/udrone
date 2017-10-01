@@ -1,3 +1,4 @@
+import { ComponentStore } from '@services/component-store';
 import { PermissionManagerService } from '@services/permission-manager.service';
 import { LogService } from '@services/log.service';
 import { UserContextService } from '@services/user-context.service';
@@ -31,7 +32,7 @@ export class TemplateCreatorComponent implements OnInit {
   permissionOptions: Object;
 
   constructor(private _userContext: UserContextService, private _resolver: ComponentFactoryResolver, private _log: LogService,
-    private _permissionManager: PermissionManagerService) {
+    private _permissionManager: PermissionManagerService, private _compStore: ComponentStore) {
     this.updatingTemplate = new ComponentDef(undefined, undefined, new Size('2', '1'), undefined);
     compScope = this;
     const dataSource = new ArrayStore({
@@ -58,11 +59,15 @@ export class TemplateCreatorComponent implements OnInit {
   }
 
   onWidgetTemplateSelect(event) {
-    this.updatingTemplate = new ComponentDef(undefined, event.value.name, new Size('2', '1'), new DynamicMsg());
+    this.updatingTemplate = new ComponentDef(undefined, event.value, new Size('2', '1'), new DynamicMsg());
     this.loadInputTypes(event.value);
   }
 
-  loadInputTypes(comp: Type<Component>)  {
+  loadInputTypes(compName: string)  {
+    const comp: Type<Component> = this._compStore.findComponentByName(compName);
+    if (Utils.isUndefined(comp)) {
+      return;
+    }
 
     const factory = this._resolver.resolveComponentFactory(comp);
     const dummyComp = this.dummy.createComponent(factory);
@@ -87,7 +92,7 @@ export class TemplateCreatorComponent implements OnInit {
     this.updatingTemplate.id = this.updatingTemplate.inputs['componentID'];
     this.selectedInputs.forEach( (val) => {
       val.inputDefList.forEach( val2 => {
-        if (val2.dataType === 'Object') {
+        if (val2.dataType === 'Object' || val2.dataType === 'Array') {
           try {
 
             if (val2.group === undefined) {
@@ -117,6 +122,10 @@ export class TemplateCreatorComponent implements OnInit {
         return 'dxTextArea';
       case 'MultiSelect':
         return 'dxTagBox';
+      case 'Select':
+        return 'dxSelectBox';
+      case 'Array':
+        return 'dxTextArea';
     }
     return 'dxTextBox';
   }
@@ -127,6 +136,7 @@ export class TemplateCreatorComponent implements OnInit {
       case 'Number':
       case 'Date':
       case 'Boolean':
+      case 'Array':
         return true;
     }
 
@@ -142,6 +152,15 @@ export class TemplateCreatorComponent implements OnInit {
 
       const options = { 'dataSource': dataSource, 'displayExpr': 'id', 'valueExpr': 'id'};
       this.selectedInputs.push(new InputDefGroup(undefined, [new InputDef(propName, 'MultiSelect', undefined, options)]));
+      return true;
+    } else if (info === 'QUERY_TEMPLATES') {
+      const dataSource = new ArrayStore({
+          data: this._userContext.queryComponantInsts,
+          key: 'id'
+      });
+
+      const options = { 'dataSource': dataSource, 'displayExpr': 'id', 'valueExpr': 'id'};
+      this.selectedInputs.push(new InputDefGroup(undefined, [new InputDef(propName, 'Select', undefined, options)]));
       return true;
     }
 

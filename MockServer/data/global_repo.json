@@ -181,6 +181,131 @@
 			"refreshInterval": 30
 		},
 		"name": "CounterSparklineComponent"
+	},
+	{
+		"permissions": {
+			"onAuthorizedPermission": "show",
+			"onUnauthorizedPermission": "hide",
+			"isExcept": false,
+			"permissionGroups": ["business_stats"]
+		},
+		"id": "Compliance Dashboard",
+		"size": {
+			"width": "2",
+			"height": "1"
+		},
+		"inputs": {
+			"countQuery": {
+				"path": "orderCount",
+				"params": {
+					
+				}
+			},
+			"sparkQuery": {
+				"path": "orderCountHist",
+				"params": {
+					"limit": 10
+				}
+			},
+			"componentID": "Compliance Dashboard",
+			"heading": "Compliance Dashboard",
+			"refreshInterval": 10
+		},
+		"name": "CounterSparklineComponent"
+	},
+	{
+		"permissions": {
+			"onAuthorizedPermission": "show",
+			"onUnauthorizedPermission": "hide",
+			"isExcept": false,
+			"permissionGroups": ["business_stats"]
+		},
+		"id": "c_8",
+		"size": {
+			"width": "2",
+			"height": "1"
+		},
+		"inputs": {
+			"countQuery": {
+				"path": "orderCount",
+				"params": {
+					
+				}
+			},
+			"sparkQuery": {
+				"path": "orderCountHist",
+				"params": {
+					"limit": 10
+				}
+			},
+			"componentID": "c_8",
+			"heading": "Order Count",
+			"refreshInterval": 10
+		},
+		"name": "CounterSparklineComponent"
+	},
+	{
+		"permissions": {
+			"onAuthorizedPermission": "show",
+			"onUnauthorizedPermission": "hide",
+			"isExcept": false,
+			"permissionGroups": ["business_stats"]
+		},
+		"id": "Order Rate",
+		"size": {
+			"width": "3",
+			"height": "3"
+		},
+		"inputs": {
+			"guageOptions": {
+				"titleSize": 24,
+				"title": "Order Rate",
+				"labelPrefix": "",
+				"labelSuffix": "",
+				"start": 0,
+				"end": 300,
+				"stepSize": 10
+			},
+			"countQuery": {
+				"path": "orderCount",
+				"params": {
+					
+				}
+			},
+			"componentID": "Order Rate",
+			"refreshInterval": 10
+		},
+		"name": "CounterGuageComponent"
+	},
+	{
+		"permissions": {
+			"onAuthorizedPermission": "show",
+			"onUnauthorizedPermission": "hide",
+			"isExcept": false,
+			"permissionGroups": ["business_stats"]
+		},
+		"id": "Trade Rate",
+		"size": {
+			"width": "4",
+			"height": "3"
+		},
+		"inputs": {
+			"query": {
+				"path": "orderCount",
+				"params": {
+					
+				}
+			},
+			"componentID": "Trade Rate",
+			"heading": "Trade Rate",
+			"refreshInterval": 5,
+			"dataPoints": 20,
+			"series": [{
+				"name": "Trade Rate",
+				"valueField": "count"
+			}]
+		},
+		"name": "RealtimeSplineComponent"
 	}],
 	"containerTemplate": [{
 		"id": "c1",
@@ -256,5 +381,141 @@
 			"componentDefIDList": ["User Count"]
 		},
 		"name": "DashboardContainerComponent"
+	},
+	{
+		"permissions": {
+			"onAuthorizedPermission": "show",
+			"onUnauthorizedPermission": "hide",
+			"isExcept": false,
+			"permissionGroups": ["business_stats"]
+		},
+		"id": "Compliance Dashboard",
+		"size": {
+			"width": "2",
+			"height": "1"
+		},
+		"inputs": {
+			"componentID": "Compliance Dashboard",
+			"heading": "Compliance Dashboard",
+			"shortname": "Compliance Dashboard",
+			"icon": "icon-poll",
+			"componentDefIDList": ["Compliance Dashboard",
+			"User Count"]
+		},
+		"name": "DashboardContainerComponent"
+	},
+	{
+		"permissions": {
+			"onAuthorizedPermission": "show",
+			"onUnauthorizedPermission": "hide",
+			"isExcept": false,
+			"permissionGroups": ["business_stats"]
+		},
+		"id": "Business Dashboard",
+		"size": {
+			"width": "2",
+			"height": "1"
+		},
+		"inputs": {
+			"componentID": "Business Dashboard",
+			"heading": "Business Dashboard",
+			"shortname": "Business Dashboard",
+			"icon": "icon-apps",
+			"componentDefIDList": ["c_8",
+			"User Count"]
+		},
+		"name": "DashboardContainerComponent"
+	},
+	{
+		"permissions": {
+			"onAuthorizedPermission": "show",
+			"onUnauthorizedPermission": "hide",
+			"isExcept": false,
+			"permissionGroups": ["business_stats"]
+		},
+		"id": "System Dashboard",
+		"size": {
+			"width": "2",
+			"height": "1"
+		},
+		"inputs": {
+			"componentID": "System Dashboard",
+			"heading": "System Dashboard",
+			"shortname": "System Dashboard",
+			"icon": "icon-dashboard",
+			"componentDefIDList": ["Order Rate",
+			"c_8",
+			"User Count"]
+		},
+		"name": "DashboardContainerComponent"
+	},
+	{
+		"permissions": {
+			"onAuthorizedPermission": "show",
+			"onUnauthorizedPermission": "hide",
+			"isExcept": false,
+			"permissionGroups": ["business_stats"]
+		},
+		"id": "My Dashboard",
+		"size": {
+			"width": "2",
+			"height": "1"
+		},
+		"inputs": {
+			"componentID": "My Dashboard",
+			"heading": "My Dashboard",
+			"shortname": "My Dashboard",
+			"icon": "icon-panorama",
+			"componentDefIDList": ["Order Rate",
+			"Trade Rate",
+			"User Count",
+			"c_8"]
+		},
+		"name": "DashboardContainerComponent"
+	},
+	{
+		"permissions": {
+			"onAuthorizedPermission": "show",
+			"onUnauthorizedPermission": "hide",
+			"isExcept": false,
+			"permissionGroups": ["business_stats"]
+		},
+		"id": "User Query",
+		"size": {
+			"width": "2",
+			"height": "1"
+		},
+		"inputs": {
+			"componentDefID": "User Query",
+			"componentID": "User Query",
+			"heading": "User Query",
+			"shortname": "User Query",
+			"icon": "icon-account_box"
+		},
+		"name": "QueryContainerComponent"
+	}],
+	"queryTemplate": [{
+		"permissions": {
+			"onAuthorizedPermission": "show",
+			"onUnauthorizedPermission": "hide",
+			"isExcept": false,
+			"permissionGroups": ["business_stats"]
+		},
+		"id": "User Query",
+		"size": {
+			"width": "2",
+			"height": "1"
+		},
+		"inputs": {
+			"query": {
+				"path": "userQuery",
+				"params": {
+					
+				}
+			},
+			"componentID": "User Query",
+			"colOptions": [{"key":"name", "name": "Name", "dataType": "String"},{"key":"email", "name": "Email", "dataType": "String"},{"key":"userid", "name": "User ID", "dataType": "String"},{"key":"age", "name": "Age", "dataType": "Number"},{"key":"state", "name": "State", "dataType": "String"}]
+		},
+		"name": "AdvanceQueryTableComponent"
 	}]
 }

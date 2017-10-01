@@ -45,7 +45,7 @@ export class ServiceQueryMock implements IServiceQuery {
         }
         if (query.params instanceof TableQuery) {
             const data = [];
-            for (let i = query.params.$offset; i < (query.params.$offset + query.params.$limit); i++) {
+            for (let i = query.params.offset; i < (query.params.offset + query.params.limit); i++) {
                 data.push({
                             'name': 'name_' + i,
                             'val1': 'val_' + i,

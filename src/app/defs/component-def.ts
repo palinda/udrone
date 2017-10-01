@@ -10,6 +10,8 @@ export class ComponentDef extends UMsg {
 
     id: string;
     name: string;
+
+    @Type(() => Size)
     size: Size;
 
     @Type(() => DynamicMsg)

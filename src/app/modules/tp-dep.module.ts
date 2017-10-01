@@ -2,6 +2,7 @@ import { NgModule, Injectable } from '@angular/core';
 import { Ng2Permission } from 'angular2-permission';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { NgGridModule } from 'angular2-grid';
 import {
   DxCircularGaugeModule,
   DxSelectBoxModule,
@@ -39,7 +40,8 @@ import {
     DxNumberBoxModule,
     DxFormModule,
     DxTabPanelModule,
-    Ng2Permission
+    Ng2Permission,
+    NgGridModule
   ]
 })
 export class TpDepModule { }

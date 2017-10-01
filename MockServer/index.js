@@ -40,6 +40,30 @@ app.post('/res/orderCountHist', function(req, res) {
 
 })
 
+app.post('/res/userQuery', function(req, res) {
+
+    const query = req.body;
+    const dataList = [];
+
+    const data = [];
+    for (let i = query.offset; i < (query.offset + query.limit); i++) {
+        data.push({
+            'name': 'name_' + i,
+            'email': i + '@gmail.com',
+            'userid': 'user_' + i % 2,
+            'state': 'state_' + i % 3,
+            'age': i
+        });
+    }
+
+    res.status(200).json({
+        'data': data,
+        'total': 360,
+        'totalFilter': 360
+    });
+
+})
+
 app.post('/res/globalComponentRepo/:id', function(req, res) {
 
     const compDef = req.body;

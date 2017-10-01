@@ -42,25 +42,41 @@ import { TrackType } from '@app/defs/track-type';
 export class CounterSparklineComponent extends WidgetTemplateComponent implements OnInit {
 
   /**
-   * Widget heading
-   */
+ * @description {String} Widget heading
+ */
   @TrackType(String)
   @Input() heading: string;
 
+  /**
+ * @description {Number} Data refresh interval
+ */
   @TrackType(Number)
   @Input() refreshInterval = 10;
 
+  /**
+ * Count data query
+ * Response should be in format { "count" : number }
+ */
   @TrackType(Query)
   @Input() countQuery: Query<DynamicMsg>;
 
+  /**
+ * Spark data query
+ * Response should be in format [{ "key" : name, "value" : value }, { "key" : name, "value" : value }, ...] {@link SparkResp|SparkResp}
+ */
   @TrackType(Query)
   @Input() sparkQuery: Query<DynamicMsg>;
 
-  sparkOptions = new SparkLinkOptions('key', 'value', 'spline', '#9ab57e', '#e55253', '4', undefined, '#ebdd8f',
-  'currency', new Size('120', '30'));
+  /**
+   * Sparkline options, shared with view
+   */
+  sparkOptions: SparkLinkOptions;
   count: number;
   sparkData = [];
 
+  /**
+   * Heading styles
+   */
   headingStyles = {
     'font-size.px': '20',
     'color' : 'gray'
@@ -68,9 +84,12 @@ export class CounterSparklineComponent extends WidgetTemplateComponent implement
 
   constructor(refreshService: RefreshService, logService: LogService) {
     super(refreshService, logService);
+    this.sparkOptions = new SparkLinkOptions('key', 'value', 'spline', '#9ab57e', '#e55253', '4', undefined, '#ebdd8f',
+    'currency', new Size('100', '200'));
   }
 
   ngOnInit() {
+    this.sparkOptions.size = this.componentDef.size.toPixel(60, 45);
     this.refreshService.subscribeForRefresh(this.componentID, [
       new RefreshRequest<CountResp>(this.refreshInterval, this.countQuery, (data, err) => {
         if (err !== undefined) {

@@ -1,8 +1,8 @@
-<dx-chart [dataSource]="data" [title]="options.title">
+<dx-chart [dataSource]="data" [title]="options.title" [size]="options.size">
     <dxi-series [valueField]="s.valueField" [name]="s.name" *ngFor="let s of options.series"></dxi-series>
-    <dxo-common-series-settings #seriesSettings [argumentField]="options.argumentField" [type]="spline">
+    <dxo-common-series-settings #seriesSettings [argumentField]="options.argumentField" type="spline">
     </dxo-common-series-settings>
-    <dxo-margin [bottom]="20"></dxo-margin>
+    <dxo-margin [bottom]="10"></dxo-margin>
     <dxo-common-axis-settings>
         <dxo-grid [visible]="options.showDataGrid"></dxo-grid>
     </dxo-common-axis-settings>

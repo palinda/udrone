@@ -43,7 +43,7 @@ export class MainComponent implements AfterViewInit, OnDestroy {
     this._minimizedComponents = [];
   }
 
-  createComponent(componentType: Type<any>, inputs: DynamicMsg) {
+  createComponent(componentType: Type<any>, inputs: DynamicMsg, def: ComponentDef) {
 
       if (!this._isViewInitialized) {
         return;
@@ -59,6 +59,7 @@ export class MainComponent implements AfterViewInit, OnDestroy {
       inputs.forEach((key, val) => {
         compRef.instance[key] = val;
       });
+      compRef.instance['componentDef'] = def;
 
       this._activeComponent = compRef;
       this._cdRef.detectChanges();
@@ -91,13 +92,13 @@ export class MainComponent implements AfterViewInit, OnDestroy {
 
     onStartMenuOpen() {
       if (Utils.isUndefined(this._startMenuRef)) {
-        this._startMenuRef = this.createComponent(StartMenuComponent, new DynamicMsg());
+        this._startMenuRef = this.createComponent(StartMenuComponent, new DynamicMsg(), undefined);
         this._startMenuRef.instance['onSelectContainer'].subscribe( def => {
           if (def instanceof ComponentDef) {
             if (!this._compStore.contains(def.name)) {
               return;
             }
-            this.createComponent(this._compStore.findComponentByName(def.name), def.inputs);
+            this.createComponent(this._compStore.findComponentByName(def.name), def.inputs, def);
             this.activeComponentDef = def;
             this._isComponentMaximized = false;
             this.activeTitle = def.inputs['shortname'];

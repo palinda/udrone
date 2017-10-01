@@ -120,13 +120,13 @@ export class SearchBoxComponent implements OnInit {
     this.hideAutoComplete = false;
 
     if (this.selectionType === SelectionType.NAME) {
-      this.suggessionList = this.columns.filter( el => (el.$name.indexOf(prefix) !== -1 && this.usedColomns[el.$key] === undefined) );
+      this.suggessionList = this.columns.filter( el => (el.name.indexOf(prefix) !== -1 && this.usedColomns[el.key] === undefined) );
     } else if (this.selectionType === SelectionType.OPERATOR) {
-      this.suggessionList = this.supportedOperators.filter( el => el.$name.indexOf(prefix) !== -1 );
+      this.suggessionList = this.supportedOperators.filter( el => el.name.indexOf(prefix) !== -1 );
     } else if (this.selectionType === SelectionType.JOIN) {
-      this.suggessionList = this.supportedJoins.filter( el => el.$name.indexOf(prefix) !== -1 );
+      this.suggessionList = this.supportedJoins.filter( el => el.name.indexOf(prefix) !== -1 );
     } else if (this.selectionType === SelectionType.VALUE) {
-      this.serviceQuery.query<NameField []>(this.selectedName.$query).subscribe((resp) => {
+      this.serviceQuery.query<NameField []>(this.selectedName.query).subscribe((resp) => {
           this.suggessionList = resp;
       });
     }
@@ -210,7 +210,7 @@ export class SearchBoxComponent implements OnInit {
    * @description Is give test is an operator
    */
   private isOperator(currentText: string): boolean {
-      const opIndex = this.supportedOperators.findIndex( op => op.$key === currentText);
+      const opIndex = this.supportedOperators.findIndex( op => op.key === currentText);
         if (opIndex >= 0) {
           return true;
         }
@@ -221,7 +221,7 @@ export class SearchBoxComponent implements OnInit {
    * @description Is give test is an logic gate
    */
   private isJoiner(currentText: string): boolean {
-      const joinIndex = this.supportedJoins.findIndex( op => op.$key === currentText);
+      const joinIndex = this.supportedJoins.findIndex( op => op.key === currentText);
       if (joinIndex >= 0) {
         return true;
       }
@@ -232,7 +232,7 @@ export class SearchBoxComponent implements OnInit {
    * @description Find Field object by field name
    */
   private findCol(currentText: string): ColumnOptions {
-      return this.columns.filter( op => op.$name === currentText)[0];
+      return this.columns.filter( op => op.name === currentText)[0];
   }
 
   /**
@@ -244,7 +244,7 @@ export class SearchBoxComponent implements OnInit {
 
     const remainder = this.queryString.substring(this.currentCursorPos);
     const endIndex = this.currentCursorPos + remainder.indexOf(' ');
-    this.queryString = ((startIndex < 0) ? '' : this.queryString.substring(0, startIndex + 1)) + item.$name
+    this.queryString = ((startIndex < 0) ? '' : this.queryString.substring(0, startIndex + 1)) + item.name
                         + ((endIndex < this.currentCursorPos) ? '' : this.queryString.substring(endIndex));
 
     queryArea.focus();
@@ -276,7 +276,7 @@ export class SearchBoxComponent implements OnInit {
     for (const part of parts) {
       const col = this.findCol(part);
       if (j % 4 === 0 && col !== undefined) {
-        this.usedColomns[col.$key] = true;
+        this.usedColomns[col.key] = true;
       }
       j++;
     }

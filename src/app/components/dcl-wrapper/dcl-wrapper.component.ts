@@ -49,6 +49,7 @@ export class DclWrapperComponent implements OnChanges, AfterViewInit, OnDestroy 
     this.componentDef.inputs.forEach((key, val) => {
       this.cmpRef.instance[key] = val;
     });
+    this.cmpRef.instance['componentDef'] = this.componentDef;
     this.cdRef.detectChanges();
   }
 
