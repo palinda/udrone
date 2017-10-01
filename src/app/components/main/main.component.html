@@ -6,13 +6,22 @@
         <app-u-icon-btn class="pull-right" iconClass="dx-icon-preferences" [size]="60" bakColor="transparent" (click)="openPreferencesWnd()"></app-u-icon-btn>
         <app-u-icon-btn class="pull-right" iconClass="dx-icon-user" [size]="60" bakColor="transparent" (click)="onStartMenuOpen()"></app-u-icon-btn>
         <app-u-icon-btn class="pull-right" iconClass="icon-notifications" [size]="60" bakColor="transparent" (click)="onStartMenuOpen()"></app-u-icon-btn>
+
+        <div class="dx-field">
+            <div class="dx-field-value search-widget">
+                <dx-autocomplete placeholder="Search in start menu ..." width="280" [(value)]="searchValue" [dataSource]="containerDefList" displayExpr="inputs.shortname" valueExpr="this" showClearButton="true" (onItemClick)="searchWidget($event)">
+                </dx-autocomplete>
+            </div>
+        </div>
     </div>
     <div fxFlex="grow" id="container-body">
         <div #mainbody></div>
     </div>
     <div fxFlex="60px" id="footer">
-        <app-u-icon-btn class="pull-left task-item" iconClass="icon-desktop_windows" [size]="60" bakColor="#A7DBDB" (click)="onStartMenuOpen()"></app-u-icon-btn>
-        <app-u-icon-btn class="pull-left" [isSelected]="activeIndex === i" [iconClass]="def.inputs.icon" [size]="60" bakColor="white" (click)="maximizeComponent(i, def)" *ngFor="let def of minimizedDefs; let i = index" [hasPermission]="def.permissions.permissionGroups"></app-u-icon-btn>
+        <app-u-icon-btn class="pull-left task-item" iconClass="icon-desktop_windows" [size]="60" bakColor="#44A2D5" color="white" (click)="onStartMenuOpen()"></app-u-icon-btn>
+        <app-u-icon-btn class="pull-left" [isSelected]="activeIndex === i" [iconClass]="def.inputs.icon" [size]="60" bakColor="#dddddd" (click)="maximizeComponent(i, def)" *ngFor="let def of minimizedDefs; let i = index" [hasPermission]="def.permissions.permissionGroups"></app-u-icon-btn>
+
+        <app-system-info class="pull-right system-info"></app-system-info>
     </div>
 </div>
 

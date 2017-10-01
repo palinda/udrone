@@ -24,6 +24,13 @@ app.post('/res/orderCount', function(req, res) {
     });
 })
 
+app.post('/res/fundCount', function(req, res) {
+    res.status(200).json({
+        'deposit': Math.ceil((Math.random() * 100 + 1)),
+        'withdraw': Math.ceil((Math.random() * 100 + 1))
+    });
+})
+
 app.post('/res/orderCountHist', function(req, res) {
 
     const dyMsg = req.body;

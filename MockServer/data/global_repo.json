@@ -306,6 +306,39 @@
 			}]
 		},
 		"name": "RealtimeSplineComponent"
+	},
+	{
+		"permissions": {
+			"onAuthorizedPermission": "show",
+			"onUnauthorizedPermission": "hide",
+			"isExcept": false,
+			"permissionGroups": ["business_stats"]
+		},
+		"id": "Fund Trasnfer Count",
+		"size": {
+			"width": "2",
+			"height": "1"
+		},
+		"inputs": {
+			"countQuery": {
+				"path": "fundCount",
+				"params": {
+					
+				}
+			},
+			"componentID": "Fund Trasnfer Count",
+			"heading": "Fund Trasnfer Count",
+			"refreshInterval": 10,
+			"counterFields": [{
+				"key": "deposit",
+				"name": "Deposit"
+			},
+			{
+				"key": "withdraw",
+				"name": "Withdraw"
+			}]
+		},
+		"name": "MultiCountersComponent"
 	}],
 	"containerTemplate": [{
 		"id": "c1",
@@ -469,7 +502,8 @@
 			"componentDefIDList": ["Order Rate",
 			"Trade Rate",
 			"User Count",
-			"c_8"]
+			"c_8",
+			"Fund Trasnfer Count"]
 		},
 		"name": "DashboardContainerComponent"
 	},
@@ -514,7 +548,31 @@
 				}
 			},
 			"componentID": "User Query",
-			"colOptions": [{"key":"name", "name": "Name", "dataType": "String"},{"key":"email", "name": "Email", "dataType": "String"},{"key":"userid", "name": "User ID", "dataType": "String"},{"key":"age", "name": "Age", "dataType": "Number"},{"key":"state", "name": "State", "dataType": "String"}]
+			"colOptions": [{
+				"key": "name",
+				"name": "Name",
+				"dataType": "String"
+			},
+			{
+				"key": "email",
+				"name": "Email",
+				"dataType": "String"
+			},
+			{
+				"key": "userid",
+				"name": "User ID",
+				"dataType": "String"
+			},
+			{
+				"key": "age",
+				"name": "Age",
+				"dataType": "Number"
+			},
+			{
+				"key": "state",
+				"name": "State",
+				"dataType": "String"
+			}]
 		},
 		"name": "AdvanceQueryTableComponent"
 	}]

@@ -1,3 +1,4 @@
+import { UserContextService } from '@services/user-context.service';
 import { ComponentStore } from '@services/component-store';
 import { UserPreferencesComponent } from '@components/user-preferences/user-preferences.component';
 import { Action } from '@defs/action';
@@ -36,11 +37,14 @@ export class MainComponent implements AfterViewInit, OnDestroy {
   activeIndex = -1;
   private _isViewInitialized = false;
   private _isComponentMaximized = false;
+  containerDefList: Array<ComponentDef>;
+  searchValue: ComponentDef;
 
   constructor(private _componentFactoryResolver: ComponentFactoryResolver, private _cdRef: ChangeDetectorRef, public _renderer: Renderer,
-    private _popupDriver: PopupDriverService, private _compStore: ComponentStore) {
+    private _popupDriver: PopupDriverService, private _compStore: ComponentStore, private _userContext: UserContextService) {
     this.minimizedDefs = [];
     this._minimizedComponents = [];
+    this.containerDefList = _userContext.containerComponantInsts;
   }
 
   createComponent(componentType: Type<any>, inputs: DynamicMsg, def: ComponentDef) {
@@ -94,24 +98,7 @@ export class MainComponent implements AfterViewInit, OnDestroy {
       if (Utils.isUndefined(this._startMenuRef)) {
         this._startMenuRef = this.createComponent(StartMenuComponent, new DynamicMsg(), undefined);
         this._startMenuRef.instance['onSelectContainer'].subscribe( def => {
-          if (def instanceof ComponentDef) {
-            if (!this._compStore.contains(def.name)) {
-              return;
-            }
-            this.createComponent(this._compStore.findComponentByName(def.name), def.inputs, def);
-            this.activeComponentDef = def;
-            this._isComponentMaximized = false;
-            this.activeTitle = def.inputs['shortname'];
-            this.activeIndex = this.minimizedDefs.length;
-            this.minimizedDefs.push(this.activeComponentDef);
-            this._minimizedComponents.push(this._activeComponent);
-            this._activeComponent.instance['onMinimize'].subscribe((comp) => {
-              this.onMinimizeComponent();
-            });
-            this._activeComponent.instance['onClose'].subscribe((comp) => {
-              this.onCloseComponent();
-            });
-          }
+          this.createContainerComp(def);
         });
       } else {
         this.openExistingComponent(this._startMenuRef, undefined);
@@ -147,4 +134,29 @@ export class MainComponent implements AfterViewInit, OnDestroy {
       ]);
     }
 
+    searchWidget(event) {
+      this.createContainerComp(event.itemData);
+      this.searchValue = undefined;
+    }
+
+    createContainerComp(def: ComponentDef) {
+      if (def instanceof ComponentDef) {
+        if (!this._compStore.contains(def.name)) {
+          return;
+        }
+        this.createComponent(this._compStore.findComponentByName(def.name), def.inputs, def);
+        this.activeComponentDef = def;
+        this._isComponentMaximized = false;
+        this.activeTitle = def.inputs['shortname'];
+        this.activeIndex = this.minimizedDefs.length;
+        this.minimizedDefs.push(this.activeComponentDef);
+        this._minimizedComponents.push(this._activeComponent);
+        this._activeComponent.instance['onMinimize'].subscribe((comp) => {
+          this.onMinimizeComponent();
+        });
+        this._activeComponent.instance['onClose'].subscribe((comp) => {
+          this.onCloseComponent();
+        });
+      }
+    }
 }

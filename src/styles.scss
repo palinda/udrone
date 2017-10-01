@@ -39,3 +39,28 @@
 .dx-datagrid {
     padding: 15px 20px 5px 20px;
 }
+
+.close-btn {
+    font-size: 22px;
+    line-height: 24px;
+    padding: 0px 8px;
+    position: absolute;
+    right: 21px;
+    z-index: 1000;
+    color: #b7b7b7;
+    color: white;
+    background-color: #EE582E;
+    border-bottom-right-radius: 8px;
+}
+
+.mini-btn {
+    font-size: 19px;
+    line-height: 24px;
+    padding: 0px 10px;
+    position: absolute;
+    right: 59px;
+    z-index: 1000;
+    color: white;
+    background-color: #44A2D5;
+    border-bottom-left-radius: 8px;
+}

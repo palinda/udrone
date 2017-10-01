@@ -43,6 +43,9 @@ import { CounterGuageComponent } from '@components/widget-templates/counter-guag
 import { RealtimeSplineComponent } from '@components/widget-templates/realtime-spline/realtime-spline.component';
 import { AdvanceQueryTableComponent } from '@components/query-templates/advance-query-table/advance-query-table.component';
 import { QueryContainerComponent } from '@components/container-templates/query-container/query-container.component';
+import { MultiCountersComponent } from '@components/widget-templates/multi-counters/multi-counters.component';
+import { UPieChartComponent } from '@components/unit/u-pie-chart/u-pie-chart.component';
+import { SystemInfoComponent } from '@components/system-info/system-info.component';
 
 /**
  * Main app module
@@ -75,7 +78,10 @@ import { QueryContainerComponent } from '@components/container-templates/query-c
     CounterGuageComponent,
     RealtimeSplineComponent,
     AdvanceQueryTableComponent,
-    QueryContainerComponent
+    QueryContainerComponent,
+    MultiCountersComponent,
+    UPieChartComponent,
+    SystemInfoComponent
   ],
   entryComponents: [
     CounterSparklineComponent,
@@ -88,7 +94,8 @@ import { QueryContainerComponent } from '@components/container-templates/query-c
     TemplateCreatorComponent,
     RealtimeSplineComponent,
     AdvanceQueryTableComponent,
-    QueryContainerComponent
+    QueryContainerComponent,
+    MultiCountersComponent
   ],
   imports: [
     BrowserModule,

@@ -16,7 +16,9 @@ import {
   DxPopupModule,
   DxNumberBoxModule,
   DxFormModule,
-  DxTabPanelModule
+  DxTabPanelModule,
+  DxPieChartModule,
+  DxAutocompleteModule
 } from 'devextreme-angular';
 
 /**
@@ -41,7 +43,9 @@ import {
     DxFormModule,
     DxTabPanelModule,
     Ng2Permission,
-    NgGridModule
+    NgGridModule,
+    DxPieChartModule,
+    DxAutocompleteModule
   ]
 })
 export class TpDepModule { }

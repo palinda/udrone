@@ -4,7 +4,7 @@ import { Component, OnInit, Input, OnChanges, SimpleChange } from '@angular/core
   selector: 'app-u-icon-btn',
   template: `
     <div fxLayout="column" fxLayoutAlign="center none" class="u-icon-btn" [ngClass]="{'icon-btn-active' : isSelected}"
-    [style.width.px]="size" [style.height.px]="size" [style.background-color]="bakColor">
+    [style.width.px]="size" [style.height.px]="size" [style.background-color]="bakColor" [style.color]="color">
       <div [ngClass]="iconClass" [style.font-size.px]="iconSize"></div>
       <div [hidden]="text === undefined">{{text}}</div>
     </div>
@@ -46,6 +46,12 @@ export class UIconBtnComponent implements OnInit, OnChanges {
    * Tile background color
    */
   @Input() bakColor: string;
+
+
+  /**
+   * Tile color
+   */
+  @Input() color: string;
 
   /**
    * Is this tile activated. Icon stlying changes according to this. Styles can overide from class icon-btn-active

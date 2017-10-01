@@ -6,16 +6,16 @@
 #header {
     height: 50px;
     background-color: #F7F7F7;
-    color: #526066;
+    color: #39393B;
 }
 
 #footer {
     height: 50px;
-    background-color: #FFFFFF;
+    background-color: #dddddd;
 }
 
 #container-body {
-    background-color: #E7EDEF;
+    background-color: white;
 }
 
 .u-icon-btn:hover {
@@ -23,9 +23,5 @@
 }
 
 .icon-btn-active {
-    background-color: #E7EDEF !important;
-}
-
-.dx-widget {
-    font-family: 'Segoe UI Light', 'Helvetica Neue Light', 'Segoe UI', 'Helvetica Neue', 'Trebuchet MS', Verdana;
+    background-color: white !important;
 }
