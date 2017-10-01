@@ -1,3 +1,7 @@
 <div>
+    <div class="search-container">
+        <app-search-box [columns]="colOptions" style="width: 100%;" (onQuery)="onFilterQuery($event)"></app-search-box>
+    </div>
+
     <app-u-table [tableOptions]="tableOptions"></app-u-table>
 </div>

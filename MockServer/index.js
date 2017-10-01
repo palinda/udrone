@@ -1,8 +1,12 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+var alasql = require('alasql');
 var fs = require('fs');
 var fileName = './data/global_repo.json';
 var globalRepoFile = require(fileName);
+
+var tableFile = './data/city_inspections.json';
+var tableData = require(tableFile);
 
 var app = express();
 app.use(bodyParser.json())
@@ -52,21 +56,66 @@ app.post('/res/userQuery', function(req, res) {
     const query = req.body;
     const dataList = [];
 
-    const data = [];
-    for (let i = query.offset; i < (query.offset + query.limit); i++) {
-        data.push({
-            'name': 'name_' + i,
-            'email': i + '@gmail.com',
-            'userid': 'user_' + i % 2,
-            'state': 'state_' + i % 3,
-            'age': i
-        });
+    var queryStr = 'SELECT * FROM ? ';
+    var queryStrCount = 'SELECT COUNT(*) AS NUMBER FROM ? ';
+
+    if (query.filterString != undefined || query.filters != undefined) {
+        queryStr += 'where ';
+        queryStrCount += 'where ';
     }
+
+    if (query.filterString != undefined) {
+        queryStr += ' ' + query.filterString + ' ';
+        queryStrCount += ' ' + query.filterString + ' ';
+    }
+    if (query.filters != undefined) {
+        for (var i in query.filters) {
+            var filter = query.filters[i];
+
+            if (i != 0) {
+                queryStr += ' AND ';
+                queryStrCount += ' AND ';
+            }
+            queryStr += filter.key;
+            queryStrCount += filter.key;
+            if (filter.operator == 'EQUAL') {
+                queryStr += ' = ';
+                queryStrCount += ' = ';
+            } else if (filter.operator == 'NOT_EQUAL') {
+                queryStr += ' != ';
+                queryStrCount += ' != ';
+            }
+            queryStr += filter.value;
+            queryStrCount += filter.value;
+        }
+    }
+
+    if (query.sorts != undefined) {
+        queryStr += ' ORDER BY ';
+        for (var i in query.sorts) {
+            var sort = query.sorts[i];
+
+            if (i != 0) {
+                queryStr += ', ';
+            }
+
+            queryStr += sort.field;
+            if (sort.isDesc)
+                queryStr += ' DESC';
+        }
+    }
+    console.log('queryStr----------------' + queryStr);
+    queryStr += (' LIMIT ' + query.limit + ' OFFSET ' + query.offset);
+
+    var data = alasql(queryStr, [tableData]);
+
+    var countData = alasql(queryStrCount, [tableData]);
+    console.log('COUNT----------------' + JSON.stringify(countData));
 
     res.status(200).json({
         'data': data,
-        'total': 360,
-        'totalFilter': 360
+        'total': countData[0].NUMBER,
+        'totalFilter': countData[0].NUMBER
     });
 
 })

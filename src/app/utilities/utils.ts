@@ -72,3 +72,16 @@ export function notifyPop(msg: string, type: string) {
     }
   }, type, 3000);
 }
+
+export function  deepCopy(oldObj: any) {
+  let newObj = oldObj;
+  if (oldObj && typeof oldObj === 'object') {
+      newObj = Object.prototype.toString.call(oldObj) === '[object Array]' ? [] : {};
+      for (const i in oldObj) {
+          if (oldObj.hasOwnProperty(i)) {
+            newObj[i] = this.deepCopy(oldObj[i]);
+          }
+      }
+  }
+  return newObj;
+}

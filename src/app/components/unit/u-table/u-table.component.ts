@@ -1,9 +1,10 @@
+import { DxDataGridComponent } from 'devextreme-angular';
 import { Sort } from '@defs/sort';
 import { UMsg } from '@defs/umsg';
 import { Query } from '@defs/query';
 import { ColumnOptions } from '@defs/column-options';
 import { IServiceQuery } from '@services/service-query.interface';
-import { Component, OnInit, Input, Inject } from '@angular/core';
+import { Component, OnInit, Input, Inject, ViewChild } from '@angular/core';
 import CustomStore from 'devextreme/data/custom_store';
 import { SERVICE_QUERY } from '@services/service-query.provider';
 import { Filter } from '@defs/filter';
@@ -49,6 +50,8 @@ export class UTableComponent implements OnInit {
 
     @Input() tableOptions: TableOptions = new TableOptions([], undefined);
 
+    @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
+
     dataSource: any = {};
 
     constructor(@Inject(SERVICE_QUERY) private serviceQuery: IServiceQuery) {
@@ -62,7 +65,7 @@ export class UTableComponent implements OnInit {
                 params.offset = loadOptions.skip;
 
                 if (loadOptions.sort) {
-                    params.addSort(new Sort(loadOptions.sort[0].selector, loadOptions.sort[0].desc));
+                    TableQuery.addSort(params, new Sort(loadOptions.sort[0].selector, loadOptions.sort[0].desc));
                 }
 
                 return serviceQuery.query<TableResponse>(query)
@@ -84,5 +87,9 @@ export class UTableComponent implements OnInit {
 
     ngOnInit() {
         cmpScope = this;
+    }
+
+    refresh() {
+        this.dataGrid.instance.refresh();
     }
 }

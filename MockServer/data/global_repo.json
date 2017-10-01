@@ -549,28 +549,33 @@
 			},
 			"componentID": "User Query",
 			"colOptions": [{
-				"key": "name",
-				"name": "Name",
+				"key": "id",
+				"name": "ID",
 				"dataType": "String"
 			},
 			{
-				"key": "email",
-				"name": "Email",
+				"key": "certificate_number",
+				"name": "Certificate No",
 				"dataType": "String"
 			},
 			{
-				"key": "userid",
-				"name": "User ID",
+				"key": "business_name",
+				"name": "Business Name",
 				"dataType": "String"
 			},
 			{
-				"key": "age",
-				"name": "Age",
-				"dataType": "Number"
+				"key": "result",
+				"name": "Result",
+				"dataType": "String"
 			},
 			{
-				"key": "state",
-				"name": "State",
+				"key": "sector",
+				"name": "Sector",
+				"dataType": "String"
+			},
+			{
+				"key": "date",
+				"name": "Date",
 				"dataType": "String"
 			}]
 		},
