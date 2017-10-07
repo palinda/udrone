@@ -49,6 +49,7 @@ export class StartMenuComponent implements OnInit, DoCheck {
   }
 
   openComponent(compDef: ComponentDef): void {
+    console.log('Clicked open component: ', compDef);
     this.onSelectContainer.emit(compDef);
   }
 

@@ -59,11 +59,16 @@ export class TemplateCreatorComponent implements OnInit {
   }
 
   onWidgetTemplateSelect(event) {
+    if (Utils.isUndefined(event.value)) {
+      return;
+    }
     this.updatingTemplate = new ComponentDef(undefined, event.value, new Size('2', '1'), new DynamicMsg());
     this.loadInputTypes(event.value);
   }
 
   loadInputTypes(compName: string)  {
+
+    console.log('Component name:', compName);
     const comp: Type<Component> = this._compStore.findComponentByName(compName);
     if (Utils.isUndefined(comp)) {
       return;

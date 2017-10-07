@@ -31,6 +31,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class CounterGuageComponent extends WidgetTemplateComponent implements OnInit {
 
+  static key = 'CounterGuageComponent';
     /**
    * @description {String} Widget heading
    */

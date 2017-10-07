@@ -13,6 +13,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class QueryContainerComponent extends ContainerTemplateComponent implements OnInit {
 
+  static key = 'QueryContainerComponent';
     /**
    * Child component definition
    */

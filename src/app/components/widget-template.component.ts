@@ -19,6 +19,8 @@ import {UMsg} from '@defs/umsg';
 })
 export class WidgetTemplateComponent extends BaseTemplateComponent implements OnDestroy   {
 
+  static type = 'WidgetTemplateComponent';
+
   constructor(protected refreshService: RefreshService, protected logService: LogService) {
     super(logService);
   }

@@ -16,6 +16,8 @@ app.use(function(req, res, next) {
     next();
 });
 
+app.use(express.static('www'));
+
 var port = 9000;
 
 // start the server

@@ -16,6 +16,8 @@ import { Query } from '@defs/query';
 })
 export class AdvanceQueryTableComponent extends QueryTemplateComponent implements OnInit {
 
+  static key = 'AdvanceQueryTableComponent';
+
   @TrackType(Array)
   @Input()  colOptions: Array<ColumnOptions>;
 

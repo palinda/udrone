@@ -1,3 +1,4 @@
+import { ContainerTemplateComponent } from '@components/container-template.component';
 import { ComponentStore } from './../../services/component-store';
 import { DynamicMsg } from '@defs/dynamic-msg';
 import { Size } from '@app/defs/size';
@@ -24,6 +25,8 @@ let cmpScope;
 })
 
 export class UserPreferencesComponent implements OnInit, OnDestroy {
+
+  static key = 'UserPreferencesComponent';
 
   themeStore: ThemeStoreService;
   userContext: UserContextService;
@@ -59,12 +62,14 @@ export class UserPreferencesComponent implements OnInit, OnDestroy {
 
   loadComponents() {
 
-    this._componentStore.allComponents.forEach( val => {
-        if (val['__proto__'].name === 'WidgetTemplateComponent') {
+    console.log(JSON.stringify(this._componentStore.componentsMap));
+    this._componentStore.componentsMap.forEach( (key, val) => {
+      console.log(val['type'], val['key']);
+        if (val['type'] === 'WidgetTemplateComponent') {
           this.widgetTemplateDefs.push(val);
-        } else if (val['__proto__'].name === 'QueryTemplateComponent') {
+        } else if (val['type'] === 'QueryTemplateComponent') {
           this.queryTemplateDefs.push(val);
-        } else if (val['__proto__'].name === 'ContainerTemplateComponent') {
+        } else if (val['type'] === 'ContainerTemplateComponent') {
           this.containerTemplateDefs.push(val);
         }
       });
@@ -75,6 +80,9 @@ export class UserPreferencesComponent implements OnInit, OnDestroy {
   }
 
   widgetSave(def: ComponentDef) {
+    if (Utils.isUndefined(def)) {
+      return;
+    }
     cmpScope.userContext.addWidgetTemplate(def, (data, err) => {
       if (Utils.isUndefined(err)) {
         Utils.notifyPop('Successfully added widget template', 'success');
@@ -85,6 +93,11 @@ export class UserPreferencesComponent implements OnInit, OnDestroy {
   }
 
   containerSave(def: ComponentDef) {
+
+    if (Utils.isUndefined(def)) {
+      return;
+    }
+
     cmpScope.userContext.addContainerTemplate(def, (data, err) => {
       if (Utils.isUndefined(err)) {
         Utils.notifyPop('Successfully added container template', 'success');

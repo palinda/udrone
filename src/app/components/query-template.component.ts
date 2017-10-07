@@ -11,6 +11,8 @@ import { BaseTemplateComponent } from './base-template.component';
 })
 export class QueryTemplateComponent extends BaseTemplateComponent {
 
+  static type = 'QueryTemplateComponent';
+
   constructor(logService: LogService) {
     super(logService);
   }

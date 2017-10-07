@@ -26,6 +26,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class MultiCountersComponent extends WidgetTemplateComponent implements OnInit {
 
+  static key = 'MultiCountersComponent';
   /**
    * @description {String} Widget heading
    */

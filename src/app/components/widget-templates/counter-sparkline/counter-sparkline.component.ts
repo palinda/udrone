@@ -41,6 +41,8 @@ import { TrackType } from '@app/defs/track-type';
 })
 export class CounterSparklineComponent extends WidgetTemplateComponent implements OnInit {
 
+  static key = 'CounterSparklineComponent';
+
   /**
  * @description {String} Widget heading
  */

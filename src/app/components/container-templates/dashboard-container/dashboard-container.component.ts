@@ -17,6 +17,7 @@ import { ListType } from '@defs/list-type';
 })
 export class DashboardContainerComponent extends ContainerTemplateComponent implements OnInit, DoCheck {
 
+  static key = 'DashboardContainerComponent';
     /**
    * Child component definition list
    */

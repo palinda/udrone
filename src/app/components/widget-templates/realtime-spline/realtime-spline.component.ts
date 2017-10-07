@@ -28,6 +28,7 @@ import { Query } from '@defs/query';
 })
 export class RealtimeSplineComponent extends WidgetTemplateComponent implements OnInit {
 
+  static key = 'RealtimeSplineComponent';
   /**
  * @description {String} Widget heading
  */

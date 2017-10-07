@@ -49,6 +49,7 @@ export class MainComponent implements AfterViewInit, OnDestroy {
 
   createComponent(componentType: Type<any>, inputs: DynamicMsg, def: ComponentDef) {
 
+      console.log('createComponent: ', def, this._isViewInitialized);
       if (!this._isViewInitialized) {
         return;
       }
@@ -140,8 +141,12 @@ export class MainComponent implements AfterViewInit, OnDestroy {
     }
 
     createContainerComp(def: ComponentDef) {
+
+      console.log('Clicked open component: ', def);
       if (def instanceof ComponentDef) {
+        console.log('ComponentDef instanceof: ', def);
         if (!this._compStore.contains(def.name)) {
+          console.log('Not nomponentDef contains: ', def);
           return;
         }
         this.createComponent(this._compStore.findComponentByName(def.name), def.inputs, def);

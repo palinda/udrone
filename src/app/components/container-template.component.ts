@@ -13,7 +13,7 @@ import { BaseTemplateComponent } from './base-template.component';
 })
 export class ContainerTemplateComponent extends BaseTemplateComponent {
 
-
+  static type = 'ContainerTemplateComponent';
   /**
    * Heading after component open
    */
