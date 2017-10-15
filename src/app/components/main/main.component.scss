@@ -22,14 +22,20 @@
         overflow: auto;
     }
     #logo_image {
-        height: 93%;
-        width: 174px;
+        height: 100%;
+        width: 159px;
         background-size: contain;
-        margin: 3px 15px;
+        margin: 0px 15px;
+        @media screen and (max-width: 520px) {
+            display: none;
+        }
     }
     .search-widget {
         width: 280px;
         margin: 8px 12px;
+        @media screen and (max-width: 1024px) {
+            display: none;
+        }
     }
     .system-info {
         height: 100%;
