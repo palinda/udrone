@@ -1,8 +1,23 @@
 Still under heavy development
 
-# Ng2Base
+# Udrone
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.3.1.
+
+![alt text](https://github.com/palinda/udrone/imgs/diagram.png)
+
+-	Widget Components and Query Components can attach to Container Components
+-	Container Component has 2 types 
+	Widget Container – Only Widget Components can attach
+	Query Container – Only Query Components can attach
+-	Widget Templates, Query Templates and Container Templates predefined by the developer using unit components
+-	Widget, Query and Container Component create dynamically. Saved in Widget Repository
+-	Widget Repository is in server side. This can implement as a JSON file and load using service worker to the client side. 
+-	 Widget Repository maintain globally
+-	Profile maintain per user for what user can customize
+	User added shortcuts to task bar
+	User can create user only custom container components. These container widgets added to the global container components list for that user
+
 
 ## Development server
 
