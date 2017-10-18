@@ -1,4 +1,3 @@
-Still under heavy development
 
 # Udrone
 
