@@ -4,7 +4,7 @@ Still under heavy development
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.3.1.
 
-![alt text](https://github.com/palinda/udrone/imgs/diagram.png)
+![alt text](https://github.com/palinda/udrone/blob/master/imgs/diagram.png)
 
 -	Widget Components and Query Components can attach to Container Components
 -	Container Component has 2 types 
