@@ -21,7 +21,6 @@ before_install:
 
 install:
 - npm prune
-- npm install --save typescript@2.1.1
 - npm install --save codacy-coverage
 - npm install --save @compodoc/compodoc
 - npm install
