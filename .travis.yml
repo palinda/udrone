@@ -34,4 +34,4 @@ before_script:
 - ./node_modules/.bin/compodoc -p ./src/tsconfig.app.json
 
 script:
-- cat ./coverage/coverage.lcov | ./node_modules/.bin/codacy-coverage --debug --language typescript
+- cat ./coverage/lcov.info | ./node_modules/.bin/codacy-coverage --debug --language typescript
