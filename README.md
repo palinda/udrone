@@ -1,6 +1,8 @@
 
 # Udrone
 
+[![Build Status](https://travis-ci.com/ustocktrade/ust-ui.svg?token=e8EzsDsuxzkL1NY3sibq&branch=master)](https://travis-ci.com/ustocktrade/ust-ui)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.3.1.
 
 ![alt text](https://github.com/ustocktrade/ust-ui/blob/master/imgs/diagram.png)
