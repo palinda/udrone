@@ -1,25 +1,20 @@
+import { DclWrapperComponent } from '@components/dcl-wrapper/dcl-wrapper.component';
+import { TemplateCreatorComponent } from '@components/template-creator/template-creator.component';
+import { setup } from '@app/utilities/tests.configure';
+import { TestContext } from '@utilities/tests.configure';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UserPreferencesComponent } from './user-preferences.component';
 
 describe('UserPreferencesComponent', () => {
-  let component: UserPreferencesComponent;
-  let fixture: ComponentFixture<UserPreferencesComponent>;
+  setup();
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ UserPreferencesComponent ]
-    })
-    .compileComponents();
-  }));
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(UserPreferencesComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  beforeEach(function(this: TestContext<UserPreferencesComponent, UserPreferencesComponent>) {
+      this.create(UserPreferencesComponent, UserPreferencesComponent, [], [ TemplateCreatorComponent, DclWrapperComponent]);
   });
 
-  it('should be created', () => {
-    expect(component).toBeTruthy();
+  it('should be created', function(this: TestContext<UserPreferencesComponent, UserPreferencesComponent>) {
+    expect(this.hostComponent).toBeTruthy();
   });
 });
+

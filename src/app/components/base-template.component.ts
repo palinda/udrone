@@ -16,7 +16,7 @@ export class BaseTemplateComponent {
   @TrackType(String)
   @Input()componentID: string;
 
-  protected componentDef: ComponentDef;
+  public componentDef: ComponentDef;
 
   constructor(protected logService: LogService) {
   }

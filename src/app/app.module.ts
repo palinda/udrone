@@ -23,7 +23,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { MainComponent } from '@components/main/main.component';
-import { AppComponent } from './app/app.component';
 import { UGuageComponent } from '@components/unit/u-guage/u-guage.component';
 import { UTableComponent } from '@components/unit/u-table/u-table.component';
 import { USparklineComponent } from '@components/unit/u-sparkline/u-sparkline.component';
@@ -52,7 +51,6 @@ import { SystemInfoComponent } from '@components/system-info/system-info.compone
  */
 @NgModule({
   declarations: [
-    AppComponent,
     BgCounterComponent,
     SearchBoxComponent,
     UGuageComponent,

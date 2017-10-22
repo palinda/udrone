@@ -1,3 +1,6 @@
+import { PopupDriverService } from '@services/popup-driver.service';
+import { DclWrapperComponent } from '@components/dcl-wrapper/dcl-wrapper.component';
+import { TpDepModule } from '@modules/tp-dep.module';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UPopupComponent } from './u-popup.component';
@@ -8,7 +11,9 @@ describe('UPopupComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UPopupComponent ]
+      providers: [ PopupDriverService ],
+      declarations: [ UPopupComponent, DclWrapperComponent ],
+      imports: [ TpDepModule ]
     })
     .compileComponents();
   }));

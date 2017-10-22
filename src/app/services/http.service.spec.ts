@@ -106,9 +106,11 @@ describe('HttpService', () => {
      mockBackend.connections.subscribe((connection) => {
 
         expect(connection.request.method).toBe(RequestMethod.Get);
-        const params = new URLSearchParams(connection.request.url.split('?')[1]);
 
-        expect(params.get('name')).toBe(req.$name, 'Request should equal');
+        const url = decodeURIComponent(connection.request.url);
+        const params = new URLSearchParams(url.split('?')[1]);
+
+        expect(JSON.parse(params.get('name'))).toBe(req.$name, 'Request should equal');
 
         connection.mockRespond(new Response(new ResponseOptions({
           body: JSON.stringify(mockResponse)

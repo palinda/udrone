@@ -114,7 +114,7 @@ export class UGuageComponent implements OnInit {
   /**
    * Guage options
    */
-  @Input() options: GaugeOptions;
+  @Input() options: GaugeOptions = new GaugeOptions('', 20, '', '', 0, 10, 10);
 
   /**
    * Only for Display bind. Color change step size

@@ -47,7 +47,7 @@ export class CounterSparklineComponent extends WidgetTemplateComponent implement
  * @description {String} Widget heading
  */
   @TrackType(String)
-  @Input() heading: string;
+  @Input() heading = '';
 
   /**
  * @description {Number} Data refresh interval

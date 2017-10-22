@@ -36,7 +36,7 @@ export class UserContextService {
   userInfo: UserInfo;
 
   constructor(private _themeStore: ThemeStoreService, @Inject(SERVICE_QUERY) private _serviceQuery: IServiceQuery,
-  private _logService: LogService, private _httpService: HttpService, private _permissionService: PermissionManagerService) {
+  private _logService: LogService, private _permissionService: PermissionManagerService) {
     this.userPreference = new PreferenceDef();
     this.userInfo = new UserInfo('Test User', 'admin');
     this.loadProfile();

@@ -81,10 +81,12 @@ describe('BgCounterComponent', () => {
   });
 
   it('should update styles', () => {
-    component.color = 'white';
+    component.styles = {
+      'color' : 'white'
+    };
     component.size = 40;
     component.ngOnChanges({'size': new SimpleChange(0, component.size, true)});
-    component.ngOnChanges({'color': new SimpleChange(0, component.color, true)});
+    component.ngOnChanges({'color': new SimpleChange(0, component.styles, true)});
     fixture.detectChanges();
     expect(debugElement.styles['color']).toBe('white', 'color check');
     expect(debugElement.styles['font-size']).toBe('40px', 'size check');

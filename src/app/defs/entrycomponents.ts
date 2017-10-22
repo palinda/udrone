@@ -34,4 +34,4 @@ export const getEntryComponents = function() {
     }
 
     return array;
-}
+};

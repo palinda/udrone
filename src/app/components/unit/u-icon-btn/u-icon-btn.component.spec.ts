@@ -1,3 +1,4 @@
+import { TpDepModule } from '@modules/tp-dep.module';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UIconBtnComponent } from './u-icon-btn.component';
@@ -8,7 +9,8 @@ describe('UIconBtnComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UIconBtnComponent ]
+      declarations: [ UIconBtnComponent ],
+      imports: [ TpDepModule ]
     })
     .compileComponents();
   }));

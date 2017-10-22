@@ -23,11 +23,11 @@ describe('UFixedQ', () => {
 
     for (let i = 0; i < 20; i++) {
       queue.add(new TestMsg(dummyValPrefix + '_' + i));
-      expect(queue.size()).toEqual(i >= 10 ? 10 : i + 1);
+      expect(queue.size).toEqual(i >= 10 ? 10 : i + 1);
     }
 
     let x = 10;
-    queue.data().forEach((item) => {
+    queue.data.forEach((item) => {
       expect(item.name).toEqual(dummyValPrefix + '_' + x);
       x++;
     });

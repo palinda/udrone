@@ -1,34 +1,18 @@
 import { FocusDirective } from '@directives/focus.directive';
 import { FormsModule } from '@angular/forms';
-/* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
-
 import { SearchBoxComponent } from './search-box.component';
+import { setup } from '@app/utilities/tests.configure';
+import { TestContext } from '@utilities/tests.configure';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 describe('SearchBoxComponent', () => {
-  let component: SearchBoxComponent;
-  let fixture: ComponentFixture<SearchBoxComponent>;
+  setup();
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [ FormsModule ],
-      declarations: [
-           SearchBoxComponent,
-           FocusDirective
-        ]
-    })
-    .compileComponents();
-  }));
-
-  beforeEach(() => {
-    fixture = TestBed.createComponent(SearchBoxComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  beforeEach(function(this: TestContext<SearchBoxComponent, SearchBoxComponent>) {
+      this.create(SearchBoxComponent, SearchBoxComponent, [], [ FocusDirective ]);
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should be created', function(this: TestContext<SearchBoxComponent, SearchBoxComponent>) {
+    expect(this.hostComponent).toBeTruthy();
   });
 });

@@ -1,3 +1,4 @@
+import { Ng2Permission, PermissionService } from 'angular2-permission';
 import { TestBed, inject } from '@angular/core/testing';
 
 import { PermissionManagerService } from './permission-manager.service';
@@ -5,7 +6,8 @@ import { PermissionManagerService } from './permission-manager.service';
 describe('PermissionManagerService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [PermissionManagerService]
+      imports : [ Ng2Permission ],
+      providers: [PermissionManagerService, PermissionService]
     });
   });
 

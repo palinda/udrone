@@ -1,25 +1,19 @@
+import { DclWrapperComponent } from '@components/dcl-wrapper/dcl-wrapper.component';
+import { TestContext } from '@utilities/tests.configure';
+import { setup } from '@app/utilities/tests.configure';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DashboardContainerComponent } from './dashboard-container.component';
 
 describe('DashboardContainerComponent', () => {
-  let component: DashboardContainerComponent;
-  let fixture: ComponentFixture<DashboardContainerComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ DashboardContainerComponent ]
-    })
-    .compileComponents();
-  }));
+  setup();
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(DashboardContainerComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  beforeEach(function(this: TestContext<DashboardContainerComponent, DashboardContainerComponent>) {
+    this.create(DashboardContainerComponent, DashboardContainerComponent, [], [ DclWrapperComponent ]);
   });
 
-  it('should be created', () => {
-    expect(component).toBeTruthy();
+  it('should be created', function(this: TestContext<DashboardContainerComponent, DashboardContainerComponent>) {
+    expect(this.hostComponent).toBeTruthy();
   });
 });

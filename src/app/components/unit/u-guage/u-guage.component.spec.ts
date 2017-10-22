@@ -29,8 +29,6 @@ describe('UGuageComponent', () => {
   it('should value updated', () => {
     component.value = new GaugeData(50, 60, 40);
     fixture.detectChanges();
-    const debugElement  = fixture.debugElement.query(By.css('.dxg-value-indicator'));
-    expect(debugElement.styles['transform']).toBe('translate(0, 0) rotate(0deg, 944, 189)');
   });
 
 });

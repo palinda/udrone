@@ -1,25 +1,17 @@
+import { setup } from '@app/utilities/tests.configure';
+import { TestContext } from '@utilities/tests.configure';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SystemInfoComponent } from './system-info.component';
 
 describe('SystemInfoComponent', () => {
-  let component: SystemInfoComponent;
-  let fixture: ComponentFixture<SystemInfoComponent>;
+  setup();
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ SystemInfoComponent ]
-    })
-    .compileComponents();
-  }));
+    beforeEach(function(this: TestContext<SystemInfoComponent, SystemInfoComponent>) {
+        this.create(SystemInfoComponent, SystemInfoComponent);
+    });
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(SystemInfoComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should be created', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should be created', function(this: TestContext<SystemInfoComponent, SystemInfoComponent>) {
+      expect(this.hostComponent).toBeTruthy();
+    });
 });

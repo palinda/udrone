@@ -53,6 +53,7 @@ export class RefreshService {
 
   private onTimer() {
 
+    this._logService.printTrace('Timer Tiggered:', this._unitCount);
     this._requestsOnInterval.forEach((key, value) => {
 
       if (this._unitCount % key === 0) {

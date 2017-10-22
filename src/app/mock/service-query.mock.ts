@@ -1,9 +1,10 @@
+import { element } from 'protractor';
 import { RequestOptions, Headers } from '@angular/http';
-import { HttpService } from './../services/http.service';
+import { HttpService } from '@services/http.service';
 import { Entry } from '@defs/entry';
-import { DynamicMsg } from './../defs/dynamic-msg';
-import { SparkResp } from './../defs/spark-resp';
-import { CountResp } from './../defs/count-resp';
+import { DynamicMsg } from '@defs/dynamic-msg';
+import { SparkResp } from '@defs/spark-resp';
+import { CountResp } from '@defs/count-resp';
 import * as utils from '@utilities/utils';
 import { TableQuery } from '@components/unit/u-table/table-query';
 import { TableResponse } from '@components/unit/u-table/table-response';
@@ -12,10 +13,19 @@ import { Query } from '@defs/query';
 import { IServiceQuery } from '@services/service-query.interface';
 import * as Constants from '@app/defs/constants';
 
+export class MockQR {
+    constructor(public mockQuery: Query<any>, public mockResp: Object) {
+    }
+}
 export class ServiceQueryMock implements IServiceQuery {
 
-    globalRepo: Object = {};
-    constructor(private _httpService: HttpService) {
+    private _mockQueries: Array<MockQR> = [];
+
+    constructor() {
+    }
+
+    public addMockQuery(_mockQuery: Query<any>, _mockResp: Object) {
+        this._mockQueries.push(new MockQR(_mockQuery, _mockResp));
     }
 
     query<R>(query: Query<any>): Observable<R> {
@@ -25,6 +35,18 @@ export class ServiceQueryMock implements IServiceQuery {
         let dyMsg: DynamicMsg;
         if (query.params instanceof DynamicMsg) {
             dyMsg = query.params;
+        }
+
+        for (const key in this._mockQueries) {
+            if (this._mockQueries.hasOwnProperty(key)) {
+                const mockQR = this._mockQueries[key];
+                if (utils.isEqual(mockQR.mockQuery, query)) {
+                    if (utils.isUndefined(mockQR.mockQuery)) {
+                        return Observable.throw('No handled');
+                    }
+                    return Observable.of(<R>mockQR.mockResp);
+                }
+            }
         }
 
         switch (query.path) {
@@ -58,6 +80,9 @@ export class ServiceQueryMock implements IServiceQuery {
             resp = new TableResponse(120, 120, data);
         }
 
+        if (utils.isUndefined(resp)) {
+            return Observable.throw('No handled');
+        }
         return Observable.of(<R>resp);
     }
 

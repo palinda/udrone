@@ -1,25 +1,19 @@
+import { DclWrapperComponent } from '@components/dcl-wrapper/dcl-wrapper.component';
+import { TestContext } from '@utilities/tests.configure';
+import { setup } from '@app/utilities/tests.configure';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { QueryContainerComponent } from './query-container.component';
 
 describe('QueryContainerComponent', () => {
-  let component: QueryContainerComponent;
-  let fixture: ComponentFixture<QueryContainerComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ QueryContainerComponent ]
-    })
-    .compileComponents();
-  }));
+    setup();
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(QueryContainerComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    beforeEach(function(this: TestContext<QueryContainerComponent, QueryContainerComponent>) {
+      this.create(QueryContainerComponent, QueryContainerComponent, [], [ DclWrapperComponent ]);
+    });
+
+    it('should be created', function(this: TestContext<QueryContainerComponent, QueryContainerComponent>) {
+      expect(this.hostComponent).toBeTruthy();
+    });
   });
-
-  it('should be created', () => {
-    expect(component).toBeTruthy();
-  });
-});

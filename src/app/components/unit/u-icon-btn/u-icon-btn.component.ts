@@ -29,29 +29,29 @@ export class UIconBtnComponent implements OnInit, OnChanges {
   /**
    * Font icon class
    */
-  @Input() iconClass: string;
+  @Input() iconClass = '';
 
   /**
    * Tile size ( Icon size calculate accroding to this)
    * this.iconSize = (this.text === undefined) ? this.size * 0.5 : (this.size * 0.5  - 10);
    */
-  @Input() size: number;
+  @Input() size = 10;
 
   /**
    * Bottom text
    */
-  @Input() text: string;
+  @Input() text = '';
 
   /**
    * Tile background color
    */
-  @Input() bakColor: string;
+  @Input() bakColor = 'white';
 
 
   /**
    * Tile color
    */
-  @Input() color: string;
+  @Input() color = 'gray';
 
   /**
    * Is this tile activated. Icon stlying changes according to this. Styles can overide from class icon-btn-active

@@ -1,3 +1,4 @@
+import {TpDepModule} from '@modules/tp-dep.module';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { USparklineComponent } from './u-sparkline.component';
@@ -8,7 +9,8 @@ describe('USparklineComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ USparklineComponent ]
+      declarations: [ USparklineComponent ],
+      imports: [ TpDepModule ]
     })
     .compileComponents();
   }));

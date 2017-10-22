@@ -15,7 +15,6 @@ import { Component, OnInit, ViewContainerRef, ViewChild, ComponentFactoryResolve
   OnChanges, AfterViewInit, OnDestroy, Type, Renderer
 } from '@angular/core';
 import * as Utils from '@utilities/utils';
-import { AppComponent } from '@app/app/app.component';
 
 
 @Component({

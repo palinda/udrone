@@ -21,6 +21,5 @@ describe('IntervalService', () => {
     expect(interval).toBeTruthy();
 
     service.clearInterval(interval);
-    expect(interval).toBeUndefined();
   }));
 });

@@ -1,25 +1,23 @@
+import { FocusDirective } from '@directives/focus.directive';
+import { SearchBoxComponent } from '@components/unit/search-box/search-box.component';
+import { UTableComponent } from '@components/unit/u-table/u-table.component';
+import { DclWrapperComponent } from '@components/dcl-wrapper/dcl-wrapper.component';
+import { TestContext } from '@utilities/tests.configure';
+import { setup } from '@app/utilities/tests.configure';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AdvanceQueryTableComponent } from './advance-query-table.component';
 
 describe('AdvanceQueryTableComponent', () => {
-  let component: AdvanceQueryTableComponent;
-  let fixture: ComponentFixture<AdvanceQueryTableComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ AdvanceQueryTableComponent ]
-    })
-    .compileComponents();
-  }));
+    setup();
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(AdvanceQueryTableComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    beforeEach(function(this: TestContext<AdvanceQueryTableComponent, AdvanceQueryTableComponent>) {
+      this.create(AdvanceQueryTableComponent, AdvanceQueryTableComponent, [],
+        [ DclWrapperComponent, UTableComponent, SearchBoxComponent, FocusDirective ]);
+    });
+
+    it('should be created', function(this: TestContext<AdvanceQueryTableComponent, AdvanceQueryTableComponent>) {
+      expect(this.hostComponent).toBeTruthy();
+    });
   });
-
-  it('should be created', () => {
-    expect(component).toBeTruthy();
-  });
-});

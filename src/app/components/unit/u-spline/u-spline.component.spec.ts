@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import {TpDepModule} from '@modules/tp-dep.module';
 import { USplineComponent } from './u-spline.component';
 
 describe('USplineComponent', () => {
@@ -8,7 +8,8 @@ describe('USplineComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ USplineComponent ]
+      declarations: [ USplineComponent ],
+      imports: [ TpDepModule ]
     })
     .compileComponents();
   }));

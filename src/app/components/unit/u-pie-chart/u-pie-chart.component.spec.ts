@@ -1,3 +1,4 @@
+import { TpDepModule } from '@modules/tp-dep.module';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UPieChartComponent } from './u-pie-chart.component';
@@ -8,7 +9,8 @@ describe('UPieChartComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ UPieChartComponent ]
+      declarations: [ UPieChartComponent ],
+      imports: [ TpDepModule ]
     })
     .compileComponents();
   }));
