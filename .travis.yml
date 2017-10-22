@@ -46,10 +46,3 @@ deploy:
     skip_cleanup: true
     upload-dir: documentation
     local_dir: documentation
-  - provider: s3
-    access_key_id: ${ARTIFACTS_KEY}
-    secret_access_key: ${ARTIFACTS_SECRET}
-    bucket: ustocktrade-documentation
-    skip_cleanup: true
-    upload-dir: Utils
-    local_dir: Utils
