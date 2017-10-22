@@ -21,6 +21,7 @@ before_install:
 
 install:
 - npm prune
+- npm install --save typescript@2.1.1
 - npm install --save codacy-coverage
 - npm install --save @compodoc/compodoc
 - npm install
@@ -35,12 +36,3 @@ before_script:
 
 script:
 - cat ./coverage/coverage.lcov | ./node_modules/.bin/codacy-coverage --debug --language typescript
-
-deploy:
-  - provider: s3
-    access_key_id: ${ARTIFACTS_KEY}
-    secret_access_key: ${ARTIFACTS_SECRET}
-    bucket: ustocktrade-documentation
-    skip_cleanup: true
-    upload-dir: documentation
-    local_dir: documentation

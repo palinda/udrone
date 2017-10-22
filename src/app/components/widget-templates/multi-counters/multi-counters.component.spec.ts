@@ -6,8 +6,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MultiCountersComponent } from './multi-counters.component';
 import { DclWrapperComponent } from '@components/dcl-wrapper/dcl-wrapper.component';
 import { TemplateCreatorComponent } from '@components/template-creator/template-creator.component';
-import { setup } from '@app/utilities/tests.configure';
-import { TestContext } from '@utilities/tests.configure';
+import { setup } from '@app/utilities/tests.configure.spec';
+import { TestContext } from '@utilities/tests.configure.spec';
 
 describe('MultiCountersComponent', () => {
   setup();

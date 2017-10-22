@@ -1,4 +1,4 @@
-import { TestContext } from '@utilities/tests.configure';
+import { TestContext } from '@utilities/tests.configure.spec';
 import { ServiceQueryMock } from '@mock/service-query.mock';
 import { CountResp } from '@defs/count-resp';
 import { DynamicMsg } from '@defs/dynamic-msg';
@@ -16,7 +16,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { TpDepModule } from '@modules/tp-dep.module';
 import { CounterGuageComponent } from './counter-guage.component';
 import { Query } from '@defs/query';
-import { setup } from '@app/utilities/tests.configure';
+import { setup } from '@app/utilities/tests.configure.spec';
 
 describe('CounterGuageComponent', () => {
 

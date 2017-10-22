@@ -1,8 +1,8 @@
 import { FocusDirective } from '@directives/focus.directive';
 import { FormsModule } from '@angular/forms';
 import { SearchBoxComponent } from './search-box.component';
-import { setup } from '@app/utilities/tests.configure';
-import { TestContext } from '@utilities/tests.configure';
+import { setup } from '@app/utilities/tests.configure.spec';
+import { TestContext } from '@utilities/tests.configure.spec';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 describe('SearchBoxComponent', () => {
