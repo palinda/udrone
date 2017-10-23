@@ -5,6 +5,9 @@ BUILD_DIR=$2
 ARTIFACT=$3
 
 build(){
+  echo $USERNAME
+  echo $BUILD_DIR
+  echo $ARTIFACT
   ng build --prod
   docker build -t $ARTIFACT:$ARTIFACT .
   docker images
