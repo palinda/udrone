@@ -40,14 +40,14 @@ script:
 - cat ./coverage/lcov.info | ./node_modules/.bin/codacy-coverage --debug --language typescript
 
 deploy:
-  - provider: script
-    script: bash ./scripts/docker_deploy.sh
-    skip_cleanup: true
-    on:
-      branch: master
-  - provider: s3
-    access_key_id: ${ARTIFACTS_KEY}
-    secret_access_key: ${ARTIFACTS_SECRET}
-    bucket: ustocktrade-documentation
-    skip_cleanup: true
-    local_dir: documentation
+- provider: script
+  script: bash ./scripts/docker_deploy.sh
+  skip_cleanup: true
+  on:
+    branch: master
+- provider: s3
+  access_key_id: ${ARTIFACTS_KEY}
+  secret_access_key: ${ARTIFACTS_SECRET}
+  bucket: ustocktrade-documentation
+  skip_cleanup: true
+  upload-dir: documentation

@@ -8,10 +8,10 @@ build(){
   ng build --prod
   docker build -t $ARTIFACT:$ARTIFACT .
   docker images
-  docker tag $ARTIFACT:$ARTIFACT $USERNAME/udrone:1.0
-  docker tag $ARTIFACT:$ARTIFACT $USERNAME/udrone:latest
-  docker push $USERNAME/udrone:1.0
-  docker push $USERNAME/udrone:latest
+  docker tag $ARTIFACT:$ARTIFACT $USERNAME/$ARTIFACT:1.0
+  docker tag $ARTIFACT:$ARTIFACT $USERNAME/$ARTIFACT:latest
+  docker push $USERNAME/$ARTIFACT:1.0
+  docker push $USERNAME/$ARTIFACT:latest
   cd $BUILD_DIR
 }
 
