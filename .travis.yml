@@ -3,6 +3,9 @@ dist: trusty
 language: node_js
 node_js: stable
 
+services:
+  - docker
+
 notifications:
   email: false
   
@@ -35,3 +38,10 @@ before_script:
 
 script:
 - cat ./coverage/lcov.info | ./node_modules/.bin/codacy-coverage --debug --language typescript
+
+deploy:
+  skip_cleanup: true
+  provider: script
+  script: bash ./scripts/docker_deploy.sh
+  on:
+    branch: master
