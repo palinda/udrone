@@ -8,10 +8,10 @@ build(){
   ng build --prod
   docker build -t $ARTIFACT:$ARTIFACT .
   docker images
-  docker tag $ARTIFACT:$ARTIFACT $USERNAME/$ARTIFACT:1.0
-  docker tag $ARTIFACT:$ARTIFACT $USERNAME/$ARTIFACT:latest
-  docker push $USERNAME/$ARTIFACT:1.0
-  docker push $USERNAME/$ARTIFACT:latest
+  docker tag $ARTIFACT:$ARTIFACT $USERNAME/ustack-ui:1.0
+  docker tag $ARTIFACT:$ARTIFACT $USERNAME/ustack-ui:latest
+  docker push $USERNAME/ustack-ui:1.0
+  docker push $USERNAME/ustack-ui:latest
   cd $BUILD_DIR
 }
 
