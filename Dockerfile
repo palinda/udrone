@@ -1,9 +1,11 @@
 FROM node:6
-MAINTAINER palinda.a@ustocktrade
 
-COPY dist www
+COPY dist/* ./MockServer/www
 
-WORKDIR MockServer
+ADD ./MockServer/* ./
+
 RUN npm install
-CMD node index.js
-EXPOSE 8081
+
+EXPOSE 9000
+
+ENTRYPOINT [ "node", "index.js" ]
