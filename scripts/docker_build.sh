@@ -6,10 +6,10 @@ ARTIFACT=$3
 
 build(){
   ng build --prod
-  docker build -t $USERNAME/ustack-ui:1.0 .
+  docker build -t app/ustack-ui .
   docker images
-  docker tag $USERNAME:ustack-ui $USERNAME/ustack-ui:1.0
-  docker tag $USERNAME:ustack-ui $USERNAME/ustack-ui:latest
+  docker tag app/ustack-ui $USERNAME/ustack-ui:1.0
+  docker tag app/ustack-ui $USERNAME/ustack-ui:latest
   docker push $USERNAME/ustack-ui:1.0
   docker push $USERNAME/ustack-ui:latest
   cd $BUILD_DIR
