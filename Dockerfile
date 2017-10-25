@@ -1,11 +1,10 @@
 FROM node:6
 
-COPY dist/* ./www/demo/
-COPY documentation/* ./www/documentation/
-COPY MockServer/data/* ./data/
-
-ADD MockServer/index.js ./
-ADD MockServer/package.json ./
+COPY MockServer/* ./
+COPY MockServer/www/ ./www/
+COPY MockServer/data/ ./data/
+COPY dist/ ./www/demo/
+COPY documentation/ ./www/documentation/
 
 RUN npm install
 
