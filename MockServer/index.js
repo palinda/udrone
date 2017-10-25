@@ -21,7 +21,8 @@ app.use(express.static('www'));
 var port = 9000;
 
 // start the server
-app.listen(port);
+// app.listen(port);
+app.listen(port, "0.0.0.0");
 console.log('Server started! At http://localhost:' + port);
 
 app.post('/res/orderCount', function(req, res) {
