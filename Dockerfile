@@ -1,4 +1,4 @@
-FROM node:6
+FROM node:6.10.0-alpine
 
 COPY MockServer/* ./
 COPY MockServer/www/ ./www/
