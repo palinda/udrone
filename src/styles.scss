@@ -5,6 +5,7 @@
 @import 'assets/styles/landing-page';
 @import 'assets/styles/layout';
 @import 'assets/styles/search';
+@import 'assets/styles/variables';
 
 
 h1, h4{
@@ -36,10 +37,7 @@ h4{ font-size: $font-20; font-weight: 500}
     float: right;
 }
 
-#logo_image {
-    background: url("assets/imgs/logo.png") no-repeat;
-    border-right: 2px solid white;
-}
+
 
 .pointer {
     cursor: pointer;

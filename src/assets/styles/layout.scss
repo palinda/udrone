@@ -1,1 +1,5 @@
-#header{background-color:$primary; }
+@import 'header';
+@import 'footer';
+
+/*-----scrollable left thumbnal list ------*/
+.vertical-thumbs{position: fixed; top:60px; left: 0; height: calc(100% - 122px); display: block; width: 70px; background-color: $grey-light;}
