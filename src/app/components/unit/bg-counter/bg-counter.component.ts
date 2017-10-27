@@ -4,7 +4,6 @@ import { Component, OnInit, Input, OnChanges, SimpleChange } from '@angular/core
 /**
  * Animated counter element
  * Size, animating speed and color comfigurable
- *
  */
 @Component({
   selector: 'app-bg-counter',
@@ -16,10 +15,7 @@ import { Component, OnInit, Input, OnChanges, SimpleChange } from '@angular/core
   styles: [
       `
         .bg-counter {
-          font-weight: bold;
           padding : 5px 10px;
-          background: transparent;
-          color: #75c0e0;
         }
 
       `

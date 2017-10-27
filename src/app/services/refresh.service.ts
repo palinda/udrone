@@ -60,7 +60,7 @@ export class RefreshService {
           for (let i = value.length - 1; i >= 0; i -= 1) {
 
             const entry = value[i];
-            if (!this._subscribers.contains(entry.id)) {
+            if (!this._subscribers.contains(entry.id) || Utils.isUndefined(entry.req.callback)) {
               this._logService.printTrace('Subscription removed:', entry.id);
               value.splice(i, 1);
               continue;

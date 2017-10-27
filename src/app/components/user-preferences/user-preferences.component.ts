@@ -3,7 +3,6 @@ import { ComponentStore } from './../../services/component-store';
 import { DynamicMsg } from '@defs/dynamic-msg';
 import { Size } from '@app/defs/size';
 import { ComponentDef } from './../../defs/component-def';
-import { QueryTemplateComponent } from '@components/query-template.component';
 import { WidgetTemplateComponent } from '@components/widget-template.component';
 import { CounterSparklineComponent} from '@components/widget-templates/counter-sparkline/counter-sparkline.component';
 import { UserContextService } from '@services/user-context.service';
@@ -31,7 +30,6 @@ export class UserPreferencesComponent implements OnInit, OnDestroy {
   themeStore: ThemeStoreService;
   userContext: UserContextService;
   widgetTemplateDefs: Type<Component>[];
-  queryTemplateDefs: Type<Component>[];
   containerTemplateDefs: Type<Component>[];
 
   selectedIndex = 0;
@@ -47,7 +45,6 @@ export class UserPreferencesComponent implements OnInit, OnDestroy {
     this.themeStore = _themeStore;
     this.userContext = _userContext;
     this.widgetTemplateDefs = [];
-    this.queryTemplateDefs = [];
     this.containerTemplateDefs = [];
     this.loadComponents();
     cmpScope = this;
@@ -67,8 +64,6 @@ export class UserPreferencesComponent implements OnInit, OnDestroy {
       console.log(val['type'], val['key']);
         if (val['type'] === 'WidgetTemplateComponent') {
           this.widgetTemplateDefs.push(val);
-        } else if (val['type'] === 'QueryTemplateComponent') {
-          this.queryTemplateDefs.push(val);
         } else if (val['type'] === 'ContainerTemplateComponent') {
           this.containerTemplateDefs.push(val);
         }

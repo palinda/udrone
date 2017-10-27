@@ -53,13 +53,13 @@ export class CounterGuageComponent extends WidgetTemplateComponent implements On
 
   count: GaugeData = new GaugeData(0, 0, 0);
 
-  constructor(refreshService: RefreshService, logService: LogService) {
-    super(refreshService, logService);
+  constructor(logService: LogService, refreshService: RefreshService) {
+    super(logService, refreshService);
   }
 
   ngOnInit() {
     this.guageOptions.size = this.componentDef.size.toPixel(100, 100);
-    this.refreshService.subscribeForRefresh(this.componentID, [
+    this.subscribeForRefresh([
         new RefreshRequest<CountResp>(this.refreshInterval, this.countQuery, (data, err) => {
           if (err !== undefined) {
             this.onError(err, this.countQuery);

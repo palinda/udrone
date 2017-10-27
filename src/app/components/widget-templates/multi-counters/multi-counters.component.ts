@@ -62,12 +62,12 @@ export class MultiCountersComponent extends WidgetTemplateComponent implements O
     'color' : 'gray'
   };
 
-  constructor(refreshService: RefreshService, logService: LogService) {
-    super(refreshService, logService);
+  constructor(logService: LogService, refreshService: RefreshService) {
+    super(logService, refreshService);
   }
 
   ngOnInit() {
-    this.refreshService.subscribeForRefresh(this.componentID, [
+    this.subscribeForRefresh([
       new RefreshRequest<DynamicMsg>(this.refreshInterval, this.countQuery, (data, err) => {
         if (err !== undefined) {
           this.onError(err, this.countQuery);

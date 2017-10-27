@@ -1,3 +1,4 @@
+import { SystemInfoComponent } from '@components/system-info/system-info.component';
 import { ContainerTemplateComponent } from './components/container-template.component';
 import { PermissionManagerService } from '@services/permission-manager.service';
 import { ComponentStore } from '@services/component-store';
@@ -5,7 +6,6 @@ import { TemplateCreatorComponent } from './components/template-creator/template
 import { UserPreferencesComponent } from './components/user-preferences/user-preferences.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { BaseTemplateComponent } from '@components/base-template.component';
-import { QueryTemplateComponent } from '@components/query-template.component';
 import { WidgetTemplateComponent } from '@components/widget-template.component';
 import { PushChannelService } from '@services/push-channel.service';
 import { RefreshService } from '@services/refresh.service';
@@ -40,12 +40,10 @@ import { PopupDriverService } from '@services/popup-driver.service';
 import { ThemeStoreService } from '@services/theme-store.service';
 import { CounterGuageComponent } from '@components/widget-templates/counter-guage/counter-guage.component';
 import { RealtimeSplineComponent } from '@components/widget-templates/realtime-spline/realtime-spline.component';
-import { AdvanceQueryTableComponent } from '@components/query-templates/advance-query-table/advance-query-table.component';
+import { AdvanceQueryTableComponent } from '@components/widget-templates/advance-query-table/advance-query-table.component';
 import { QueryContainerComponent } from '@components/container-templates/query-container/query-container.component';
 import { MultiCountersComponent } from '@components/widget-templates/multi-counters/multi-counters.component';
 import { UPieChartComponent } from '@components/unit/u-pie-chart/u-pie-chart.component';
-import { SystemInfoComponent } from '@components/system-info/system-info.component';
-
 /**
  * Main app module
  */
@@ -62,7 +60,6 @@ import { SystemInfoComponent } from '@components/system-info/system-info.compone
     CounterSparklineComponent,
     BaseTemplateComponent,
     WidgetTemplateComponent,
-    QueryTemplateComponent,
     DclWrapperComponent,
     DashboardContainerComponent,
     MainComponent,

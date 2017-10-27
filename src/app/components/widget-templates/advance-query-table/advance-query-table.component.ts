@@ -1,7 +1,7 @@
+import { WidgetTemplateComponent } from '@components/widget-template.component';
 import * as Utils from '@utilities/utils';
 import { TableQuery } from '@components/unit/u-table/table-query';
 import { LogService } from '@services/log.service';
-import { QueryTemplateComponent } from '@components/query-template.component';
 import { DynamicMsg } from '@defs/dynamic-msg';
 import { TrackType } from '@defs/track-type';
 import { ColumnOptions } from '@defs/column-options';
@@ -14,7 +14,7 @@ import { Query } from '@defs/query';
   templateUrl: './advance-query-table.component.html',
   styleUrls: ['./advance-query-table.component.scss']
 })
-export class AdvanceQueryTableComponent extends QueryTemplateComponent implements OnInit {
+export class AdvanceQueryTableComponent extends WidgetTemplateComponent implements OnInit {
 
   static key = 'AdvanceQueryTableComponent';
 
