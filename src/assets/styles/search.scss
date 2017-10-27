@@ -1,0 +1,10 @@
+.search-widget{
+    background-color: $primary-lighter; padding: 10px;
+    input{background: transparent !important; 
+    div .dx-placeholder {color: $primary !important;}
+    }
+}
+
+.icon-search-pos{float: right; margin-top:-30px;
+    .icon-search{font-size:$font-40; color: $white}
+}

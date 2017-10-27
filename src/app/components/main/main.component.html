@@ -10,6 +10,7 @@
             <div class="dx-field-value search-widget">
                 <dx-autocomplete placeholder="Search in start menu ..." width="280" [(value)]="searchValue" [dataSource]="containerDefList" displayExpr="inputs.shortname" valueExpr="this" showClearButton="true" (onItemClick)="searchWidget($event)">
                 </dx-autocomplete>
+                <div class="icon-search-pos"><span class="icon-search"></span></div>
             </div>
         </div>
     </div>

@@ -3,11 +3,10 @@ import { Component, OnInit, Input, OnChanges, SimpleChange } from '@angular/core
 @Component({
   selector: 'app-u-icon-btn',
   template: `
-    <div fxLayout="column" fxLayoutAlign="center none" class="u-icon-btn" [ngClass]="{'icon-btn-active' : isSelected}"
-    [style.width.px]="size" [style.height.px]="size" [style.background-color]="bakColor" [style.color]="color">
-      <div [ngClass]="iconClass" [style.font-size.px]="iconSize"></div>
-      <div [hidden]="text === undefined">{{text}}</div>
-    </div>
+      <div fxLayout="column" fxLayoutAlign="center none"  [ngClass]="wrapperClass" >
+            <div  class="u-btn-icon" [ngClass]="iconClass" ></div>          
+          <div [hidden]="text === undefined">{{text}}</div>
+        </div>
   `,
   styles: [`
       .u-icon-btn {
@@ -58,6 +57,7 @@ export class UIconBtnComponent implements OnInit, OnChanges {
    */
   @Input() isSelected = false;
 
+  @Input() wrapperClass = '';
   iconSize = 20;
 
   constructor() { }
