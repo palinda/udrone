@@ -1,10 +1,12 @@
+/*---- Dashboard Search Component ----*/
 .search-widget{
-    background-color: $primary-lighter; padding: 10px;
-    input{background: transparent !important; 
+    background-color: $primary-lighter; padding: 5px;
+    input{background: transparent !important; }
     div .dx-placeholder {color: $primary !important;}
+    .dx-texteditor{background: transparent !important; border:none !important; padding-right: 30px !important; }
     }
-}
+
 
 .icon-search-pos{float: right; margin-top:-30px;
-    .icon-search{font-size:$font-40; color: $white}
+    .icon-search{font-size:$font-30; color: $white}
 }
