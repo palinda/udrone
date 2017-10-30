@@ -109,3 +109,18 @@ h4{ font-size: $font-20; font-weight: 500}
     }
 
 
+
+app-window {
+    .wrapper {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .grid-item {
+        border-color: rgb(231, 231, 231);
+    }
+}
+
+app-start-menu {
+    .grid-item {
+        border-color: rgb(231, 231, 231);
+    }
+}

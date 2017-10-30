@@ -13,7 +13,9 @@ import { Component, OnInit, Input } from '@angular/core';
   selector: 'app-counter-guage',
   template: `
     <div class="container">
-      <app-u-guage [value]="count" [options]="guageOptions"></app-u-guage>
+      <div class="guage">
+        <app-u-guage [value]="count" [options]="guageOptions"></app-u-guage>
+      </div>
       <app-bg-counter [value]="count.mean" class="counter" [size]="50"></app-bg-counter>
     </div>
   `,
@@ -27,6 +29,7 @@ import { Component, OnInit, Input } from '@angular/core';
       position: relative;
       top: -50px;
     }
+
   `]
 })
 export class CounterGuageComponent extends WidgetTemplateComponent implements OnInit {
@@ -53,13 +56,13 @@ export class CounterGuageComponent extends WidgetTemplateComponent implements On
 
   count: GaugeData = new GaugeData(0, 0, 0);
 
-  constructor(refreshService: RefreshService, logService: LogService) {
-    super(refreshService, logService);
+  constructor(logService: LogService, refreshService: RefreshService) {
+    super(logService, refreshService);
   }
 
   ngOnInit() {
-    this.guageOptions.size = this.componentDef.size.toPixel(100, 100);
-    this.refreshService.subscribeForRefresh(this.componentID, [
+    // this.guageOptions.size = this.componentDef.size.toPixel(100, 100);
+    this.subscribeForRefresh([
         new RefreshRequest<CountResp>(this.refreshInterval, this.countQuery, (data, err) => {
           if (err !== undefined) {
             this.onError(err, this.countQuery);

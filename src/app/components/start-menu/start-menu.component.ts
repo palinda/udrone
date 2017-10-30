@@ -17,7 +17,7 @@ export class StartMenuComponent implements OnInit, DoCheck {
   /**
    * Container definition list
    */
-  containerDefList: Array<ComponentDef>;
+  windowDefList: Array<ComponentDef>;
   differ: any;
 
   dataSource: Object[] = [];
@@ -37,8 +37,8 @@ export class StartMenuComponent implements OnInit, DoCheck {
       'draggable': false,
       'resizable': false
     });
-    this.containerDefList = _userContext.containerComponantInsts;
-    this.containerDefList.forEach( el => {
+    this.windowDefList = _userContext.windowInsts;
+    this.windowDefList.forEach( el => {
       this.addComponentDefToDatasource(el);
     });
     this.differ = differs.find([]).create(null);
@@ -62,7 +62,7 @@ export class StartMenuComponent implements OnInit, DoCheck {
   }
 
   ngDoCheck() {
-    const changes = this.differ.diff(this.containerDefList);
+    const changes = this.differ.diff(this.windowDefList);
     if (changes) {
       changes.forEachAddedItem(r => {
         this.addComponentDefToDatasource(r.item);

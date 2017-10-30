@@ -1,24 +1,10 @@
+
 <h1 class="p-t-50 p-l-50">Welcome to UDrone!<br>
     <h4>The platform to customize  your data</h4>
-    </h1>
+</h1>
     
-    <dx-tile-view class="dx-tile-content start-menu" direction="vertical" [dataSource]="dataSource" itemTemplate="tile">
-        <div *dxTemplate="let comp of 'tile'" [hasPermission]="comp.data.permissions.permissionGroups">
-            <app-u-icon-btn [iconClass]="comp.data.inputs.icon"   [text]="comp.data.inputs.heading" (click)="openComponent(comp.data)" wrapperClass="box"></app-u-icon-btn>
-        </div>
-    </dx-tile-view>
-    
-    <!--
-    <dx-tile-view class="dx-tile-content start-menu" direction="vertical" [dataSource]="dataSource" itemTemplate="tile">
-        <div *dxTemplate="let comp of 'tile'" [hasPermission]="comp.data.permissions.permissionGroups">
-            <app-u-icon-btn [iconClass]="comp.data.inputs.icon" [size]="98" bakColor="white" [text]="comp.data.inputs.heading" (click)="openComponent(comp.data)" wrapperClass="box"></app-u-icon-btn>
-        </div>
-    </dx-tile-view>
-    
-     -->
-    
-    <!-- <div [ngGrid]="gridHelper.options">
-        <div *ngFor="let cp of dataSource" [(ngGridItem)]="cp.config" [hasPermission]="cp.data.permissions.permissionGroups">
-            <app-u-icon-btn [iconClass]="cp.data.inputs.icon" [size]="98" bakColor="white" [text]="cp.data.inputs.heading" (click)="openComponent(cp.data)"></app-u-icon-btn>
-        </div>
-    </div> -->
+<div class="wrapper start-menu">
+    <div class="grid-item" *ngFor="let comp of dataSource" [hasPermission]="comp.data.permissions.permissionGroups">
+        <app-u-icon-btn [iconClass]="comp.data.inputs.icon" [text]="comp.data.inputs.heading" (click)="openComponent(comp.data)"></app-u-icon-btn>
+    </div>
+</div>

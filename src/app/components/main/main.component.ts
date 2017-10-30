@@ -36,14 +36,14 @@ export class MainComponent implements AfterViewInit, OnDestroy {
   activeIndex = -1;
   private _isViewInitialized = false;
   private _isComponentMaximized = false;
-  containerDefList: Array<ComponentDef>;
+  windowDefList: Array<ComponentDef>;
   searchValue: ComponentDef;
 
   constructor(private _componentFactoryResolver: ComponentFactoryResolver, private _cdRef: ChangeDetectorRef, public _renderer: Renderer,
     private _popupDriver: PopupDriverService, private _compStore: ComponentStore, private _userContext: UserContextService) {
     this.minimizedDefs = [];
     this._minimizedComponents = [];
-    this.containerDefList = _userContext.containerComponantInsts;
+    this.windowDefList = _userContext.windowInsts;
   }
 
   createComponent(componentType: Type<any>, inputs: DynamicMsg, def: ComponentDef) {
@@ -98,7 +98,7 @@ export class MainComponent implements AfterViewInit, OnDestroy {
       if (Utils.isUndefined(this._startMenuRef)) {
         this._startMenuRef = this.createComponent(StartMenuComponent, new DynamicMsg(), undefined);
         this._startMenuRef.instance['onSelectContainer'].subscribe( def => {
-          this.createContainerComp(def);
+          this.createWindowComp(def);
         });
       } else {
         this.openExistingComponent(this._startMenuRef, undefined);
@@ -135,11 +135,11 @@ export class MainComponent implements AfterViewInit, OnDestroy {
     }
 
     searchWidget(event) {
-      this.createContainerComp(event.itemData);
+      this.createWindowComp(event.itemData);
       this.searchValue = undefined;
     }
 
-    createContainerComp(def: ComponentDef) {
+    createWindowComp(def: ComponentDef) {
 
       console.log('Clicked open component: ', def);
       if (def instanceof ComponentDef) {
