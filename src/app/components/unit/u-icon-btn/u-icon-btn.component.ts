@@ -3,24 +3,20 @@ import { Component, OnInit, Input, OnChanges, SimpleChange } from '@angular/core
 @Component({
   selector: 'app-u-icon-btn',
   template: `
-    <div fxLayout="column" fxLayoutAlign="center none" class="u-icon-btn" [ngClass]="{'box icon-btn-active' : isSelected}"
-    [style.width.px]="size" [style.height.px]="size" [style.background-color]="bakColor" [style.color]="color">
-      <div [ngClass]="iconClass" [style.font-size.px]="iconSize"></div>
-      <div [hidden]="text === undefined">{{text}}</div>
+    <div fxLayout="column" fxLayoutAlign="center none" class="u-icon-btn" [ngClass]="{'icon-btn-active' : isSelected}">
+      <div class="btn-icon" [ngClass]="iconClass"></div>
+      <div class="btn-text" [hidden]="text === undefined">{{text}}</div>
     </div>
   `,
   styles: [`
       .u-icon-btn {
         text-align: center;
         vertical-align: center;
+        height: 100%;
       }
 
-      .u-icon-btn:hover {
-        color: #168CCA;
-      }
-
-      .icon-btn-active {
-        color: #168CCA;
+      .btn-icon {
+        font-size: 22px;
       }
   `]
 })
