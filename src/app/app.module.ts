@@ -1,11 +1,10 @@
-import { ContainerTemplateComponent } from './components/container-template.component';
+import { SystemInfoComponent } from '@components/system-info/system-info.component';
 import { PermissionManagerService } from '@services/permission-manager.service';
 import { ComponentStore } from '@services/component-store';
 import { TemplateCreatorComponent } from './components/template-creator/template-creator.component';
 import { UserPreferencesComponent } from './components/user-preferences/user-preferences.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { BaseTemplateComponent } from '@components/base-template.component';
-import { QueryTemplateComponent } from '@components/query-template.component';
 import { WidgetTemplateComponent } from '@components/widget-template.component';
 import { PushChannelService } from '@services/push-channel.service';
 import { RefreshService } from '@services/refresh.service';
@@ -30,7 +29,7 @@ import { USplineComponent } from '@components/unit/u-spline/u-spline.component';
 import { UTextComponent } from '@components/unit/u-text/u-text.component';
 import { CounterSparklineComponent } from '@components/widget-templates/counter-sparkline/counter-sparkline.component';
 import { DclWrapperComponent } from '@components/dcl-wrapper/dcl-wrapper.component';
-import { DashboardContainerComponent } from '@components/container-templates/dashboard-container/dashboard-container.component';
+import { WindowComponent } from '@components/window/window.component';
 import { UIconBtnComponent } from '@components/unit/u-icon-btn/u-icon-btn.component';
 import { StartMenuComponent } from '@components/start-menu/start-menu.component';
 import { UserContextService } from '@services/user-context.service';
@@ -40,12 +39,9 @@ import { PopupDriverService } from '@services/popup-driver.service';
 import { ThemeStoreService } from '@services/theme-store.service';
 import { CounterGuageComponent } from '@components/widget-templates/counter-guage/counter-guage.component';
 import { RealtimeSplineComponent } from '@components/widget-templates/realtime-spline/realtime-spline.component';
-import { AdvanceQueryTableComponent } from '@components/query-templates/advance-query-table/advance-query-table.component';
-import { QueryContainerComponent } from '@components/container-templates/query-container/query-container.component';
+import { AdvanceQueryTableComponent } from '@components/widget-templates/advance-query-table/advance-query-table.component';
 import { MultiCountersComponent } from '@components/widget-templates/multi-counters/multi-counters.component';
 import { UPieChartComponent } from '@components/unit/u-pie-chart/u-pie-chart.component';
-import { SystemInfoComponent } from '@components/system-info/system-info.component';
-
 /**
  * Main app module
  */
@@ -62,9 +58,7 @@ import { SystemInfoComponent } from '@components/system-info/system-info.compone
     CounterSparklineComponent,
     BaseTemplateComponent,
     WidgetTemplateComponent,
-    QueryTemplateComponent,
     DclWrapperComponent,
-    DashboardContainerComponent,
     MainComponent,
     UIconBtnComponent,
     StartMenuComponent,
@@ -72,11 +66,10 @@ import { SystemInfoComponent } from '@components/system-info/system-info.compone
     UFormComponent,
     UserPreferencesComponent,
     TemplateCreatorComponent,
-    ContainerTemplateComponent,
+    WindowComponent,
     CounterGuageComponent,
     RealtimeSplineComponent,
     AdvanceQueryTableComponent,
-    QueryContainerComponent,
     MultiCountersComponent,
     UPieChartComponent,
     SystemInfoComponent
@@ -84,15 +77,13 @@ import { SystemInfoComponent } from '@components/system-info/system-info.compone
   entryComponents: [
     CounterSparklineComponent,
     CounterGuageComponent,
-    DashboardContainerComponent,
-    ContainerTemplateComponent,
+    WindowComponent,
     StartMenuComponent,
     UTextComponent,
     UserPreferencesComponent,
     TemplateCreatorComponent,
     RealtimeSplineComponent,
     AdvanceQueryTableComponent,
-    QueryContainerComponent,
     MultiCountersComponent
   ],
   imports: [

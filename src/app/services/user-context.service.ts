@@ -3,7 +3,7 @@ import { UserInfo } from '@defs/user-info';
 import { Decoder } from './decoder';
 import * as Utils from '@utilities/utils';
 import * as Constants from '@defs/constants';
-import { GLOBAL_REPO_UPLOAD_PATH, CONTAINER_TEMPLATE_TAG, WIDGET_TEMPLATE_TAG, QUERY_TEMPLATE_TAG } from './../defs/constants';
+import { GLOBAL_REPO_UPLOAD_PATH, WINDOW_TEMPLATE_TAG, WIDGET_TEMPLATE_TAG } from '@defs/constants';
 import { element } from 'protractor';
 import { RequestOptions, Headers } from '@angular/http';
 import { HttpService } from '@services/http.service';
@@ -13,7 +13,7 @@ import { SERVICE_QUERY } from './service-query.provider';
 import { ThemeStoreService } from './theme-store.service';
 import { Theme } from '@defs/theme';
 import { PreferenceDef } from '@defs/preference-def';
-import { DashboardContainerComponent } from '@components/container-templates/dashboard-container/dashboard-container.component';
+import { WindowComponent } from '@components/window/window.component';
 import { CounterSparklineComponent } from '@components/widget-templates/counter-sparkline/counter-sparkline.component';
 import { Size } from '@defs/size';
 import { Entry } from '@defs/entry';
@@ -29,9 +29,7 @@ export class UserContextService {
 
   widgetTemplateInsts: Array<ComponentDef> = [];
   widgetTemplateInstsMap: UMap<string, ComponentDef> = new UMap<string, ComponentDef>();
-  queryComponantInsts: Array<ComponentDef> = [];
-  queryTemplateInstsMap: UMap<string, ComponentDef> = new UMap<string, ComponentDef>();
-  containerComponantInsts: Array<ComponentDef> = [];
+  windowInsts: Array<ComponentDef> = [];
   userPreference: PreferenceDef;
   userInfo: UserInfo;
 
@@ -56,31 +54,11 @@ export class UserContextService {
             });
           }
 
-          if (!Utils.isUndefined(data.queryTemplate)) {
-            data.queryTemplate.forEach(el => {
-              this.addQueryDef(Decoder.decode(ComponentDef, el));
-            });
-          }
-
-          this.containerComponantInsts.push.apply(this.containerComponantInsts, data.containerTemplate);
+          this.windowInsts.push.apply(this.windowInsts, data.windowTemplate);
         },
         (err) => {
           this._logService.printError('Global repo file load fail');
         }
-    );
-  }
-
-  public addContainerTemplate(containerDef: ComponentDef, cb: (data: Object, err: Error) => void) {
-    const copy = containerDef;
-    this._serviceQuery.query(new Query<ComponentDef>(Constants.GLOBAL_REPO_UPLOAD_PATH + '/' + Constants.CONTAINER_TEMPLATE_TAG, copy))
-    .subscribe(
-      (resp) => {
-        this.containerComponantInsts.push(containerDef);
-        cb(containerDef, undefined);
-      },
-      (err) => {
-        cb(undefined, err);
-      }
     );
   }
 
@@ -98,13 +76,13 @@ export class UserContextService {
     );
   }
 
-  public addQueryTemplate(queryDef: ComponentDef, cb: (data: Object, err: Error) => void) {
-    const copy = queryDef;
-    this._serviceQuery.query(new Query<ComponentDef>(Constants.GLOBAL_REPO_UPLOAD_PATH + '/' + Constants.QUERY_TEMPLATE_TAG, copy))
+  public addWindowTemplate(windowDef: ComponentDef, cb: (data: Object, err: Error) => void) {
+    const copy = windowDef;
+    this._serviceQuery.query(new Query<ComponentDef>(Constants.GLOBAL_REPO_UPLOAD_PATH + '/' + Constants.WINDOW_TEMPLATE_TAG, copy))
     .subscribe(
       (resp) => {
-        this.addQueryDef(queryDef);
-        cb(queryDef, undefined);
+        this.windowInsts.push(windowDef);
+        cb(windowDef, undefined);
       },
       (err) => {
         cb(undefined, err);
@@ -112,21 +90,15 @@ export class UserContextService {
     );
   }
 
+
   public findWidgetDef(id: string) {
     return this.widgetTemplateInstsMap.get(id);
   }
 
-  public findQueryDef(id: string) {
-    return this.queryTemplateInstsMap.get(id);
-  }
 
   public addWidgetDef(def: ComponentDef) {
     this.widgetTemplateInsts.push(def);
     this.widgetTemplateInstsMap.put(def.id, def);
   }
 
-  public addQueryDef(def: ComponentDef) {
-    this.queryComponantInsts.push(def);
-    this.queryTemplateInstsMap.put(def.id, def);
-  }
 }

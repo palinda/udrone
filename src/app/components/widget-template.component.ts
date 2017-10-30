@@ -21,19 +21,23 @@ export class WidgetTemplateComponent extends BaseTemplateComponent implements On
 
   static type = 'WidgetTemplateComponent';
 
-  constructor(protected refreshService: RefreshService, protected logService: LogService) {
+  constructor(protected logService: LogService, protected refreshService?: RefreshService) {
     super(logService);
   }
 
   ngOnDestroy(): void {
-    this.refreshService.unSubscribeForRefresh(this.componentID);
+    if (this.refreshService) {
+      this.refreshService.unSubscribeForRefresh(this.componentID);
+    }
   }
 
   protected listenToPush<T>(cls: new(...args: any[]) => T, _callback: (data: T, error: Error) => void) {
   }
 
   protected subscribeForRefresh(requests: Array<RefreshRequest<any>>) {
-    this.refreshService.subscribeForRefresh(this.componentID, requests);
+    if (this.refreshService) {
+      this.refreshService.subscribeForRefresh(this.componentID, requests);
+    }
   }
 
   protected onError(error: Error, req: Object) {

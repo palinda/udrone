@@ -65,8 +65,8 @@ export class RealtimeSplineComponent extends WidgetTemplateComponent implements 
 
   data: UFixedQ<Object>;
 
-  constructor(refreshService: RefreshService, logService: LogService) {
-    super(refreshService, logService);
+  constructor(logService: LogService, refreshService: RefreshService) {
+    super(logService, refreshService);
     this.data = new UFixedQ(this.dataPoints);
   }
 
@@ -79,7 +79,7 @@ export class RealtimeSplineComponent extends WidgetTemplateComponent implements 
     this.splineOptions.series = this.series;
     this.splineOptions.size = this.componentDef.size.toPixel(100, 100);
 
-    this.refreshService.subscribeForRefresh(this.componentID, [
+    this.subscribeForRefresh([
       new RefreshRequest<DynamicMsg>(this.refreshInterval, this.query, (data, err) => {
         if (err !== undefined) {
           this.onError(err, this.query);

@@ -84,15 +84,15 @@ export class CounterSparklineComponent extends WidgetTemplateComponent implement
     'color' : 'gray'
   };
 
-  constructor(refreshService: RefreshService, logService: LogService) {
-    super(refreshService, logService);
+  constructor(logService: LogService, refreshService: RefreshService) {
+    super(logService, refreshService);
     this.sparkOptions = new SparkLinkOptions('key', 'value', 'spline', '#9ab57e', '#e55253', '4', undefined, '#ebdd8f',
     'currency', new Size('100', '200'));
   }
 
   ngOnInit() {
     this.sparkOptions.size = this.componentDef.size.toPixel(60, 45);
-    this.refreshService.subscribeForRefresh(this.componentID, [
+    this.subscribeForRefresh([
       new RefreshRequest<CountResp>(this.refreshInterval, this.countQuery, (data, err) => {
         if (err !== undefined) {
           this.onError(err, this.countQuery);
