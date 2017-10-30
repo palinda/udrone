@@ -8,7 +8,7 @@
             <app-u-icon-btn class="pull-right" iconClass="dx-icon-user" [size]="60" bakColor="transparent" (click)="onStartMenuOpen()"></app-u-icon-btn>
             <app-u-icon-btn class="pull-right" iconClass="icon-notifications" [size]="60" bakColor="transparent" (click)="onStartMenuOpen()"></app-u-icon-btn>
             <div class="dx-field-value search-widget">
-                <dx-autocomplete placeholder="Search in start menu ..." width="280" [(value)]="searchValue" [dataSource]="containerDefList" displayExpr="inputs.shortname" valueExpr="this" showClearButton="true" (onItemClick)="searchWidget($event)">
+                <dx-autocomplete placeholder="Search in start menu ..." width="280" [(value)]="searchValue" [dataSource]="windowDefList" displayExpr="inputs.shortname" valueExpr="this" showClearButton="true" (onItemClick)="searchWidget($event)">
                 </dx-autocomplete>
             </div>
         </div>

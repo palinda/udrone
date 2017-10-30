@@ -64,3 +64,18 @@
     background-color: #44A2D5;
     border-bottom-left-radius: 8px;
 }
+
+app-window {
+    .wrapper {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .grid-item {
+        border-color: rgb(231, 231, 231);
+    }
+}
+
+app-start-menu {
+    .grid-item {
+        border-color: rgb(231, 231, 231);
+    }
+}

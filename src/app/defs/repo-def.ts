@@ -11,16 +11,12 @@ export class RepoDef extends UMsg {
     widgetTemplate: ComponentDef[];
 
     @Type(() => ComponentDef)
-    containerTemplate: ComponentDef[];
-
-    @Type(() => ComponentDef)
-    queryTemplate: ComponentDef[];
+    windowTemplate: ComponentDef[];
 
 
-    constructor(widgetTemplate: ComponentDef[], queryTemplate: ComponentDef[], containerTemplate: ComponentDef[]) {
+    constructor(widgetTemplate: ComponentDef[], windowTemplate: ComponentDef[]) {
         super();
-        this.containerTemplate = containerTemplate;
-        this.queryTemplate = queryTemplate;
+        this.windowTemplate = windowTemplate;
         this.widgetTemplate = widgetTemplate;
     }
 

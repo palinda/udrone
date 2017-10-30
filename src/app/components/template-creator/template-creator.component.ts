@@ -158,15 +158,6 @@ export class TemplateCreatorComponent implements OnInit {
       const options = { 'dataSource': dataSource, 'displayExpr': 'id', 'valueExpr': 'id'};
       this.selectedInputs.push(new InputDefGroup(undefined, [new InputDef(propName, 'MultiSelect', undefined, options)]));
       return true;
-    } else if (info === 'QUERY_TEMPLATES') {
-      const dataSource = new ArrayStore({
-          data: this._userContext.queryComponantInsts,
-          key: 'id'
-      });
-
-      const options = { 'dataSource': dataSource, 'displayExpr': 'id', 'valueExpr': 'id'};
-      this.selectedInputs.push(new InputDefGroup(undefined, [new InputDef(propName, 'Select', undefined, options)]));
-      return true;
     }
 
     return false;

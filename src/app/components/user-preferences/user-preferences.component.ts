@@ -1,10 +1,9 @@
-import { ContainerTemplateComponent } from '@components/container-template.component';
-import { ComponentStore } from './../../services/component-store';
+import { WindowComponent } from '@components/window/window.component';
+import { ComponentStore } from '@services/component-store';
 import { DynamicMsg } from '@defs/dynamic-msg';
 import { Size } from '@app/defs/size';
-import { ComponentDef } from './../../defs/component-def';
+import { ComponentDef } from '@defs/component-def';
 import { WidgetTemplateComponent } from '@components/widget-template.component';
-import { CounterSparklineComponent} from '@components/widget-templates/counter-sparkline/counter-sparkline.component';
 import { UserContextService } from '@services/user-context.service';
 import { PreferenceDef } from '@defs/preference-def';
 import { ThemeStoreService } from '@services/theme-store.service';
@@ -30,23 +29,21 @@ export class UserPreferencesComponent implements OnInit, OnDestroy {
   themeStore: ThemeStoreService;
   userContext: UserContextService;
   widgetTemplateDefs: Type<Component>[];
-  containerTemplateDefs: Type<Component>[];
+  windowDefs: Type<Component>[];
 
   selectedIndex = 0;
 
   tabs = [
     {'title': 'General'},
     {'title': 'Widget Templates'},
-    {'title': 'Query Templates'},
-    {'title': 'Containers'}
+    {'title': 'Windows'}
   ];
 
   constructor(_themeStore: ThemeStoreService, _userContext: UserContextService, private _componentStore: ComponentStore) {
     this.themeStore = _themeStore;
     this.userContext = _userContext;
-    this.widgetTemplateDefs = [];
-    this.containerTemplateDefs = [];
-    this.loadComponents();
+    this.widgetTemplateDefs = this._componentStore.widgetTemplateDefs;
+    this.windowDefs = this._componentStore.windowDefs;
     cmpScope = this;
   }
 
@@ -55,19 +52,6 @@ export class UserPreferencesComponent implements OnInit, OnDestroy {
 
   public onThemeChanged (event) {
     DxThemes.current(event.value.id);
-  }
-
-  loadComponents() {
-
-    console.log(JSON.stringify(this._componentStore.componentsMap));
-    this._componentStore.componentsMap.forEach( (key, val) => {
-      console.log(val['type'], val['key']);
-        if (val['type'] === 'WidgetTemplateComponent') {
-          this.widgetTemplateDefs.push(val);
-        } else if (val['type'] === 'ContainerTemplateComponent') {
-          this.containerTemplateDefs.push(val);
-        }
-      });
   }
 
   ngOnDestroy() {
