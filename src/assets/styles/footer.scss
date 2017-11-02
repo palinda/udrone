@@ -1,0 +1,38 @@
+#footer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: $grey-dark2;
+    app-u-icon-btn{
+        padding: 20px; float: left; margin-right: 15px; background-color: $white;
+        .u-btn-icon {
+            color: $primary; 
+        }
+    }
+
+    .home-icon{ background-color: $primary}
+    
+    .rectangle:before
+    {
+        content:'';
+            position: absolute;
+        bottom: 0;
+        left: 50px;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 0 0 60px 60px;
+        border-color: #fff #fff $grey-dark2  #fff;
+    }
+
+    #main-container .system-info {
+        height: 60px;
+        position: absolute;
+        right: 0;
+    }
+    #info-widget{background-color: $red-light;}
+
+}
+
+

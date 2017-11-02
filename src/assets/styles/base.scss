@@ -1,0 +1,16 @@
+/* Font- global*/
+$primary-font:'Lato', sans-serif;
+body{font-family: $primary-font}
+
+#logo_image {
+    height: 100%;
+    width: 159px;
+    background-size: contain;
+    margin: 10px;
+
+    @media screen and (max-width: 520px) {
+        display: none;
+    }
+}
+
+app-dcl-wrapper{background-color: $white}

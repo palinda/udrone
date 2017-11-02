@@ -1,0 +1,102 @@
+@import 'header';
+@import 'footer';
+
+/*-----scrollable left thumbnal list ------*/
+.vertical-thumbs{position: fixed; top:60px; left: 0; height: calc(100% - 122px); display: block; width: 70px; background-color: $grey-light;}
+
+/*----sidebar toggle--------*/
+.sidebar {
+    width: 70px;
+    position: absolute;
+    top: 65px;
+    left: 0;
+    bottom: 70px;
+    .btn-icon{ padding: 13px 2px; color: $white; 
+        margin-bottom: 4px; margin-left: 4px; width:40px}
+    .icon-btn-active{width: 60px !important;  padding:2px 0; background-color: $primary-lighter !important; color: $white}
+    .u-icon-btn{background-color: $primary; width: 52px; margin-left: 4px; margin-bottom: 4px;}
+}
+
+
+
+.portfolio {
+    background-color: $primary-lighter;
+   position: absolute; 
+    top: 65px;
+    left: 60px;
+    right: 0;
+    bottom: 70px;
+    
+    -moz-transition: left 0.5s ease;
+    transition: left 0.5s ease;
+}
+
+input[type=checkbox] {
+   display: none;
+}
+
+input:checked ~ .portfolio { 
+    left: 0;
+}
+
+input:checked ~ label {
+    left: 0;
+}
+
+label {
+    z-index: 2;
+    position: absolute;
+    top: 2px;
+    left: 190px;
+    -moz-transition: left 0.5s ease;
+    transition: left 0.5s ease;
+    background: $white;
+    padding: 8px 3px;
+}
+.icon-menu{color:$primary; font-size: $font-40}
+
+#window-title{
+    display: block; position: absolute; z-index: 99999; background-color: $primary-lighter;
+    left: 16%; top: -58px; line-height: 48px !important; color: $primary; width: calc(100% - 53%);
+    .u-icon-btn{height: auto !important;}
+
+    .rectangle:before
+    {
+        content:'';
+        position: absolute;
+        bottom: 0;
+        left: -60px;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 0 0 60px 60px;
+        border-color:transparent transparent $primary-lighter transparent;
+    }
+}
+
+.panel-action-btns{ 
+    position: absolute;
+    top: -42px;
+    z-index: 99999;
+    right: 537px;
+    color: $primary;
+    span::before{margin-left:10px}
+    span{float:left; margin-right: 4px; display: block;
+        -webkit-transition: all 200ms ease-in;
+        -webkit-transform: scale(1);
+        -ms-transition: all 200ms ease-in;
+        -ms-transform: scale(1);   
+        -moz-transition: all 200ms ease-in;
+        -moz-transform: scale(1);
+        transition: all 200ms ease-in;
+        transform: scale(1);
+    }
+    span:hover{-webkit-transition: all 200ms ease-in;
+        -webkit-transform: scale(1.3);
+        -ms-transition: all 200ms ease-in;
+        -ms-transform: scale(1.3);   
+        -moz-transition: all 200ms ease-in;
+        -moz-transform: scale(1.3);
+        transition: all 200ms ease-in;
+        transform: scale(1.3);}
+}

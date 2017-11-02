@@ -1,4 +1,18 @@
+
 /* You can add global styles to this file, and also import other style files */
+@import 'assets/styles/font-sizes';
+@import 'assets/styles/colors';
+@import 'assets/styles/landing-page';
+@import 'assets/styles/layout';
+@import 'assets/styles/search';
+@import 'assets/styles/variables';
+
+
+h1, h4{
+    color: $primary; font-family: $primary-font;
+}
+h1{ font-size: $font-50; font-weight: 100}
+h4{ font-size: $font-20; font-weight: 500}
 
 .h-seperator {
     border-bottom: 1px solid #eaeaea;
@@ -23,10 +37,7 @@
     float: right;
 }
 
-#logo_image {
-    background: url("assets/imgs/logo.png") no-repeat;
-    border-right: 2px solid white;
-}
+
 
 .pointer {
     cursor: pointer;
@@ -64,6 +75,38 @@
     background-color: #44A2D5;
     border-bottom-left-radius: 8px;
 }
+/*---- Paddings ------*/
+.p-y-50{padding: 50px 0}
+.p-t-50{padding-top: 50px}
+.p-l-50{padding-left: 50px}
+
+
+/*----- Media Quaries -------*/
+    /* Custom, iPhone Retina */ 
+    @media only screen and (min-width : 320px) {
+    
+    }
+    
+    /* Extra Small Devices, Phones */ 
+    @media only screen and (min-width : 480px) {
+    
+    }
+    
+    /* Small Devices, Tablets */
+    @media only screen and (min-width : 768px) {
+    
+    }
+    
+    /* Medium Devices, Desktops */
+    @media only screen and (min-width : 992px) {
+    
+    }
+    
+    /* Large Devices, Wide Screens */
+    @media only screen and (min-width : 1200px) {
+    }
+
+
 
 app-window {
     .wrapper {

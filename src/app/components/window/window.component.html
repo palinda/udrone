@@ -1,6 +1,12 @@
-<div class="dx-clearfix">
-    <div class="icon-vertical_align_bottom mini-btn pointer" (click)="onMinimizeComponent()"></div>
-    <div class="icon-close close-btn pointer" (click)="onCloseComponent()"></div>
+<div class="dx-clearfix ">
+    <!-- action buttons -->
+    <div class="panel-action-btns">
+            <span class="flaticon-pie-graphic" ></span>
+            <span class="flaticon-web" ></span>
+            <span class="flaticon-pen"></span>
+            <span class="flaticon-arrows" (click)="onMinimizeComponent()"></span>
+            <span class="flaticon-close" (click)="onCloseComponent()"></span>
+    </div>
     <div class="wrapper">
         <div class="grid-item" *ngFor='let comp of componentDefList' [hasPermission]="comp.permissions.permissionGroups">
             <app-dcl-wrapper [componentDef]="comp"></app-dcl-wrapper>

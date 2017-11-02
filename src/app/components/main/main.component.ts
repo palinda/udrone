@@ -164,3 +164,4 @@ export class MainComponent implements AfterViewInit, OnDestroy {
       }
     }
 }
+

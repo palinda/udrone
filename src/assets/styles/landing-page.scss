@@ -1,0 +1,42 @@
+/*---- UDrone SCSS -------*/
+@import "base";
+
+
+
+.landing-page-container{padding: 50px 0 0 50px !important}
+
+
+.box{background-color: $primary-dark !important; color:$white !important;  height: 140px; width: 12%; 
+    font-size: 14px; float: left; margin: 0 15px 15px 0; text-align: center;
+ .u-btn-icon{ font-size: $font-30}
+ 
+}
+
+
+app-start-menu  {
+    height: 100%;
+    .landing-page-container{
+        height: 100% !important;
+        background: #fff url('/assets/imgs/dashboard_bg.svg') no-repeat;
+        background-position: bottom right;
+        padding: 0 60px;
+        -webkit-background-size: contain;
+        -moz-background-size: contain;
+        -o-background-size: contain;
+        background-size: contain;
+
+    }
+   /* .dx-tile{
+        width: 200px !important; 
+        height: 200px !important;
+        top: auto !important;
+        left: auto !important;
+                } */
+    app-u-icon-btn {
+        padding:20px; display: block; height: 100px;
+        .u-btn-icon {
+            color: $white;
+        }
+    }
+}
+

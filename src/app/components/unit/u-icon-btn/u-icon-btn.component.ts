@@ -54,6 +54,7 @@ export class UIconBtnComponent implements OnInit, OnChanges {
    */
   @Input() isSelected = false;
 
+  @Input() wrapperClass = '';
   iconSize = 20;
 
   constructor() { }

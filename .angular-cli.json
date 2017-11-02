@@ -23,6 +23,7 @@
             "../node_modules/devextreme/dist/css/dx.common.css",
             "../node_modules/devextreme/dist/css/dx.spa.css",
             "assets/fonts/style.css",
+            "assets/fonts/flaticon/font/flaticon.css",
             "styles.scss"
         ],
         "scripts": [

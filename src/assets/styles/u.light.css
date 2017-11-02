@@ -5,13 +5,12 @@
 
 #header {
     height: 50px;
-    background-color: #F7F7F7;
+   background-color: transparent !important;
     color: #39393B;
 }
 
 #footer {
     height: 50px;
-    background-color: #dddddd;
 }
 
 #container-body {
