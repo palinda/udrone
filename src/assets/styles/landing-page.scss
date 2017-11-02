@@ -17,7 +17,7 @@ app-start-menu  {
     height: 100%;
     .landing-page-container{
         height: 100% !important;
-        background: url('/assets/imgs/dashboard_bg.svg') no-repeat;
+        background: #fff url('/assets/imgs/dashboard_bg.svg') no-repeat;
         background-position: bottom right;
         padding: 0 60px;
         -webkit-background-size: contain;
@@ -33,14 +33,10 @@ app-start-menu  {
         left: auto !important;
                 } */
     app-u-icon-btn {
-        padding:40px 20px 20px; display: block; height: 140px;
+        padding:20px; display: block; height: 100px;
         .u-btn-icon {
             color: $white;
         }
     }
 }
 
-#header .dx-field app-u-icon-btn {color: $white; padding: 20px;  float: right;
-    :hover{color: $primary-dark }
-    .u-btn-icon::before{font-size: 20px;}
-}

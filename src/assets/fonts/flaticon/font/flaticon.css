@@ -1,6 +1,6 @@
 	/*
   	Flaticon icon font: Flaticon
-  	Creation date: 27/10/2017 11:45
+  	Creation date: 02/11/2017 05:36
   	*/
 
 @font-face {
@@ -29,20 +29,24 @@ font-style: normal;
 margin-left: 20px;
 }
 
-.flaticon-line:before { content: "\f100"; }
-.flaticon-error:before { content: "\f101"; }
-.flaticon-danger:before { content: "\f102"; }
-.flaticon-time:before { content: "\f103"; }
-.flaticon-square:before { content: "\f104"; }
-.flaticon-science:before { content: "\f105"; }
-.flaticon-graphic:before { content: "\f106"; }
-.flaticon-interface:before { content: "\f107"; }
-.flaticon-pie-graphic:before { content: "\f108"; }
-.flaticon-car:before { content: "\f109"; }
-.flaticon-planet:before { content: "\f10a"; }
-.flaticon-technology:before { content: "\f10b"; }
-.flaticon-search:before { content: "\f10c"; }
-.flaticon-ring:before { content: "\f10d"; }
-.flaticon-cogwheel:before { content: "\f10e"; }
-.flaticon-person:before { content: "\f10f"; }
-.flaticon-symbol:before { content: "\f110"; }
+.flaticon-web:before { content: "\f100"; }
+.flaticon-pen:before { content: "\f101"; }
+.flaticon-close:before { content: "\f102"; }
+.flaticon-arrows:before { content: "\f103"; }
+.flaticon-interface:before { content: "\f104"; }
+.flaticon-pie-graphic:before { content: "\f105"; }
+.flaticon-person:before { content: "\f106"; }
+.flaticon-line:before { content: "\f107"; }
+.flaticon-science:before { content: "\f108"; }
+.flaticon-search:before { content: "\f109"; }
+.flaticon-technology:before { content: "\f10a"; }
+.flaticon-danger:before { content: "\f10b"; }
+.flaticon-graphic:before { content: "\f10c"; }
+.flaticon-cogwheel:before { content: "\f10d"; }
+.flaticon-square:before { content: "\f10e"; }
+.flaticon-time:before { content: "\f10f"; }
+.flaticon-car:before { content: "\f110"; }
+.flaticon-planet:before { content: "\f111"; }
+.flaticon-ring:before { content: "\f112"; }
+.flaticon-symbol:before { content: "\f113"; }
+.flaticon-error:before { content: "\f114"; }

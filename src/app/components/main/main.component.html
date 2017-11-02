@@ -1,7 +1,8 @@
 <div fxLayout="column" id="main-container" class="dx-clearfix">
     <div fxFlex="60px" id="header">
         <div class="pull-left" id="logo_image"></div>
-        <div class="pull-left" id="window-title">{{activeTitle}}</div>
+        <div class="pull-left"></div>
+        
 
         <div class="dx-field">
             <app-u-icon-btn  iconClass="dx-icon-preferences"  (click)="openPreferencesWnd()"></app-u-icon-btn>
@@ -15,18 +16,25 @@
         </div>
     </div>
     <div fxFlex="grow" id="container-body">
-        <div #mainbody></div>
+            <div class="main-wrap">
+                    <input id="slide-sidebar" type="checkbox" role="button" />
+                        <label for="slide-sidebar"><span class="icon-menu"></span></label>
+                    <div class="sidebar">
+                            <app-u-icon-btn class="" [isSelected]="activeIndex === i" [iconClass]="def.inputs.icon"  (click)="maximizeComponent(i, def)" *ngFor="let def of minimizedDefs; let i = index" [hasPermission]="def.permissions.permissionGroups"></app-u-icon-btn>
+                    </div>
+                    <div class="portfolio">
+                        <div  id="window-title"><div class="rectangle"></div>{{activeTitle}}</div>
+                        <div #mainbody></div>
+                    </div>
+            </div>
+        
     </div>
     <div id="footer">
         <div class="home-icon">
                 <app-u-icon-btn class="pull-left task-item" iconClass="icon-desktop_windows"  color="white" (click)="onStartMenuOpen()"></app-u-icon-btn>
                 <app-u-icon-btn  class="rectangle"></app-u-icon-btn>
         </div>
-        
-        <app-system-info class="pull-right system-info"></app-system-info>
-    </div>
-    <div class="vertical-thumbs">
-            <app-u-icon-btn class="" [isSelected]="activeIndex === i" [iconClass]="def.inputs.icon"  (click)="maximizeComponent(i, def)" *ngFor="let def of minimizedDefs; let i = index" [hasPermission]="def.permissions.permissionGroups"></app-u-icon-btn>
+        <app-system-info class="system-info"></app-system-info>
     </div>
 </div>
 

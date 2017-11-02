@@ -1,8 +1,7 @@
-
 #main-container {
     height: 100% !important;
     #header {
-        height: 60px; background-color:$primary; border-right: none !important;
+        height: 60px; /*background-color:$primary; */border-right: none !important;
     }
     #footer {
         height: 60px;
@@ -45,4 +44,9 @@
     .dx-field {
         padding: 0px;
     }
+}
+
+#header .dx-field app-u-icon-btn {color: $primary; padding: 20px;  float: right;
+    :hover{color: $primary-dark }
+    .u-btn-icon::before{font-size: 20px;}
 }
