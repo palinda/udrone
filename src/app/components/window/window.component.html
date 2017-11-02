@@ -7,9 +7,11 @@
             <span class="flaticon-arrows" (click)="onMinimizeComponent()"></span>
             <span class="flaticon-close" (click)="onCloseComponent()"></span>
     </div>
-    <div class="wrapper">
-        <div class="grid-item" *ngFor='let comp of componentDefList' [hasPermission]="comp.permissions.permissionGroups">
-            <app-dcl-wrapper [componentDef]="comp"></app-dcl-wrapper>
+    <div class="module-wrapper">
+        <div class="module-wrapper-inner">
+            <div class="grid-item" *ngFor='let comp of componentDefList' [hasPermission]="comp.permissions.permissionGroups">
+                <app-dcl-wrapper [componentDef]="comp"></app-dcl-wrapper>
+            </div>
         </div>
     </div>
 </div>
