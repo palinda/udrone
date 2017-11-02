@@ -25,6 +25,7 @@ before_install:
 install:
 - npm prune
 - npm install --save codacy-coverage
+- npm install --save node-sass
 - npm install --save @compodoc/compodoc
 - npm install
 
