@@ -1,13 +1,43 @@
 /*---- Dashboard Search Component ----*/
 .search-widget{
-    background-color: $primary-lighter; padding: 5px;
+    background-color: $primary-lighter; padding: 5px; margin: 8px 12px;
     input{background: transparent !important; }
     div .dx-placeholder {color: $primary !important;}
     .dx-texteditor{background: transparent !important; border:none !important; padding-right: 30px !important; }
     .dx-show-clear-button .dx-icon-clear{color: $primary-dark !important;}
+
     }
 
 
 .icon-search-pos{float: right; margin-top:-30px;
     .icon-search{font-size:$font-30; color: $white}
 }
+
+
+/*----- Media Quaries -------*/
+    /* Custom, iPhone Retina */ 
+    @media only screen and (min-width : 320px) {
+    }
+    
+    /* Extra Small Devices, Phones */ 
+    @media only screen and (min-width : 480px) and (max-width: 767px)  {
+        .search-widget{width: calc(100% - 35px) !important;
+            z-index: 999999999;
+            position: absolute;
+            top: 60px;}
+    }
+    
+    /* Small Devices, Tablets */
+    @media only screen and (min-width : 768px) {
+        .search-widget{width: 30% !important}
+    }
+    
+    /* Medium Devices, Desktops */
+    @media only screen and (min-width : 992px) {
+        .search-widget{width: 30% !important}
+    }
+    
+    /* Large Devices, Wide Screens */
+    @media only screen and (min-width : 1200px) {
+        .search-widget{width: 44% !important}
+    }

@@ -31,13 +31,6 @@
             display: none;
         }
     }
-    .search-widget {
-        width: 280px;
-        margin: 8px 12px;
-        @media screen and (max-width: 1024px) {
-            display: none;
-        }
-    }
     .system-info {
         height: 100%;
     }
@@ -46,7 +39,37 @@
     }
 }
 
-#header .dx-field app-u-icon-btn {color: $primary; padding: 20px;  float: right;
+#header .header-search-row app-u-icon-btn {color: $primary; padding: 20px;  float: right;
     :hover{color: $primary-dark }
     .u-btn-icon::before{font-size: 20px;}
 }
+
+
+
+
+
+/*----- Media Quaries -------*/
+    /* Custom, iPhone Retina */ 
+    @media only screen and (min-width : 320px) {
+        .header-search-row{ padding-left: 0; display: block}
+        }
+        
+        /* Extra Small Devices, Phones */ 
+        @media only screen and (min-width : 480px) {
+            .header-search-row{ padding-left: 0; display: block}
+        }
+        
+        /* Small Devices, Tablets */
+        @media only screen and (min-width : 768px) {
+            .header-search-row{ padding-left: 80px; display: block}
+        }
+        
+        /* Medium Devices, Desktops */
+        @media only screen and (min-width : 992px) {
+            .header-search-row{ padding-left: 80px; display: block}
+        }
+        
+        /* Large Devices, Wide Screens */
+        @media only screen and (min-width : 1200px) {
+            .header-search-row{float: left; padding-left: 80px; display: block}
+        }
