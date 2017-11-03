@@ -1,16 +1,8 @@
-.dx-widget {
-    font-family: 'Segoe UI Light', 'Helvetica Neue Light', 'Segoe UI', 'Helvetica Neue', 'Trebuchet MS', Verdana;
+.window {
+    display: block;
+    height: calc(100vh - 120px);
 }
 
-.wrapper {
-    margin-top: 25px;
-    display: grid;
-    grid-column-gap: 10px;
-    grid-row-gap: 1em;
-    margin: 25px 20px 20px 20px;
-}
-
-.grid-item {
-    border-width: 1px;
-    border-style: solid;
+gridster {
+    background-color: transparent;
 }
