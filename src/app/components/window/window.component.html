@@ -12,6 +12,19 @@
             <div class="grid-item" *ngFor='let comp of componentDefList' [hasPermission]="comp.permissions.permissionGroups">
                 <app-dcl-wrapper [componentDef]="comp"></app-dcl-wrapper>
             </div>
+
         </div>
+    </div> -->
+
+    <div class="window">
+            <gridster [options]="gridHelper.options">
+                <gridster-item [item]="item.config" *ngFor="let item of componentDefList">
+                    <app-dcl-wrapper [componentDef]="item.data"></app-dcl-wrapper>
+                    <!-- <div class="gridster-item-content">
+                            Some content to select and click without dragging the widget
+                        </div> -->
+                </gridster-item>
+            </gridster>
     </div>
+    
 </div>

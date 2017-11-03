@@ -1,3 +1,4 @@
+import { GridsterConfig } from 'angular-gridster2';
 import { UserContextService } from '@services/user-context.service';
 import { PermissionManagerService } from '@services/permission-manager.service';
 import { TrackType } from '@app/defs/track-type';
@@ -7,6 +8,7 @@ import { Component, Input, Output, EventEmitter, IterableDiffers, DoCheck } from
 import { PermissionType } from '@defs/permission-type';
 import { BaseTemplateComponent } from '@components/base-template.component';
 import * as Utils from '@utilities/utils';
+import { GridHelper, UGridItem } from '@services/grid-helper';
 
 /**
  * [Item container CSS Class - wrapper]{@link CSS_CLASS}
@@ -55,13 +57,16 @@ export class WindowComponent extends BaseTemplateComponent implements DoCheck {
    */
   @Output() onMinimize: EventEmitter<WindowComponent> = new EventEmitter<WindowComponent>();
 
-  componentDefList: Array<ComponentDef> = [];
+  componentDefList: Array<UGridItem> = [];
+
+  gridHelper: GridHelper;
 
   differ: any;
 
   constructor(logService: LogService, private _userContext: UserContextService, differs: IterableDiffers,
   private _permissionMan: PermissionManagerService) {
     super(logService);
+    this.gridHelper = new GridHelper({});
     this.differ = differs.find([]).create(null);
     if (this.componentDefIDList === undefined) {
       return;
@@ -88,7 +93,7 @@ export class WindowComponent extends BaseTemplateComponent implements DoCheck {
     this.componentDefIDList.forEach( id => {
       const def: ComponentDef = this._userContext.findWidgetDef(id);
       if (!Utils.isUndefined(def) && this._permissionMan.hasOnePermission(def.permissions.permissionGroups)) {
-        this.componentDefList.push(def);
+        this.componentDefList.push(this.gridHelper.createGridItem(def, def.size));
       }
     });
   }
