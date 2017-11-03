@@ -443,8 +443,8 @@
             },
             "id": "User Query",
             "size": {
-                "width": "2",
-                "height": "1"
+                "width": "4",
+                "height": "4"
             },
             "inputs": {
                 "query": {
@@ -675,7 +675,7 @@
                 "height": "1"
             },
             "inputs": {
-                "componentDefID": "User Query",
+                "componentDefIDList": ["User Query"],
                 "componentID": "User Query",
                 "heading": "User Query",
                 "shortname": "User Query",

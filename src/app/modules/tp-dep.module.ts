@@ -1,3 +1,4 @@
+import { GridsterModule } from 'angular-gridster2';
 import { NgModule, Injectable } from '@angular/core';
 import { Ng2Permission } from 'angular2-permission';
 import { CommonModule } from '@angular/common';
@@ -49,7 +50,8 @@ import {
     DxPieChartModule,
     DxAutocompleteModule,
     DxTextAreaModule,
-    DxTagBoxModule
+    DxTagBoxModule,
+    GridsterModule
   ]
 })
 export class TpDepModule { }
