@@ -21,8 +21,6 @@ export class ComponentDef extends UMsg {
     @Type(() => PermissionType)
     permissions: PermissionType = new PermissionType([]);
 
-    position: Pos;
-
     constructor(id: string, name: string, size: Size, inputs: DynamicMsg) {
         super();
         this.id = id;

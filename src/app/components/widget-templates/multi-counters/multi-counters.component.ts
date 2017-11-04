@@ -1,3 +1,4 @@
+import {Size} from '@defs/size';
 import { RefreshRequest } from '@defs/refresh-request';
 import { RefreshService } from '@services/refresh.service';
 import { LogService } from '@services/log.service';
@@ -7,22 +8,29 @@ import { Query } from '@defs/query';
 import { DynamicMsg } from '@defs/dynamic-msg';
 import { TrackType } from '@defs/track-type';
 import { Component, OnInit, Input } from '@angular/core';
+import { ResizeService } from '@services/resize.service';
 
 @Component({
   selector: 'app-multi-counters',
   template: `
-    <div>
+    <div class="container">
     <app-u-text [text]="heading" [styles]="headingStyles"></app-u-text>
     <div class="h-seperator"></div>
-    <div fxLayout="row" >
-      <div fxFlex *ngFor="let counter of counterFields">
-        <app-bg-counter [value]="count[counter.key]"></app-bg-counter>
+    <div fxLayout="row" fxLayoutAlign="space-around stretch" >
+      <div flex="grow" *ngFor="let counter of counterFields" class="counter-container">
+        <app-bg-counter [value]="count[counter.key]" [size]="countSize"></app-bg-counter>
         <app-u-text [text]="counter.name" [styles]="{ 'padding': '1px 10px', 'margin-top': '-4px'}"></app-u-text>
       </div>
     </div>
   </div>
   `,
-  styles: []
+  styles: [
+    `
+      .counter-container {
+        text-align: center;
+      }
+    `
+  ]
 })
 export class MultiCountersComponent extends WidgetTemplateComponent implements OnInit {
 
@@ -62,20 +70,27 @@ export class MultiCountersComponent extends WidgetTemplateComponent implements O
     'color' : 'gray'
   };
 
-  constructor(logService: LogService, refreshService: RefreshService) {
-    super(logService, refreshService);
+  countSize = 50;
+
+  constructor(logService: LogService, resizeService: ResizeService, refreshService: RefreshService) {
+    super(logService, resizeService, refreshService);
   }
 
   ngOnInit() {
+    this.countSize = this.calcFontSize(this.componentDef.size, 30);
     this.subscribeForRefresh([
-      new RefreshRequest<DynamicMsg>(this.refreshInterval, this.countQuery, (data, err) => {
-        if (err !== undefined) {
-          this.onError(err, this.countQuery);
-        } else {
-          this.count = data;
-        }
-      })
-  ]);
+        new RefreshRequest<DynamicMsg>(this.refreshInterval, this.countQuery, (data, err) => {
+          if (err !== undefined) {
+            this.onError(err, this.countQuery);
+          } else {
+            this.count = data;
+          }
+        })
+    ]);
+
+    this.subscribeForResize((size: Size) => {
+      this.countSize = this.calcFontSize(size, 30);
+    });
   }
 
 }

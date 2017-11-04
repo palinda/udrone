@@ -10,6 +10,7 @@ import { InputDef } from '@defs/input-def';
 import { Component, OnInit, Type, ViewChild, ViewContainerRef, ComponentFactoryResolver, Input } from '@angular/core';
 import * as Utils from '@utilities/utils';
 import ArrayStore from 'devextreme/data/array_store';
+import { WindowWidgetDef } from '@defs/window-widget-def';
 
 let compScope;
 @Component({
@@ -148,14 +149,24 @@ export class TemplateCreatorComponent implements OnInit {
     return false;
   }
 
+  private genWindowWidgetDefs(widgetDefs: Array<ComponentDef>) {
+
+    const lst = [];
+    widgetDefs.forEach( el => {
+      lst.push(new WindowWidgetDef(el.id, el.size));
+    });
+
+    return lst;
+  }
+
   handleSpecialType(propName: string, info: string, inputs: Array<InputDefGroup>) {
     if (info === 'WIDGET_TEMPLATES') {
       const dataSource = new ArrayStore({
-          data: this._userContext.widgetTemplateInsts,
+          data: this.genWindowWidgetDefs(this._userContext.widgetTemplateInsts),
           key: 'id'
       });
 
-      const options = { 'dataSource': dataSource, 'displayExpr': 'id', 'valueExpr': 'id'};
+      const options = { 'dataSource': dataSource, 'displayExpr': 'id'};
       this.selectedInputs.push(new InputDefGroup(undefined, [new InputDef(propName, 'MultiSelect', undefined, options)]));
       return true;
     }

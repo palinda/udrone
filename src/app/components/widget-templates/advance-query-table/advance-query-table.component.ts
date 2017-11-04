@@ -8,6 +8,8 @@ import { ColumnOptions } from '@defs/column-options';
 import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { TableOptions, UTableComponent } from '@components/unit/u-table/u-table.component';
 import { Query } from '@defs/query';
+import { Size } from '@app/defs/size';
+import { ResizeService } from '@app/services/resize.service';
 
 @Component({
   selector: 'app-advance-query-table',
@@ -29,13 +31,17 @@ export class AdvanceQueryTableComponent extends WidgetTemplateComponent implemen
   tableOptions: TableOptions;
   @ViewChild(UTableComponent) utable: UTableComponent;
 
-  constructor(logService: LogService) {
-    super(logService);
+  constructor(logService: LogService, resizeService: ResizeService) {
+    super(logService, resizeService);
   }
 
   ngOnInit() {
     this.queryCopy = new Query<TableQuery>(this.query.path, Utils.deepCopy(this.query.params));
-    this.tableOptions = new TableOptions(this.colOptions, this.queryCopy);
+    this.tableOptions = new TableOptions(this.componentDef.size.toPixel(100, 100).height, this.colOptions, this.queryCopy);
+
+    this.subscribeForResize((size: Size) => {
+      this.tableOptions.$height = size.toPixel(100, 100).height;
+    });
   }
 
   onFilterQuery(queryStr: string) {

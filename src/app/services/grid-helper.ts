@@ -2,8 +2,9 @@ import {UMap} from '@utilities/umap';
 import {GridsterItem, GridsterConfig} from 'angular-gridster2';
 import { Size } from '@defs/size';
 import { BASE_SIZE, GRID_GAP } from '@defs/constants';
-import { ComponentDef } from '@app/defs/component-def';
-import { Pos } from '@app/defs/pos';
+import { ComponentDef } from '@defs/component-def';
+import { Pos } from '@defs/pos';
+import { WindowWidgetDef } from '@defs/window-widget-def';
 
 export interface UGridItem {
     data: Object;
@@ -13,7 +14,7 @@ export interface UGridItem {
 export class GridHelper {
 
     private _col = 1;
-    private updatedItems: UMap<string, ComponentDef> = new UMap<string, ComponentDef>();
+    private updatedItems: UMap<string, WindowWidgetDef> = new UMap<string, WindowWidgetDef>();
 
     public options: GridsterConfig;
     constructor(resizeCB: (item, itemComponent) => void, movedCB: (item, itemComponent) => void) {
@@ -41,7 +42,7 @@ export class GridHelper {
             defaultItemRows: 1,
             fixedColWidth: BASE_SIZE + GRID_GAP,
             fixedRowHeight: BASE_SIZE + GRID_GAP,
-            keepFixedHeightInMobile: false,
+            keepFixedHeightInMobile: true,
             keepFixedWidthInMobile: false,
             scrollSensitivity: 10,
             scrollSpeed: 20,
@@ -94,32 +95,51 @@ export class GridHelper {
           };
     }
 
-    public generateDefaultItemConfig(item: ComponentDef): GridsterItem {
-        return {
-            'cols': parseInt(item.size.width, 10),
-            'rows': parseInt(item.size.height, 10),
-            'x': (item.position === undefined ? undefined : item.position.x),
-            'y': (item.position === undefined ? undefined : item.position.y),
-            'obj': item};
-    }
+    public generateDefaultItemConfig(item: ComponentDef, windowWidget: WindowWidgetDef): GridsterItem {
 
-    public createGridItem(item: ComponentDef, size: Size): UGridItem {
+        let size;
+        let pos;
+        if (!windowWidget.size) {
+            size = item.size;
+        } else {
+            size = windowWidget.size;
+        }
+
+        if (windowWidget.position) {
+            pos = windowWidget.position;
+        } else {
+            pos = new Pos(undefined, undefined);
+        }
+
         return {
-            'data': item,
-            'config': this.generateDefaultItemConfig(item)
+            'cols': parseInt(size.width, 10),
+            'rows': parseInt(size.height, 10),
+            'x': pos.x,
+            'y': pos.y,
+            'windowWidget': windowWidget
         };
     }
 
-    public addUpdatedItem(item, itemComponent) {
-        const def: ComponentDef = item['obj'];
+    public createGridItem(item: ComponentDef, windowWidget: WindowWidgetDef): UGridItem {
+        return {
+            'data': item,
+            'config': this.generateDefaultItemConfig(item, windowWidget)
+        };
+    }
+
+    public addUpdatedItem(item, itemComponent): WindowWidgetDef {
+        const def: WindowWidgetDef = item['windowWidget'];
         if (def) {
             def.position = new Pos(itemComponent.$item['x'], itemComponent.$item['y']);
             def.size = new Size(itemComponent.$item['cols'], itemComponent.$item['rows']);
-            this.updatedItems.put(def.id, def);
+            this.updatedItems.put(def.componentDefID, def);
+
+            return def;
         }
+        return undefined;
     }
 
-    public getUpdates(): UMap<string, ComponentDef> {
+    public getUpdates(): UMap<string, WindowWidgetDef> {
         return this.updatedItems;
     }
 

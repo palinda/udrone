@@ -10,6 +10,7 @@ import { PermissionType } from '@defs/permission-type';
 import { BaseTemplateComponent } from './base-template.component';
 import {Query} from '@defs/query';
 import {UMsg} from '@defs/umsg';
+import { ResizeService } from '@services/resize.service';
 
 @Component({
   selector: 'app-dashboard-widget',
@@ -21,8 +22,8 @@ export class WidgetTemplateComponent extends BaseTemplateComponent implements On
 
   static type = 'WidgetTemplateComponent';
 
-  constructor(protected logService: LogService, protected refreshService?: RefreshService) {
-    super(logService);
+  constructor(logService: LogService, resizeService?: ResizeService, protected refreshService?: RefreshService) {
+    super(logService, resizeService);
   }
 
   ngOnDestroy(): void {

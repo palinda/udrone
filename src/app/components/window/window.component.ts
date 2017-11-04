@@ -1,7 +1,7 @@
 import { GridsterConfig } from 'angular-gridster2';
 import { UserContextService } from '@services/user-context.service';
 import { PermissionManagerService } from '@services/permission-manager.service';
-import { TrackType } from '@app/defs/track-type';
+import { TrackType } from '@defs/track-type';
 import { ComponentDef } from '@defs/component-def';
 import { LogService } from '@services/log.service';
 import { Component, Input, Output, EventEmitter, IterableDiffers, DoCheck } from '@angular/core';
@@ -9,6 +9,8 @@ import { PermissionType } from '@defs/permission-type';
 import { BaseTemplateComponent } from '@components/base-template.component';
 import * as Utils from '@utilities/utils';
 import { GridHelper, UGridItem } from '@services/grid-helper';
+import { WindowWidgetDef } from '@app/defs/window-widget-def';
+import { ResizeService } from '@services/resize.service';
 
 /**
  * [Item container CSS Class - wrapper]{@link CSS_CLASS}
@@ -45,7 +47,7 @@ export class WindowComponent extends BaseTemplateComponent implements DoCheck {
   * Child component definition list
   */
   @TrackType('WIDGET_TEMPLATES')
-  @Input() componentDefIDList: Array<string>;
+  @Input() componentDefIDList: Array<WindowWidgetDef>;
 
     /**
    * Window close event emitter
@@ -65,14 +67,15 @@ export class WindowComponent extends BaseTemplateComponent implements DoCheck {
   differ: any;
 
   constructor(logService: LogService, private _userContext: UserContextService, differs: IterableDiffers,
-  private _permissionMan: PermissionManagerService) {
-    super(logService);
+  private _permissionMan: PermissionManagerService, resizeService: ResizeService) {
+    super(logService, resizeService);
     this.gridHelper = new GridHelper((item, itemComponent) => {
-      console.log('Resized:' , item, itemComponent);
-      this.gridHelper.addUpdatedItem(item, itemComponent);
+      const def = this.gridHelper.addUpdatedItem(item, itemComponent);
+      if (def) {
+        this.resizeService.triggerResize(def.componentDefID, def.size);
+      }
     },
     (item, itemComponent) => {
-      console.log('Changed:' , item, itemComponent);
       this.gridHelper.addUpdatedItem(item, itemComponent);
     });
 
@@ -100,25 +103,25 @@ export class WindowComponent extends BaseTemplateComponent implements DoCheck {
 
   saveConfigure() {
 
-    let reqCount = 0;
-    let errored = false;
-    this.gridHelper.getUpdates().forEach( (key, val) => {
-      reqCount++;
-      this._userContext.addWidgetTemplate(val, (data, err) => {
-        reqCount--;
-        if (err) {
-          errored = true;
+    const updateList = this.gridHelper.getUpdates().values();
+    for (const key in this.componentDefIDList) {
+      if (this.componentDefIDList.hasOwnProperty(key)) {
+        if (!this.gridHelper.getUpdates().contains(this.componentDefIDList[key].componentDefID)) {
+          updateList.push(this.componentDefIDList[key]);
         }
-        if (reqCount === 0) {
-          if (errored) {
-            Utils.notifyPop('Failed to update widget properties', 'error');
-          } else {
-            Utils.notifyPop('Successfully Updated', 'success');
-            this.configureWindow(false);
-            this.gridHelper.clearUpdates();
-          }
-        }
-      });
+      }
+    }
+    const def = Utils.deepCopy(this.componentDef);
+    def.inputs['componentDefIDList'] = updateList;
+    this._userContext.addWindowTemplate(def, (data, err) => {
+
+      if (err) {
+        Utils.notifyPop('Failed to update widget properties', 'error');
+      } else {
+        Utils.notifyPop('Successfully Updated', 'success');
+        this.configureWindow(false);
+        this.gridHelper.clearUpdates();
+      }
     });
 
   }
@@ -131,10 +134,10 @@ export class WindowComponent extends BaseTemplateComponent implements DoCheck {
   }
 
   private updateComponentDefs() {
-    this.componentDefIDList.forEach( id => {
-      const def: ComponentDef = this._userContext.findWidgetDef(id);
+    this.componentDefIDList.forEach( windowWidget => {
+      const def: ComponentDef = this._userContext.findWidgetDef(windowWidget.componentDefID);
       if (!Utils.isUndefined(def) && this._permissionMan.hasOnePermission(def.permissions.permissionGroups)) {
-        this.componentDefList.push(this.gridHelper.createGridItem(def, def.size));
+        this.componentDefList.push(this.gridHelper.createGridItem(def, windowWidget));
       }
     });
     this.gridHelper.clearUpdates();

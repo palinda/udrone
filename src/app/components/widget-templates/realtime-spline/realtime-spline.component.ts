@@ -12,6 +12,7 @@ import { DynamicMsg } from '@defs/dynamic-msg';
 import { TrackType } from '@defs/track-type';
 import { Component, OnInit, Input, ElementRef } from '@angular/core';
 import { Query } from '@defs/query';
+import { ResizeService } from '@app/services/resize.service';
 
 @Component({
   selector: 'app-realtime-spline',
@@ -65,8 +66,8 @@ export class RealtimeSplineComponent extends WidgetTemplateComponent implements 
 
   data: UFixedQ<Object>;
 
-  constructor(logService: LogService, refreshService: RefreshService) {
-    super(logService, refreshService);
+  constructor(logService: LogService, resizeService: ResizeService, refreshService: RefreshService) {
+    super(logService, resizeService, refreshService);
     this.data = new UFixedQ(this.dataPoints);
   }
 
@@ -80,15 +81,19 @@ export class RealtimeSplineComponent extends WidgetTemplateComponent implements 
     this.splineOptions.size = this.componentDef.size.toPixel(100, 100);
 
     this.subscribeForRefresh([
-      new RefreshRequest<DynamicMsg>(this.refreshInterval, this.query, (data, err) => {
-        if (err !== undefined) {
-          this.onError(err, this.query);
-        } else {
-          data['time'] = TimeUtils.currentTime('mm:ss');
-          this.data.add(data);
-        }
-      })
-  ]);
+        new RefreshRequest<DynamicMsg>(this.refreshInterval, this.query, (data, err) => {
+          if (err !== undefined) {
+            this.onError(err, this.query);
+          } else {
+            data['time'] = TimeUtils.currentTime('mm:ss');
+            this.data.add(data);
+          }
+        })
+    ]);
+
+    this.subscribeForResize((size: Size) => {
+      this.splineOptions.size = size.toPixel(100, 100);
+    });
   }
 
 }
