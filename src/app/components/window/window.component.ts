@@ -99,6 +99,10 @@ export class WindowComponent extends BaseTemplateComponent implements DoCheck {
     this.gridHelper.options.draggable.enabled = enable;
     this.gridHelper.options.resizable.enabled = enable;
     this.gridHelper.options.api.optionsChanged();
+
+    this.componentDefList = [];
+    this.updateComponentDefs();
+    this.gridHelper.clearUpdates();
   }
 
   saveConfigure() {
@@ -137,7 +141,7 @@ export class WindowComponent extends BaseTemplateComponent implements DoCheck {
     this.componentDefIDList.forEach( windowWidget => {
       const def: ComponentDef = this._userContext.findWidgetDef(windowWidget.componentDefID);
       if (!Utils.isUndefined(def) && this._permissionMan.hasOnePermission(def.permissions.permissionGroups)) {
-        this.componentDefList.push(this.gridHelper.createGridItem(def, windowWidget));
+        this.componentDefList.push(this.gridHelper.createGridItem(def, Utils.deepCopy(windowWidget)));
       }
     });
     this.gridHelper.clearUpdates();
