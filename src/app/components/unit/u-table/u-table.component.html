@@ -1,4 +1,4 @@
-<dx-data-grid id="gridContainer" [dataSource]="dataSource" [allowColumnReordering]="true" [allowColumnResizing]="true" [columnAutoWidth]="true">
+<dx-data-grid id="gridContainer" [dataSource]="dataSource" [allowColumnReordering]="true" [allowColumnResizing]="true" [columnAutoWidth]="true" [height]="tableOptions.$height">
     <dxi-column [dataField]="col.key" [caption]="col.name" [dataType]="col.datatype" *ngFor="let col of tableOptions.$columnOptions"></dxi-column>
     <dxo-remote-operations [sorting]="true" [paging]="true">
     </dxo-remote-operations>

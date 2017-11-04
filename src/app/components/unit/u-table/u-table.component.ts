@@ -15,7 +15,7 @@ import { TableResponse } from './table-response';
  * Table input options
  */
 export class TableOptions {
-    constructor(private columnOptions: Array<ColumnOptions>, private query: Query<TableQuery>) {
+    constructor(private height: string, private columnOptions: Array<ColumnOptions>, private query: Query<TableQuery>) {
     }
 
     /**
@@ -30,6 +30,14 @@ export class TableOptions {
      */
     public get $query() {
         return this.query;
+    }
+
+    public get $height() {
+        return this.height;
+    }
+
+    public set $height(height: string) {
+        this.height = height;
     }
 }
 
@@ -48,7 +56,7 @@ let cmpScope;
 })
 export class UTableComponent implements OnInit {
 
-    @Input() tableOptions: TableOptions = new TableOptions([], undefined);
+    @Input() tableOptions: TableOptions = new TableOptions('100%', [], undefined);
 
     @ViewChild(DxDataGridComponent) dataGrid: DxDataGridComponent;
 

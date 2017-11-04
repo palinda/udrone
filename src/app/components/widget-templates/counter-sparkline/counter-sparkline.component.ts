@@ -11,6 +11,7 @@ import { WidgetTemplateComponent } from '@components/widget-template.component';
 import { Component, OnInit, Input } from '@angular/core';
 import { CountResp } from '@defs/count-resp';
 import { TrackType } from '@app/defs/track-type';
+import { ResizeService } from '@services/resize.service';
 
 @Component({
   selector: 'app-counter-sparkline',
@@ -18,9 +19,9 @@ import { TrackType } from '@app/defs/track-type';
     <div>
       <app-u-text i18n [text]="heading" [styles]="headingStyles"></app-u-text>
       <div class="h-seperator"></div>
-      <div fxLayout="row" >
+      <div fxLayout="row" fxLayoutAlign="space-around stretch">
         <div fxFlex="30" class="graph">
-          <app-bg-counter [value]="count"></app-bg-counter>
+          <app-bg-counter [value]="count" [size]="countSize"></app-bg-counter>
         </div>
         <div fxFlex class="graph">
           <app-u-sparkline [data]="sparkData" [options]="sparkOptions"></app-u-sparkline>
@@ -75,6 +76,7 @@ export class CounterSparklineComponent extends WidgetTemplateComponent implement
   sparkOptions: SparkLinkOptions;
   count: number;
   sparkData = [];
+  countSize = 50;
 
   /**
    * Heading styles
@@ -84,30 +86,35 @@ export class CounterSparklineComponent extends WidgetTemplateComponent implement
     'color' : 'gray'
   };
 
-  constructor(logService: LogService, refreshService: RefreshService) {
-    super(logService, refreshService);
+  constructor(logService: LogService, resizeService: ResizeService, refreshService: RefreshService) {
+    super(logService, resizeService, refreshService);
     this.sparkOptions = new SparkLinkOptions('key', 'value', 'spline', '#9ab57e', '#e55253', '4', undefined, '#ebdd8f',
     'currency', new Size('100', '200'));
   }
 
   ngOnInit() {
     this.sparkOptions.size = this.componentDef.size.toPixel(60, 45);
+    this.countSize = this.calcFontSize(this.componentDef.size, 30);
     this.subscribeForRefresh([
-      new RefreshRequest<CountResp>(this.refreshInterval, this.countQuery, (data, err) => {
-        if (err !== undefined) {
-          this.onError(err, this.countQuery);
-        } else {
-          this.count = data.count;
-        }
-      }),
-      new RefreshRequest<SparkResp>(this.refreshInterval, this.sparkQuery, (data, err) => {
-        if (err !== undefined) {
-          this.onError(err, this.sparkQuery);
-        } else {
-          this.sparkData = data.data;
-        }
-      })
-  ]);
+        new RefreshRequest<CountResp>(this.refreshInterval, this.countQuery, (data, err) => {
+          if (err !== undefined) {
+            this.onError(err, this.countQuery);
+          } else {
+            this.count = data.count;
+          }
+        }),
+        new RefreshRequest<SparkResp>(this.refreshInterval, this.sparkQuery, (data, err) => {
+          if (err !== undefined) {
+            this.onError(err, this.sparkQuery);
+          } else {
+            this.sparkData = data.data;
+          }
+        })
+    ]);
+    this.subscribeForResize((size: Size) => {
+      this.sparkOptions.size = size.toPixel(60, 45);
+      this.countSize = this.calcFontSize(size, 30);
+    });
   }
 
 }

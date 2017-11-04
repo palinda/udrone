@@ -138,7 +138,18 @@ export class UMap<K, V> {
     const arr = [];
     for (const name in this.data) {
       if (utils.has(this.data, name)) {
-        arr.push(name);
+        arr.push(this.data[name].key);
+      }
+    }
+
+    return arr;
+  }
+
+  public values(): Array<V> {
+    const arr = [];
+    for (const name in this.data) {
+      if (utils.has(this.data, name)) {
+        arr.push(this.data[name].value);
       }
     }
 

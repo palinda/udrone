@@ -30,6 +30,7 @@ export class UserContextService {
   widgetTemplateInsts: Array<ComponentDef> = [];
   widgetTemplateInstsMap: UMap<string, ComponentDef> = new UMap<string, ComponentDef>();
   windowInsts: Array<ComponentDef> = [];
+  windowTemplateInstsMap: UMap<string, ComponentDef> = new UMap<string, ComponentDef>();
   userPreference: PreferenceDef;
   userInfo: UserInfo;
 
@@ -53,8 +54,11 @@ export class UserContextService {
               this.addWidgetDef(Decoder.decode(ComponentDef, el));
             });
           }
-
-          this.windowInsts.push.apply(this.windowInsts, data.windowTemplate);
+          if (!Utils.isUndefined(data.windowTemplate)) {
+            data.windowTemplate.forEach(el => {
+              this.addWindowDef(Decoder.decode(ComponentDef, el));
+            });
+          }
         },
         (err) => {
           this._logService.printError('Global repo file load fail');
@@ -82,7 +86,7 @@ export class UserContextService {
     this._serviceQuery.query(new Query<ComponentDef>(Constants.GLOBAL_REPO_UPLOAD_PATH + '/' + Constants.WINDOW_TEMPLATE_TAG, copy))
     .subscribe(
       (resp) => {
-        this.windowInsts.push(windowDef);
+        this.addWindowDef(windowDef);
         cb(windowDef, undefined);
       },
       (err) => {
@@ -96,6 +100,9 @@ export class UserContextService {
     return this.widgetTemplateInstsMap.get(id);
   }
 
+  public findWindowDef(id: string) {
+    return this.windowTemplateInstsMap.get(id);
+  }
 
   public addWidgetDef(def: ComponentDef) {
     if (!this.findWidgetDef(def.id)) {
@@ -104,4 +111,10 @@ export class UserContextService {
     this.widgetTemplateInstsMap.put(def.id, def);
   }
 
+  public addWindowDef(def: ComponentDef) {
+    if (!this.findWindowDef(def.id)) {
+      this.windowInsts.push(def);
+    }
+    this.windowTemplateInstsMap.put(def.id, def);
+  }
 }
