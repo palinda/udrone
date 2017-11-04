@@ -60,13 +60,22 @@ export class WindowComponent extends BaseTemplateComponent implements DoCheck {
   componentDefList: Array<UGridItem> = [];
 
   gridHelper: GridHelper;
+  configureMode = false;
 
   differ: any;
 
   constructor(logService: LogService, private _userContext: UserContextService, differs: IterableDiffers,
   private _permissionMan: PermissionManagerService) {
     super(logService);
-    this.gridHelper = new GridHelper({});
+    this.gridHelper = new GridHelper((item, itemComponent) => {
+      console.log('Resized:' , item, itemComponent);
+      this.gridHelper.addUpdatedItem(item, itemComponent);
+    },
+    (item, itemComponent) => {
+      console.log('Changed:' , item, itemComponent);
+      this.gridHelper.addUpdatedItem(item, itemComponent);
+    });
+
     this.differ = differs.find([]).create(null);
     if (this.componentDefIDList === undefined) {
       return;
@@ -80,6 +89,38 @@ export class WindowComponent extends BaseTemplateComponent implements DoCheck {
 
   onMinimizeComponent() {
     this.onMinimize.emit(this);
+  }
+
+  configureWindow(enable: boolean) {
+    this.configureMode = enable;
+    this.gridHelper.options.draggable.enabled = enable;
+    this.gridHelper.options.resizable.enabled = enable;
+    this.gridHelper.options.api.optionsChanged();
+  }
+
+  saveConfigure() {
+
+    let reqCount = 0;
+    let errored = false;
+    this.gridHelper.getUpdates().forEach( (key, val) => {
+      reqCount++;
+      this._userContext.addWidgetTemplate(val, (data, err) => {
+        reqCount--;
+        if (err) {
+          errored = true;
+        }
+        if (reqCount === 0) {
+          if (errored) {
+            Utils.notifyPop('Failed to update widget properties', 'error');
+          } else {
+            Utils.notifyPop('Successfully Updated', 'success');
+            this.configureWindow(false);
+            this.gridHelper.clearUpdates();
+          }
+        }
+      });
+    });
+
   }
 
   ngDoCheck() {
@@ -96,6 +137,7 @@ export class WindowComponent extends BaseTemplateComponent implements DoCheck {
         this.componentDefList.push(this.gridHelper.createGridItem(def, def.size));
       }
     });
+    this.gridHelper.clearUpdates();
   }
 }
 

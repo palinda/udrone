@@ -1,11 +1,15 @@
 <div class="dx-clearfix ">
     <!-- action buttons -->
-    <div class="panel-action-btns">
+    <div class="panel-action-btns" [hidden]="configureMode">
             <span class="flaticon-pie-graphic" ></span>
             <span class="flaticon-web" ></span>
-            <span class="flaticon-pen"></span>
+            <span class="flaticon-pen" (click)="configureWindow(true)"></span>
             <span class="flaticon-arrows" (click)="onMinimizeComponent()"></span>
             <span class="flaticon-close" (click)="onCloseComponent()"></span>
+    </div>
+    <div class="panel-action-btns" [hidden]="!configureMode">
+            <span class="flaticon-car" (click)="saveConfigure()"></span>
+            <span class="flaticon-error" (click)="configureWindow(false)"></span>
     </div>
     <div class="window">
             <gridster [options]="gridHelper.options">

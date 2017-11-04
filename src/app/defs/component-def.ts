@@ -5,6 +5,7 @@ import { DynamicMsg } from '@defs/dynamic-msg';
 import { BaseTemplateComponent } from '@components/base-template.component';
 import { Component } from '@angular/core';
 import { Size } from './size';
+import { Pos } from './pos';
 
 export class ComponentDef extends UMsg {
 
@@ -19,6 +20,8 @@ export class ComponentDef extends UMsg {
 
     @Type(() => PermissionType)
     permissions: PermissionType = new PermissionType([]);
+
+    position: Pos;
 
     constructor(id: string, name: string, size: Size, inputs: DynamicMsg) {
         super();

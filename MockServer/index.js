@@ -131,8 +131,14 @@ app.post('/res/globalComponentRepo/:id', function(req, res) {
     if (globalRepoFile[req.params['id']] === undefined) {
         globalRepoFile[req.params['id']] = [];
     }
+    let index = globalRepoFile[req.params['id']].findIndex(o => o.id === compDef['id']);
 
-    globalRepoFile[req.params['id']].push(compDef);
+    if (index < 0) {
+        globalRepoFile[req.params['id']].push(compDef);
+    } else {
+        globalRepoFile[req.params['id']].splice(index, 1, compDef);
+    }
+    
     fs.writeFile(fileName, JSON.stringify(globalRepoFile), function(err) {
         if (err) return console.log(err);
         console.log(JSON.stringify(globalRepoFile));

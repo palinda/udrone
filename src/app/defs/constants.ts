@@ -3,3 +3,4 @@ export const GLOBAL_REPO_DOWNLOAD_PATH = 'global_repo.json';
 export const WIDGET_TEMPLATE_TAG = 'widgetTemplate';
 export const WINDOW_TEMPLATE_TAG = 'windowTemplate';
 export const BASE_SIZE = 100;
+export const GRID_GAP = 15;

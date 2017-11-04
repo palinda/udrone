@@ -4,8 +4,8 @@
         <h4>The platform to customize  your data</h4>
     </h1>
     
-    <div class="box" *ngFor="let cp of dataSource" [hasPermission]="cp.data.permissions.permissionGroups">
-      <app-u-icon-btn [iconClass]="cp.data.inputs.icon" [text]="cp.data.inputs.heading" (click)="openComponent(cp.data)"></app-u-icon-btn>
+    <div class="box" *ngFor="let cp of windowDefList" [hasPermission]="cp.permissions.permissionGroups">
+      <app-u-icon-btn [iconClass]="cp.inputs.icon" [text]="cp.inputs.heading" (click)="openComponent(cp)"></app-u-icon-btn>
     </div>
     
     <!--<h1 class="p-t-50 p-l-50">Welcome to UDrone!<br>
