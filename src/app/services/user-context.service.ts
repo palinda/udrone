@@ -63,6 +63,7 @@ export class UserContextService {
   }
 
   public addWidgetTemplate(widgetDef: ComponentDef, cb: (data: Object, err: Error) => void) {
+
     const copy = widgetDef;
     this._serviceQuery.query(new Query<ComponentDef>(Constants.GLOBAL_REPO_UPLOAD_PATH + '/' + Constants.WIDGET_TEMPLATE_TAG, copy))
     .subscribe(
@@ -97,7 +98,9 @@ export class UserContextService {
 
 
   public addWidgetDef(def: ComponentDef) {
-    this.widgetTemplateInsts.push(def);
+    if (!this.findWidgetDef(def.id)) {
+      this.widgetTemplateInsts.push(def);
+    }
     this.widgetTemplateInstsMap.put(def.id, def);
   }
 

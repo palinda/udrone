@@ -1,5 +1,9 @@
+import {UMap} from '@utilities/umap';
 import {GridsterItem, GridsterConfig} from 'angular-gridster2';
 import { Size } from '@defs/size';
+import { BASE_SIZE, GRID_GAP } from '@defs/constants';
+import { ComponentDef } from '@app/defs/component-def';
+import { Pos } from '@app/defs/pos';
 
 export interface UGridItem {
     data: Object;
@@ -9,15 +13,18 @@ export interface UGridItem {
 export class GridHelper {
 
     private _col = 1;
-    constructor(private _options: GridsterConfig) {
-        this._options = {
+    private updatedItems: UMap<string, ComponentDef> = new UMap<string, ComponentDef>();
+
+    public options: GridsterConfig;
+    constructor(resizeCB: (item, itemComponent) => void, movedCB: (item, itemComponent) => void) {
+        this.options = {
             gridType: 'fixed',
             compactType: 'none',
-            itemChangeCallback: undefined,
-            itemResizeCallback: undefined,
+            itemChangeCallback: movedCB,
+            itemResizeCallback: resizeCB,
             itemInitCallback: undefined,
             itemRemovedCallback: undefined,
-            margin: 15,
+            margin: GRID_GAP,
             outerMargin: true,
             mobileBreakpoint: 640,
             minCols: 1,
@@ -32,8 +39,8 @@ export class GridHelper {
             minItemArea: 1,
             defaultItemCols: 1,
             defaultItemRows: 1,
-            fixedColWidth: 115,
-            fixedRowHeight: 115,
+            fixedColWidth: BASE_SIZE + GRID_GAP,
+            fixedRowHeight: BASE_SIZE + GRID_GAP,
             keepFixedHeightInMobile: false,
             keepFixedWidthInMobile: false,
             scrollSensitivity: 10,
@@ -50,7 +57,7 @@ export class GridHelper {
             emptyCellDragMaxRows: 50,
             draggable: {
               delayStart: 0,
-              enabled: true,
+              enabled: false,
               ignoreContentClass: 'gridster-item-content',
               ignoreContent: false,
               dragHandleClass: 'drag-handler',
@@ -58,7 +65,7 @@ export class GridHelper {
             },
             resizable: {
               delayStart: 0,
-              enabled: true,
+              enabled: false,
               stop: undefined,
               handles: {
                 s: true,
@@ -87,20 +94,36 @@ export class GridHelper {
           };
     }
 
-    public generateDefaultItemConfig(size: Size): GridsterItem {
-        return {'cols': parseInt(size.width, 10),
-        'rows': parseInt(size.height, 10)};
+    public generateDefaultItemConfig(item: ComponentDef): GridsterItem {
+        return {
+            'cols': parseInt(item.size.width, 10),
+            'rows': parseInt(item.size.height, 10),
+            'x': (item.position === undefined ? undefined : item.position.x),
+            'y': (item.position === undefined ? undefined : item.position.y),
+            'obj': item};
     }
 
-    public get options() {
-        return this._options;
-    }
-
-    public createGridItem(item: Object, size: Size): UGridItem {
+    public createGridItem(item: ComponentDef, size: Size): UGridItem {
         return {
             'data': item,
-            'config': this.generateDefaultItemConfig(size)
+            'config': this.generateDefaultItemConfig(item)
         };
     }
 
+    public addUpdatedItem(item, itemComponent) {
+        const def: ComponentDef = item['obj'];
+        if (def) {
+            def.position = new Pos(itemComponent.$item['x'], itemComponent.$item['y']);
+            def.size = new Size(itemComponent.$item['cols'], itemComponent.$item['rows']);
+            this.updatedItems.put(def.id, def);
+        }
+    }
+
+    public getUpdates(): UMap<string, ComponentDef> {
+        return this.updatedItems;
+    }
+
+    public clearUpdates() {
+        this.updatedItems.clear();
+    }
 }
