@@ -14,6 +14,7 @@ import { TpDepModule } from '@modules/tp-dep.module';
 import { By } from '@angular/platform-browser';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Type } from '@angular/core';
+import { ResizeService } from '@services/resize.service';
 
 export interface TestContext<T, H> {
     fixture: ComponentFixture<H>;
@@ -40,7 +41,8 @@ export function setup(): void {
                 PermissionManagerService,
                 UserContextService,
                 ComponentStore,
-                ThemeStoreService
+                ThemeStoreService,
+                ResizeService
             ]);
 
             TestBed.configureTestingModule({
