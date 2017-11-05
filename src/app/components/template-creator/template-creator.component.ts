@@ -69,7 +69,7 @@ export class TemplateCreatorComponent implements OnInit {
 
   loadInputTypes(compName: string)  {
 
-    console.log('Component name:', compName);
+    this.selectedInputs = [];
     const comp: Type<Component> = this._compStore.findComponentByName(compName);
     if (Utils.isUndefined(comp)) {
       return;
