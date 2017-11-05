@@ -22,16 +22,19 @@ input:checked ~ label {
     left: 0;
 }
 
-// label {
-//     z-index: 2;
-//     position: absolute;
-//     top: 2px;
-//     left: 190px;
-//     -moz-transition: left 0.5s ease;
-//     transition: left 0.5s ease;
-//     background: $white;
-//     padding: 8px 3px;
-// }
+.main-wrap {
+    label {
+        z-index: 2;
+        position: absolute;
+        top: 2px;
+        left: 190px;
+        -moz-transition: left 0.5s ease;
+        transition: left 0.5s ease;
+        background: $white;
+        padding: 8px 3px;
+    }
+}
+
 .icon-menu{color:$primary; font-size: $font-40}
 
 
