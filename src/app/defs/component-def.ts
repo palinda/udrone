@@ -29,4 +29,11 @@ export class ComponentDef extends UMsg {
         this.name = name;
     }
 
+    public update(newDef: ComponentDef) {
+        this.name = newDef.name;
+        this.size = newDef.size;
+        this.inputs.assign(newDef.inputs);
+        this.permissions = newDef.permissions;
+    }
+
 }
