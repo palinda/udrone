@@ -22,8 +22,8 @@
         <div class="tabpanel-item" [hidden]="selectedIndex !== 1">
             <app-template-creator [templateDefs]="widgetTemplateDefs" [saveCB]="widgetSave"></app-template-creator>
         </div>
-        <div class="tabpanel-item" [hidden]="selectedIndex !== 3">
-            <app-template-creator [templateDefs]="containerTemplateDefs" [saveCB]="containerSave"></app-template-creator>
+        <div class="tabpanel-item" [hidden]="selectedIndex !== 2">
+            <app-template-creator [templateDefs]="windowDefs" [saveCB]="containerSave"></app-template-creator>
         </div>
 
     </div>
