@@ -166,7 +166,7 @@ export class TemplateCreatorComponent implements OnInit {
           key: 'id'
       });
 
-      const options = { 'dataSource': dataSource, 'displayExpr': 'id'};
+      const options = { 'dataSource': dataSource, 'displayExpr': 'componentDefID'};
       this.selectedInputs.push(new InputDefGroup(undefined, [new InputDef(propName, 'MultiSelect', undefined, options)]));
       return true;
     }
