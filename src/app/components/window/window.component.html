@@ -9,7 +9,7 @@
     </div>
     <div class="panel-action-btns" [hidden]="!configureMode">
             <span class="flaticon-car" (click)="saveConfigure()"></span>
-            <span class="flaticon-error" (click)="configureWindow(false)"></span>
+            <span class="flaticon-error" (click)="cancelConfigure()"></span>
     </div>
     <div class="window">
             <gridster [options]="gridHelper.options">

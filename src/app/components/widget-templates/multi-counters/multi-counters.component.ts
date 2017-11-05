@@ -77,7 +77,7 @@ export class MultiCountersComponent extends WidgetTemplateComponent implements O
   }
 
   ngOnInit() {
-    this.countSize = this.calcFontSize(this.componentDef.size, 30);
+    this.countSize = this.calcFontSize(this.componentDef.size, 26);
     this.subscribeForRefresh([
         new RefreshRequest<DynamicMsg>(this.refreshInterval, this.countQuery, (data, err) => {
           if (err !== undefined) {
@@ -89,7 +89,7 @@ export class MultiCountersComponent extends WidgetTemplateComponent implements O
     ]);
 
     this.subscribeForResize((size: Size) => {
-      this.countSize = this.calcFontSize(size, 30);
+      this.countSize = this.calcFontSize(size, 26);
     });
   }
 

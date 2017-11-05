@@ -114,7 +114,9 @@ export class UserContextService {
   public addWindowDef(def: ComponentDef) {
     if (!this.findWindowDef(def.id)) {
       this.windowInsts.push(def);
+      this.windowTemplateInstsMap.put(def.id, def);
+    } else {
+      this.windowTemplateInstsMap.get(def.id).update(def);
     }
-    this.windowTemplateInstsMap.put(def.id, def);
   }
 }

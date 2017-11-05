@@ -99,10 +99,13 @@ export class WindowComponent extends BaseTemplateComponent implements DoCheck {
     this.gridHelper.options.draggable.enabled = enable;
     this.gridHelper.options.resizable.enabled = enable;
     this.gridHelper.options.api.optionsChanged();
+  }
 
+  cancelConfigure() {
     this.componentDefList = [];
     this.updateComponentDefs();
     this.gridHelper.clearUpdates();
+    this.configureWindow(false);
   }
 
   saveConfigure() {
