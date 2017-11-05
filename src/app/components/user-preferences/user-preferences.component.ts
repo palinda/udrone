@@ -77,7 +77,7 @@ export class UserPreferencesComponent implements OnInit, OnDestroy {
       return;
     }
 
-    cmpScope.userContext.addContainerTemplate(def, (data, err) => {
+    cmpScope.userContext.addWindowTemplate(def, (data, err) => {
       if (Utils.isUndefined(err)) {
         Utils.notifyPop('Successfully added container template', 'success');
       } else {
