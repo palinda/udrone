@@ -2,9 +2,18 @@
 .window {
     display: block;
     height: calc(100vh - 120px);
+    overflow: auto;
 }
 
 gridster {
     background-color: transparent;
+    
+}
+
+gridster-item {
+    app-advance-query-table {
+        overflow: auto;
+    }
+    
 }
 

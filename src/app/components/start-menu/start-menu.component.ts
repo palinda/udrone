@@ -21,25 +21,14 @@ export class StartMenuComponent implements OnInit, DoCheck {
   differ: any;
 
   dataSource: Object[] = [];
-
-  gridHelper: GridHelper;
-
   /**
    * Start menu item select callback
    */
   @Output() onSelectContainer: EventEmitter<ComponentDef> = new EventEmitter<ComponentDef>();
 
   constructor(private _userContext: UserContextService, private _permissionMan: PermissionManagerService, differs: IterableDiffers) {
-    this.gridHelper = new GridHelper({
-      'min_width': 50,
-      'col_width': 98,
-      'row_height': 98,
-      'draggable': false,
-      'resizable': false
-    });
     this.windowDefList = _userContext.windowInsts;
     this.windowDefList.forEach( el => {
-      this.addComponentDefToDatasource(el);
     });
     this.differ = differs.find([]).create(null);
   }
@@ -65,16 +54,10 @@ export class StartMenuComponent implements OnInit, DoCheck {
     const changes = this.differ.diff(this.windowDefList);
     if (changes) {
       changes.forEachAddedItem(r => {
-        this.addComponentDefToDatasource(r.item);
       });
       // Handle dynamic remove
       // changes.forEachRemovedItem(r => this.logs.push('removed ' + r.item))
     }
   }
 
-  private addComponentDefToDatasource(def: ComponentDef) {
-    if (this._permissionMan.hasOnePermission(def.permissions.permissionGroups)) {
-      this.dataSource.push(this.gridHelper.createGridItem(def, new Size('1', '1')));
-    }
-  }
 }

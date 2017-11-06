@@ -42,6 +42,7 @@ import { RealtimeSplineComponent } from '@components/widget-templates/realtime-s
 import { AdvanceQueryTableComponent } from '@components/widget-templates/advance-query-table/advance-query-table.component';
 import { MultiCountersComponent } from '@components/widget-templates/multi-counters/multi-counters.component';
 import { UPieChartComponent } from '@components/unit/u-pie-chart/u-pie-chart.component';
+import { ResizeService } from '@services/resize.service';
 /**
  * Main app module
  */
@@ -104,7 +105,8 @@ import { UPieChartComponent } from '@components/unit/u-pie-chart/u-pie-chart.com
         UserContextService,
         PopupDriverService,
         ThemeStoreService,
-        PermissionManagerService
+        PermissionManagerService,
+        ResizeService
   ],
   bootstrap: [MainComponent]
 })

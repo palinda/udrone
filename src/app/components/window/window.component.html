@@ -1,28 +1,20 @@
 <div class="dx-clearfix ">
     <!-- action buttons -->
-    <div class="panel-action-btns">
+    <div class="panel-action-btns" [hidden]="configureMode">
             <span class="flaticon-pie-graphic" ></span>
             <span class="flaticon-web" ></span>
-            <span class="flaticon-pen"></span>
+            <span class="flaticon-pen" (click)="configureWindow(true)"></span>
             <span class="flaticon-arrows" (click)="onMinimizeComponent()"></span>
             <span class="flaticon-close" (click)="onCloseComponent()"></span>
     </div>
-    <div class="module-wrapper">
-        <div class="module-wrapper-inner">
-            <div class="grid-item" *ngFor='let comp of componentDefList' [hasPermission]="comp.permissions.permissionGroups">
-                <app-dcl-wrapper [componentDef]="comp"></app-dcl-wrapper>
-            </div>
-
-        </div>
-    </div> -->
-
+    <div class="panel-action-btns" [hidden]="!configureMode">
+            <span class="flaticon-car" (click)="saveConfigure()"></span>
+            <span class="flaticon-error" (click)="cancelConfigure()"></span>
+    </div>
     <div class="window">
             <gridster [options]="gridHelper.options">
                 <gridster-item [item]="item.config" *ngFor="let item of componentDefList">
                     <app-dcl-wrapper [componentDef]="item.data"></app-dcl-wrapper>
-                    <!-- <div class="gridster-item-content">
-                            Some content to select and click without dragging the widget
-                        </div> -->
                 </gridster-item>
             </gridster>
     </div>

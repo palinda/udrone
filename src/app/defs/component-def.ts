@@ -5,6 +5,7 @@ import { DynamicMsg } from '@defs/dynamic-msg';
 import { BaseTemplateComponent } from '@components/base-template.component';
 import { Component } from '@angular/core';
 import { Size } from './size';
+import { Pos } from './pos';
 
 export class ComponentDef extends UMsg {
 
@@ -26,6 +27,13 @@ export class ComponentDef extends UMsg {
         this.size = size;
         this.inputs = inputs;
         this.name = name;
+    }
+
+    public update(newDef: ComponentDef) {
+        this.name = newDef.name;
+        this.size = newDef.size;
+        this.inputs.assign(newDef.inputs);
+        this.permissions = newDef.permissions;
     }
 
 }

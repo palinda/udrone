@@ -8,6 +8,8 @@ import { DynamicMsg } from '@defs/dynamic-msg';
 import { TrackType } from '@defs/track-type';
 import { GaugeOptions, GaugeData } from '@components/unit/u-guage/u-guage.component';
 import { Component, OnInit, Input } from '@angular/core';
+import { ResizeService } from '@services/resize.service';
+import { Size } from '@defs/size';
 
 @Component({
   selector: 'app-counter-guage',
@@ -16,13 +18,13 @@ import { Component, OnInit, Input } from '@angular/core';
       <div class="guage">
         <app-u-guage [value]="count" [options]="guageOptions"></app-u-guage>
       </div>
-      <app-bg-counter [value]="count.mean" class="counter" [size]="50"></app-bg-counter>
+      <app-bg-counter [value]="count.mean" class="counter" [size]="countSize"></app-bg-counter>
     </div>
   `,
   styles: [`
 
     .container {
-      padding: 8px 15px;
+      padding: 8px 8px;
       text-align: center;
     }
     .counter {
@@ -56,12 +58,14 @@ export class CounterGuageComponent extends WidgetTemplateComponent implements On
 
   count: GaugeData = new GaugeData(0, 0, 0);
 
-  constructor(logService: LogService, refreshService: RefreshService) {
-    super(logService, refreshService);
+  countSize = 50;
+
+  constructor(logService: LogService, resizeService: ResizeService, refreshService: RefreshService) {
+    super(logService, resizeService, refreshService);
   }
 
   ngOnInit() {
-    // this.guageOptions.size = this.componentDef.size.toPixel(100, 100);
+    this.countSize = this.calcFontSize(this.componentDef.size, 15);
     this.subscribeForRefresh([
         new RefreshRequest<CountResp>(this.refreshInterval, this.countQuery, (data, err) => {
           if (err !== undefined) {
@@ -71,6 +75,11 @@ export class CounterGuageComponent extends WidgetTemplateComponent implements On
           }
         })
     ]);
+
+    this.subscribeForResize((size: Size) => {
+      this.guageOptions.size = size.toPixel(98, 90);
+      this.countSize = this.calcFontSize(size, 15);
+    });
   }
 
 }

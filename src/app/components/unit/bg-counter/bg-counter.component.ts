@@ -8,9 +8,9 @@ import { Component, OnInit, Input, OnChanges, SimpleChange } from '@angular/core
 @Component({
   selector: 'app-bg-counter',
   template: `
-    <span class="bg-counter text-info-h1" [ngStyle]="styles">
+    <div class="bg-counter text-info-h1" [ngStyle]="styles" [style.font-size.px]="size">
       {{displayValue}}
-    </span>
+    </div>
   `,
   styles: [
       `
@@ -63,7 +63,7 @@ export class BgCounterComponent implements OnInit, OnChanges {
 
   onSizeChange(size: number) {
     if (this.size !== undefined) {
-      this.styles['font-size.px'] = this.size;
+      // this.styles['font-size.px'] = this.size;
     }
   }
 
