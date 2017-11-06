@@ -86,7 +86,6 @@ label {
     top: 65px;
     left: 60px;
     right: 0;
-    bottom: 70px;
     -moz-transition: left 0.5s ease;
     transition: left 0.5s ease;
 }
@@ -100,7 +99,7 @@ label {
     bottom: 70px;
     .btn-icon{ padding: 13px 2px; color:  $primary ; 
         margin-bottom: 4px; margin-left: 4px; width:40px}
-    .icon-btn-active{width: 56px !important;  padding:2px 0; background-color: transparent !important; color: $primary; border-right: 4px solid $primary }
+    .icon-btn-active{width: 56px !important;  padding:2px 0; background-color: $primary-lighter !important; color: $primary; border-right: 4px solid $primary }
     .u-icon-btn{background-color: $primary-lighter; width: 52px; margin-left: 4px; margin-bottom: 4px;}
 }
 
@@ -147,7 +146,7 @@ label {
         @media only screen and (min-width : 992px) {
             .box{min-width: 22%;}
             .module-wrapper{
-                .grid-item {width:30%;}
+                .grid-item {width:33%;}
             }
             #window-title{top: -58px; width: calc(100% - 10%);}
             /*----sidebar toggle--------*/
