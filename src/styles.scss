@@ -6,6 +6,31 @@
 @import 'assets/styles/layout';
 @import 'assets/styles/search';
 @import 'assets/styles/variables';
+@import 'assets/styles/messages';
+@import 'assets/styles/gridster2';
+
+
+.window {
+    display: block;
+    height: calc(100vh - 120px);
+    overflow: auto;
+}
+
+.window{
+    gridster {
+        background-color: transparent;
+        
+    }
+}
+
+
+gridster-item {
+    app-advance-query-table {
+        overflow: auto;
+    }
+    
+}
+
 
 
 h1, h4{
