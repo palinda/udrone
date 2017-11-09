@@ -6,9 +6,8 @@
 .box{background-color: $primary-dark !important; color:$white !important;  height: 140px; width: 12%; 
     font-size: 14px; float: left; margin: 0 15px 15px 0; text-align: center;
  .u-btn-icon{ font-size: $font-30}
- 
 }
-
+.box:hover{background-color: $primary-darker !important; color:$white !important;}
 
 app-start-menu  {
     height: 100%;
@@ -34,5 +33,6 @@ app-start-menu  {
             color: $white;
         }
     }
+    u-icon-btn:hover{color: $white !important}
 }
 

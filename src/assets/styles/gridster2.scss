@@ -1,3 +1,22 @@
       /*---Gridster---*/
+      .dx-datagrid {
+            padding: 10px 10px;
+        }
+        
+        .search-container {
+            margin: 20px 20px 5px 20px;
+        }
       .gridster-grid{display: block}
       .gridster-item-moving{background-color: rgba($ustock-red , 0.3) !important;}
+      .window{
+            gridster-item{overflow: unset !important;}
+            dx-data-grid{margin-bottom: 30px !important}
+            }
+
+      .dx-datagrid-rowsview .dx-row:nth-child(even) {background: $grey-lighter !important;}
+      .dx-datagrid-rowsview .dx-row:hover {background: $primary-lighter !important;}
+      .ng-pristine{box-shadow: 0px 0px 1px 1px $grey-light !important;}
+      .ng-pristine:focus, .ng-pristine:hover{box-shadow: 0px 0px 1px 1px $primary-light !important;}
+      .dx-datagrid-headers{border-top:1px solid $grey-light}
+      .dx-selection{background-color: $primary-light !important;}
+      .dx-datagrid-headers {color: $black !important;  font-weight: bold !important;}

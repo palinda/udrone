@@ -103,10 +103,10 @@ input:checked ~ label {
     width: 70%;
     position: absolute;
     left: 62px;
-    z-index: 9;
+    z-index: 10;
     bottom: 0;
     .btn-icon{color:  $primary ; 
-        margin-bottom: 4px; margin-left: 4px; padding: 10px}
+        margin-bottom: 4px; margin-left: 4px; padding: 10px 14px}
         .btn-icon::before{margin-left: 0 !important;}
     .icon-btn-active{ padding:2px 0; background-color: $white !important; color: $primary; border-bottom: 4px solid $primary; margin-top: -4px}
     .u-icon-btn{background-color: $primary-lighter;  margin-left: 4px; margin-bottom: 4px; float:left}
@@ -174,7 +174,7 @@ input:checked ~ label {
         /* Large Devices, Wide Screens */
         @media only screen and (min-width : 1200px) {
             .box{min-width: 16%;}
-            #window-title{top: 0; width: calc(100% - 60%); left:200px; border-left: 2px solid $primary-lighter; }
+            #window-title{top: 4px; width: calc(100% - 70%); left:200px; border-left: 2px solid $primary-lighter; }
             .portfolio { top: 60px;}
             .module-wrapper-inner{padding: 15px;}
             .panel-action-btns{ top: -46px; right: 455px;}

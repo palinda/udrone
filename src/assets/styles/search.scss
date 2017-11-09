@@ -1,13 +1,13 @@
 /*---- Dashboard Search Component ----*/
 .search-widget{
-    background-color: $grey-lighter ; padding: 5px; margin: 8px 12px; display: block !important;
+    background-color: $grey-lighter ; padding: 5px; margin: 8px 12px; display: block !important; border: 1px solid $white;
     input{background: transparent !important; }
     div .dx-placeholder {color: $primary !important;}
     .dx-texteditor{background: transparent !important; border:none !important; padding-right: 30px !important; }
     .dx-show-clear-button .dx-icon-clear{color: $primary-dark !important;}
     .icon-search{color:$primary !important;}
-
     }
+.search-widget:focus,  .search-widget:hover{border:solid 1px $primary-light !important;}
 
 
 .icon-search-pos{float: right; margin-top:-30px;
