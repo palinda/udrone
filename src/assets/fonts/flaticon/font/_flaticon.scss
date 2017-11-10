@@ -1,6 +1,6 @@
     /*
     Flaticon icon font: Flaticon
-    Creation date: 02/11/2017 05:36
+    Creation date: 06/11/2017 10:16
     */
 
     @font-face {
@@ -36,46 +36,110 @@
   font-smoothing: antialiased;
     }
 
-    .flaticon-web:before { content: "\f100"; }
-.flaticon-pen:before { content: "\f101"; }
-.flaticon-close:before { content: "\f102"; }
-.flaticon-arrows:before { content: "\f103"; }
-.flaticon-interface:before { content: "\f104"; }
-.flaticon-pie-graphic:before { content: "\f105"; }
-.flaticon-person:before { content: "\f106"; }
-.flaticon-line:before { content: "\f107"; }
-.flaticon-science:before { content: "\f108"; }
-.flaticon-search:before { content: "\f109"; }
-.flaticon-technology:before { content: "\f10a"; }
-.flaticon-danger:before { content: "\f10b"; }
-.flaticon-graphic:before { content: "\f10c"; }
-.flaticon-cogwheel:before { content: "\f10d"; }
-.flaticon-square:before { content: "\f10e"; }
-.flaticon-time:before { content: "\f10f"; }
-.flaticon-car:before { content: "\f110"; }
-.flaticon-planet:before { content: "\f111"; }
-.flaticon-ring:before { content: "\f112"; }
-.flaticon-symbol:before { content: "\f113"; }
-.flaticon-error:before { content: "\f114"; }
+    .flaticon-technology-1:before { content: "\f100"; }
+.flaticon-business-5:before { content: "\f101"; }
+.flaticon-up-arrow:before { content: "\f102"; }
+.flaticon-business-4:before { content: "\f103"; }
+.flaticon-graphic-19:before { content: "\f104"; }
+.flaticon-graphic-18:before { content: "\f105"; }
+.flaticon-graphic-17:before { content: "\f106"; }
+.flaticon-graphic-16:before { content: "\f107"; }
+.flaticon-graphic-15:before { content: "\f108"; }
+.flaticon-graphic-14:before { content: "\f109"; }
+.flaticon-coins:before { content: "\f10a"; }
+.flaticon-graphic-13:before { content: "\f10b"; }
+.flaticon-graphic-12:before { content: "\f10c"; }
+.flaticon-graphic-11:before { content: "\f10d"; }
+.flaticon-graphic-10:before { content: "\f10e"; }
+.flaticon-business-3:before { content: "\f10f"; }
+.flaticon-business-2:before { content: "\f110"; }
+.flaticon-graphic-9:before { content: "\f111"; }
+.flaticon-graphic-8:before { content: "\f112"; }
+.flaticon-graphic-7:before { content: "\f113"; }
+.flaticon-graphic-6:before { content: "\f114"; }
+.flaticon-graphic-5:before { content: "\f115"; }
+.flaticon-business-1:before { content: "\f116"; }
+.flaticon-file:before { content: "\f117"; }
+.flaticon-graphic-4:before { content: "\f118"; }
+.flaticon-business:before { content: "\f119"; }
+.flaticon-chart:before { content: "\f11a"; }
+.flaticon-connection-1:before { content: "\f11b"; }
+.flaticon-graphic-3:before { content: "\f11c"; }
+.flaticon-connection:before { content: "\f11d"; }
+.flaticon-graphic-2:before { content: "\f11e"; }
+.flaticon-graphic-1:before { content: "\f11f"; }
+.flaticon-web:before { content: "\f120"; }
+.flaticon-pen:before { content: "\f121"; }
+.flaticon-close:before { content: "\f122"; }
+.flaticon-arrows:before { content: "\f123"; }
+.flaticon-interface:before { content: "\f124"; }
+.flaticon-pie-graphic:before { content: "\f125"; }
+.flaticon-person:before { content: "\f126"; }
+.flaticon-line:before { content: "\f127"; }
+.flaticon-science:before { content: "\f128"; }
+.flaticon-search:before { content: "\f129"; }
+.flaticon-technology:before { content: "\f12a"; }
+.flaticon-danger:before { content: "\f12b"; }
+.flaticon-graphic:before { content: "\f12c"; }
+.flaticon-cogwheel:before { content: "\f12d"; }
+.flaticon-square:before { content: "\f12e"; }
+.flaticon-time:before { content: "\f12f"; }
+.flaticon-car:before { content: "\f130"; }
+.flaticon-planet:before { content: "\f131"; }
+.flaticon-ring:before { content: "\f132"; }
+.flaticon-symbol:before { content: "\f133"; }
+.flaticon-error:before { content: "\f134"; }
     
-    $font-Flaticon-web: "\f100";
-    $font-Flaticon-pen: "\f101";
-    $font-Flaticon-close: "\f102";
-    $font-Flaticon-arrows: "\f103";
-    $font-Flaticon-interface: "\f104";
-    $font-Flaticon-pie-graphic: "\f105";
-    $font-Flaticon-person: "\f106";
-    $font-Flaticon-line: "\f107";
-    $font-Flaticon-science: "\f108";
-    $font-Flaticon-search: "\f109";
-    $font-Flaticon-technology: "\f10a";
-    $font-Flaticon-danger: "\f10b";
-    $font-Flaticon-graphic: "\f10c";
-    $font-Flaticon-cogwheel: "\f10d";
-    $font-Flaticon-square: "\f10e";
-    $font-Flaticon-time: "\f10f";
-    $font-Flaticon-car: "\f110";
-    $font-Flaticon-planet: "\f111";
-    $font-Flaticon-ring: "\f112";
-    $font-Flaticon-symbol: "\f113";
-    $font-Flaticon-error: "\f114";
+    $font-Flaticon-technology-1: "\f100";
+    $font-Flaticon-business-5: "\f101";
+    $font-Flaticon-up-arrow: "\f102";
+    $font-Flaticon-business-4: "\f103";
+    $font-Flaticon-graphic-19: "\f104";
+    $font-Flaticon-graphic-18: "\f105";
+    $font-Flaticon-graphic-17: "\f106";
+    $font-Flaticon-graphic-16: "\f107";
+    $font-Flaticon-graphic-15: "\f108";
+    $font-Flaticon-graphic-14: "\f109";
+    $font-Flaticon-coins: "\f10a";
+    $font-Flaticon-graphic-13: "\f10b";
+    $font-Flaticon-graphic-12: "\f10c";
+    $font-Flaticon-graphic-11: "\f10d";
+    $font-Flaticon-graphic-10: "\f10e";
+    $font-Flaticon-business-3: "\f10f";
+    $font-Flaticon-business-2: "\f110";
+    $font-Flaticon-graphic-9: "\f111";
+    $font-Flaticon-graphic-8: "\f112";
+    $font-Flaticon-graphic-7: "\f113";
+    $font-Flaticon-graphic-6: "\f114";
+    $font-Flaticon-graphic-5: "\f115";
+    $font-Flaticon-business-1: "\f116";
+    $font-Flaticon-file: "\f117";
+    $font-Flaticon-graphic-4: "\f118";
+    $font-Flaticon-business: "\f119";
+    $font-Flaticon-chart: "\f11a";
+    $font-Flaticon-connection-1: "\f11b";
+    $font-Flaticon-graphic-3: "\f11c";
+    $font-Flaticon-connection: "\f11d";
+    $font-Flaticon-graphic-2: "\f11e";
+    $font-Flaticon-graphic-1: "\f11f";
+    $font-Flaticon-web: "\f120";
+    $font-Flaticon-pen: "\f121";
+    $font-Flaticon-close: "\f122";
+    $font-Flaticon-arrows: "\f123";
+    $font-Flaticon-interface: "\f124";
+    $font-Flaticon-pie-graphic: "\f125";
+    $font-Flaticon-person: "\f126";
+    $font-Flaticon-line: "\f127";
+    $font-Flaticon-science: "\f128";
+    $font-Flaticon-search: "\f129";
+    $font-Flaticon-technology: "\f12a";
+    $font-Flaticon-danger: "\f12b";
+    $font-Flaticon-graphic: "\f12c";
+    $font-Flaticon-cogwheel: "\f12d";
+    $font-Flaticon-square: "\f12e";
+    $font-Flaticon-time: "\f12f";
+    $font-Flaticon-car: "\f130";
+    $font-Flaticon-planet: "\f131";
+    $font-Flaticon-ring: "\f132";
+    $font-Flaticon-symbol: "\f133";
+    $font-Flaticon-error: "\f134";

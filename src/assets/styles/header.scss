@@ -9,6 +9,8 @@
             margin-right: 3px;
         }
     }
+    .title{color: $primary; padding: 15px 0 0 40px ; border-left: 2px solid $primary; 
+        position: absolute;}
     #window-title {
         font-size: 25px;
         height: 60px;
@@ -27,9 +29,7 @@
         background-size: contain;
         margin: 10px;
         background: url("assets/imgs/logo.png") no-repeat;
-        @media screen and (max-width: 520px) {
-            display: none;
-        }
+        display: block !important;
     }
     .system-info {
         height: 100%;
@@ -39,11 +39,13 @@
     }
 }
 
+.header-search-row{float: right;  display: block}
+
 #header .header-search-row app-u-icon-btn {color: $primary; padding: 20px;  float: right;
     :hover{color: $primary-dark }
     .u-btn-icon::before{font-size: 20px;}
 }
-
+#main-container #header{border-bottom: 1px solid $primary-lighter;}
 
 
 
@@ -51,25 +53,24 @@
 /*----- Media Quaries -------*/
     /* Custom, iPhone Retina */ 
     @media only screen and (min-width : 320px) {
-        .header-search-row{ padding-left: 0; display: block}
         }
         
         /* Extra Small Devices, Phones */ 
         @media only screen and (min-width : 480px) {
-            .header-search-row{ padding-left: 0; display: block}
         }
         
         /* Small Devices, Tablets */
         @media only screen and (min-width : 768px) {
-            .header-search-row{ padding-left: 80px; display: block}
         }
         
         /* Medium Devices, Desktops */
         @media only screen and (min-width : 992px) {
-            .header-search-row{ padding-left: 80px; display: block}
         }
         
         /* Large Devices, Wide Screens */
         @media only screen and (min-width : 1200px) {
-            .header-search-row{float: left; padding-left: 80px; display: block}
+           
         }
+
+        .toggle-view{padding-right: 15px; float: left}
+       
