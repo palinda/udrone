@@ -19,7 +19,7 @@
                     <input id="slide-sidebar" type="checkbox" role="button" />
                         <label for="slide-sidebar"><span class="icon-menu"></span></label>
                     <div class="sidebar">
-                            <app-u-icon-btn class="" [isSelected]="activeIndex === i" [iconClass]="def.inputs.icon"  (click)="maximizeComponent(i, def)" *ngFor="let def of minimizedDefs; let i = index" [hasPermission]="def.permissions.permissionGroups"></app-u-icon-btn>
+                            <app-u-icon-btn class="" [isSelected]="activeIndex === i" [iconClass]="def.inputs.icon"  (click)="maximizeComponent(i, def)" *ngFor="let def of minimizedDefs; let i = index" [hasPermission]="def.permissions.permissionGroups" [actionMenu]=""></app-u-icon-btn>
                     </div>
                     <div class="portfolio">
                         <div  id="window-title"><div class="rectangle"></div>{{activeTitle}}</div>
