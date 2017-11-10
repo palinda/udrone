@@ -31,7 +31,7 @@ export class GridHelper {
             outerMargin: true,
             mobileBreakpoint: 640,
             minCols: 1,
-            maxCols: 100,
+            maxCols: 30,
             minRows: 1,
             maxRows: 100,
             maxItemCols: 100,

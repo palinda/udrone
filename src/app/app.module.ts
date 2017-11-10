@@ -43,6 +43,8 @@ import { AdvanceQueryTableComponent } from '@components/widget-templates/advance
 import { MultiCountersComponent } from '@components/widget-templates/multi-counters/multi-counters.component';
 import { UPieChartComponent } from '@components/unit/u-pie-chart/u-pie-chart.component';
 import { ResizeService } from '@services/resize.service';
+import { TooltipDirective } from 'ng2-tooltip-directive/components';
+
 /**
  * Main app module
  */
@@ -73,7 +75,8 @@ import { ResizeService } from '@services/resize.service';
     AdvanceQueryTableComponent,
     MultiCountersComponent,
     UPieChartComponent,
-    SystemInfoComponent
+    SystemInfoComponent,
+    TooltipDirective
   ],
   entryComponents: [
     CounterSparklineComponent,
