@@ -15,6 +15,7 @@ import { Component, OnInit, ViewContainerRef, ViewChild, ComponentFactoryResolve
   OnChanges, AfterViewInit, OnDestroy, Type, Renderer
 } from '@angular/core';
 import * as Utils from '@utilities/utils';
+import { ActionItem } from '@defs/action-item';
 
 
 @Component({
@@ -38,6 +39,9 @@ export class MainComponent implements AfterViewInit, OnDestroy {
   private _isComponentMaximized = false;
   windowDefList: Array<ComponentDef>;
   searchValue: ComponentDef;
+  actionContextMenu = [
+    new ActionItem('Close', this.onCloseComponent)
+  ];
 
   constructor(private _componentFactoryResolver: ComponentFactoryResolver, private _cdRef: ChangeDetectorRef, public _renderer: Renderer,
     private _popupDriver: PopupDriverService, private _compStore: ComponentStore, private _userContext: UserContextService) {

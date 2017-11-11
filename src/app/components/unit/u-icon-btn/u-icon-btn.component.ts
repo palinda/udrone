@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, OnChanges, SimpleChange } from '@angular/core';
+import { ActionItem } from '@defs/action-item';
 
 @Component({
   selector: 'app-u-icon-btn',
@@ -55,6 +56,11 @@ export class UIconBtnComponent implements OnInit, OnChanges {
   @Input() isSelected = false;
 
   @Input() wrapperClass = '';
+
+  @Input() actionMenu = Array<ActionItem>();
+
+  @Input() actionMenuPlacement = 'top';
+
   iconSize = 20;
 
   constructor() { }

@@ -1,8 +1,8 @@
 import { SystemInfoComponent } from '@components/system-info/system-info.component';
 import { PermissionManagerService } from '@services/permission-manager.service';
 import { ComponentStore } from '@services/component-store';
-import { TemplateCreatorComponent } from './components/template-creator/template-creator.component';
-import { UserPreferencesComponent } from './components/user-preferences/user-preferences.component';
+import { TemplateCreatorComponent } from '@components/template-creator/template-creator.component';
+import { UserPreferencesComponent } from '@components/user-preferences/user-preferences.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { BaseTemplateComponent } from '@components/base-template.component';
 import { WidgetTemplateComponent } from '@components/widget-template.component';
@@ -43,7 +43,7 @@ import { AdvanceQueryTableComponent } from '@components/widget-templates/advance
 import { MultiCountersComponent } from '@components/widget-templates/multi-counters/multi-counters.component';
 import { UPieChartComponent } from '@components/unit/u-pie-chart/u-pie-chart.component';
 import { ResizeService } from '@services/resize.service';
-import { TooltipDirective } from 'ng2-tooltip-directive/components';
+import { TooltipDirective } from '@directives/tooltip.directive';
 
 /**
  * Main app module
