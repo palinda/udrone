@@ -15,7 +15,7 @@ import { Component, OnInit, ViewContainerRef, ViewChild, ComponentFactoryResolve
   OnChanges, AfterViewInit, OnDestroy, Type, Renderer
 } from '@angular/core';
 import * as Utils from '@utilities/utils';
-import { ActionItem } from '@app/defs/action-item';
+import { ActionItem } from '@defs/action-item';
 
 
 @Component({

@@ -2,16 +2,16 @@
     <!-- action buttons -->
     <div class="panel-action-btns" [hidden]="configureMode">
             <div class="toggle-view">
-                    <span class="flaticon-pie-graphic"  tooltip="Chart View" placement="bottom"></span>
-                    <span class="flaticon-web"  tooltip="Grid View" placement="bottom"></span>
+                    <span class="flaticon-pie-graphic"  appTooltip tooltip="Chart View" placement="bottom"></span>
+                    <span class="flaticon-web"  appTooltip tooltip="Grid View" placement="bottom"></span>
             </div>
-            <span class="flaticon-pen" (click)="configureWindow(true)" tooltip="Edit" placement="bottom"></span>
-            <span class="flaticon-arrows" (click)="onMinimizeComponent()" tooltip="Minimize" placement="bottom"></span>
-            <span class="flaticon-close" (click)="onCloseComponent()" tooltip="Close" placement="bottom"></span>
+            <span class="flaticon-pen" (click)="configureWindow(true)" appTooltip tooltip="Edit" placement="bottom"></span>
+            <span class="flaticon-arrows" (click)="onMinimizeComponent()" appTooltip tooltip="Minimize" placement="bottom"></span>
+            <span class="flaticon-close" (click)="onCloseComponent()" appTooltip tooltip="Close" placement="bottom"></span>
     </div>
     <div class="panel-action-btns" [hidden]="!configureMode">
-            <span class="flaticon-technology-1" (click)="saveConfigure()" tooltip="Save" placement="bottom"></span>
-            <span class="flaticon-close" (click)="cancelConfigure()" tooltip="Close" placement="bottom"></span>
+            <span class="flaticon-technology-1" (click)="saveConfigure()" appTooltip tooltip="Save" placement="bottom"></span>
+            <span class="flaticon-close" (click)="cancelConfigure()" appTooltip tooltip="Close" placement="bottom"></span>
     </div>
     <div class="window">
             <gridster [options]="gridHelper.options">
