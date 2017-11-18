@@ -1,37 +1,42 @@
 <div fxLayout="column" id="main-container" class="dx-clearfix">
-    <div fxFlex="60px" id="header">
-        <div class="pull-left" id="logo_image"></div>
-        <div  id="window-title">{{activeTitle}} </div>
-                <div class="header-search-row">
-                        <app-u-icon-btn  iconClass="dx-icon-preferences"  (click)="openPreferencesWnd()"></app-u-icon-btn>
-                        <app-u-icon-btn  iconClass="dx-icon-user"   (click)="onStartMenuOpen()"></app-u-icon-btn>
-                        <app-u-icon-btn  iconClass="icon-notifications" (click)="onStartMenuOpen()"></app-u-icon-btn>
-                        <div class="dx-field-value search-widget">
-                            <dx-autocomplete placeholder="Search in start menu ..." [(value)]="searchValue" [dataSource]="windowDefList" displayExpr="inputs.shortname" valueExpr="this" showClearButton="true" (onItemClick)="searchWidget($event)">
-                            </dx-autocomplete>
-                            <div class="icon-search-pos"><span class="icon-search"></span></div>
-                        </div>
-                </div>
-
-
-    </div>
-    <div fxFlex="grow" id="container-body">
-            <div class="main-wrap" >
-                    <div class="sidebar">
-                            <app-u-icon-btn class="" [isSelected]="activeIndex === i" [iconClass]="def.inputs.icon"  (click)="maximizeComponent(i, def)" *ngFor="let def of minimizedDefs; let i = index" [hasPermission]="def.permissions.permissionGroups" [actionMenu]=""></app-u-icon-btn>
-                    </div>
-                    <div class="portfolio">
-                        <div #mainbody></div>
-                    </div>
-            </div>
-    </div>
-    <div id="footer">
-        <div class="home-icon">
-                <app-u-icon-btn class="pull-left task-item" iconClass="icon-desktop_windows"  color="white" (click)="onStartMenuOpen()" tooltip="Home" placement="top">
-                </app-u-icon-btn>
+  <div fxFlex="60px" id="header">
+    <div class="pull-left" id="logo_image"></div>
+    <div id="window-title">{{activeTitle}} </div>
+    <div class="header-search-row">
+      <app-u-icon-btn iconClass="dx-icon-preferences" (click)="openPreferencesWnd()"></app-u-icon-btn>
+      <app-u-icon-btn iconClass="dx-icon-user" (click)="onStartMenuOpen()"></app-u-icon-btn>
+      <app-u-icon-btn iconClass="icon-notifications" (click)="onStartMenuOpen()"></app-u-icon-btn>
+      <div class="dx-field-value search-widget">
+        <dx-autocomplete placeholder="Search in start menu ..." [(value)]="searchValue" [dataSource]="windowDefList" displayExpr="inputs.shortname"
+          valueExpr="this" showClearButton="true" (onItemClick)="searchWidget($event)">
+        </dx-autocomplete>
+        <div class="icon-search-pos">
+          <span class="icon-search"></span>
         </div>
-        <app-system-info class="system-info"></app-system-info>
+      </div>
     </div>
+
+
+  </div>
+  <div fxFlex="grow" id="container-body">
+    <div class="main-wrap">
+      <div class="sidebar">
+        <app-u-icon-btn class="" [isSelected]="activeIndex === i" [iconClass]="def.inputs.icon" (click)="maximizeComponent(i, def)"
+          *ngFor="let def of minimizedDefs; let i = index" [hasPermission]="def.permissions.permissionGroups" [actionMenu]=""></app-u-icon-btn>
+      </div>
+      <div class="portfolio">
+        <div #mainbody></div>
+      </div>
+    </div>
+  </div>
+  <div id="footer">
+    <div class="home-icon">
+      <app-u-icon-btn class="pull-left task-item" iconClass="icon-desktop_windows" color="white" (click)="onStartMenuOpen()" tooltip="Home"
+        placement="top">
+      </app-u-icon-btn>
+    </div>
+    <app-system-info class="system-info"></app-system-info>
+  </div>
 </div>
 
 <app-u-popup></app-u-popup>
