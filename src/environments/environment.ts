@@ -7,6 +7,7 @@ export const environment = {
   production: false,
   logLevel: 'ALL',
   reqBaseUrl: 'http://localhost:9000/res',
+  webSockerEP: 'localhost:9001',
   reqMethod: 'POST',
   contentType: 'application/json',
   serviceQueryClass: 'SimpleServiceQuery'

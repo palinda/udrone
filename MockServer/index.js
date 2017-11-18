@@ -1,7 +1,9 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+const http = require('http');
 var alasql = require('alasql');
 var fs = require('fs');
+var WebSocket = require('ws');
 var fileName = './data/global_repo.json';
 var globalRepoFile = require(fileName);
 
@@ -9,6 +11,10 @@ var tableFile = './data/city_inspections.json';
 var tableData = require(tableFile);
 
 var app = express();
+
+const server = http.createServer(app);
+const wss = new WebSocket.Server({ server });
+
 app.use(bodyParser.json())
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -23,40 +29,100 @@ var port = 9000;
 // start the server
 // app.listen(port);
 app.listen(port, "0.0.0.0");
+wss.on('connection', function connection(ws, req) {
+   
+    ws.on('message', function incoming(msg) {
+
+        console.log('received: %s', msg);
+        msg = JSON.parse(msg);
+      
+
+      let reply;
+      if (msg['__path']) {
+          switch(msg['__path']) {
+              case 'orderCount':{
+                reply = onOrderCount();
+                break;
+              }
+              case 'fundCount': {
+                  reply = onFundCount();
+                break;
+              }
+              case 'orderCountHist': {
+                  reply = onOrderCountHist(msg);
+                  break;
+              }
+              case 'userQuery': {
+                reply = onUserQuery(msg);
+                break;
+              }
+              case 'globalComponentRepo': {
+                  reply = onGlobalComponent(msg, msg[id]);
+                  break;
+              }
+              case 'global_repo.json': {
+                  reply = globalRepoFile;
+                  break;
+              }
+          }
+
+          reply['__reqID'] = msg['__reqID'];
+          console.log('Reply:', reply);
+          ws.send(JSON.stringify(reply));
+      }
+    });
+
+  });
+   
+  server.listen(port+1, function listening() {
+    console.log('Listening on %d', server.address().port);
+  });
+
 console.log('Server started! At http://localhost:' + port);
 
 app.post('/res/orderCount', function(req, res) {
-    res.status(200).json({
-        'count': Math.ceil((Math.random() * 100 + 1))
-    });
+    res.status(200).json(onOrderCount());
 })
+
+function onOrderCount() {
+    return {
+        'count': Math.ceil((Math.random() * 100 + 1))
+    };
+}
 
 app.post('/res/fundCount', function(req, res) {
-    res.status(200).json({
-        'deposit': Math.ceil((Math.random() * 100 + 1)),
-        'withdraw': Math.ceil((Math.random() * 100 + 1))
-    });
+    res.status(200).json(onFundCount());
 })
 
+function onFundCount() {
+    return {
+        'deposit': Math.ceil((Math.random() * 100 + 1)),
+        'withdraw': Math.ceil((Math.random() * 100 + 1))
+    };
+}
 app.post('/res/orderCountHist', function(req, res) {
+    res.status(200).json(onOrderCountHist(req.body));
+})
 
-    const dyMsg = req.body;
+function onOrderCountHist(req) {
+    const dyMsg = req;
     const dataList = [];
 
     console.log('Request:' + dyMsg);
     for (let i = 0; i < dyMsg['limit']; i++) {
         dataList.push({ 'key': 'X ' + i, 'value': Math.ceil((Math.random() * 100 + 1)) });
     }
-
-    res.status(200).json({
+    return {
         'data': dataList
-    });
-
-})
+    };
+}
 
 app.post('/res/userQuery', function(req, res) {
+    res.status(200).json(onUserQuery(req.body));
+})
 
-    const query = req.body;
+function onUserQuery(req) {
+    const query = req;
     const dataList = [];
 
     var queryStr = 'SELECT * FROM ? ';
@@ -115,39 +181,40 @@ app.post('/res/userQuery', function(req, res) {
     var countData = alasql(queryStrCount, [tableData]);
     console.log('COUNT----------------' + JSON.stringify(countData));
 
-    res.status(200).json({
+    return {
         'data': data,
         'total': countData[0].NUMBER,
         'totalFilter': countData[0].NUMBER
-    });
-
-})
+    };
+}
 
 app.post('/res/globalComponentRepo/:id', function(req, res) {
-
-    const compDef = req.body;
-
-    console.log('globalComponentRepo:' + req.params['id']);
-    if (globalRepoFile[req.params['id']] === undefined) {
-        globalRepoFile[req.params['id']] = [];
-    }
-    let index = globalRepoFile[req.params['id']].findIndex(o => o.id === compDef['id']);
-
-    if (index < 0) {
-        globalRepoFile[req.params['id']].push(compDef);
-    } else {
-        globalRepoFile[req.params['id']].splice(index, 1, compDef);
-    }
-    
-    fs.writeFile(fileName, JSON.stringify(globalRepoFile), function(err) {
-        if (err) return console.log(err);
-        console.log(JSON.stringify(globalRepoFile));
-        console.log('writing to ' + fileName);
-    });
-
-    res.status(200).json(compDef);
-
+    res.status(200).json(onGlobalComponent(req.body, req.params['id']));
 })
+
+function onGlobalComponent(req, id) {
+    const compDef = req;
+    
+        console.log('globalComponentRepo:' + id);
+        if (globalRepoFile[id] === undefined) {
+            globalRepoFile[id] = [];
+        }
+        let index = globalRepoFile[id].findIndex(o => o.id === compDef['id']);
+    
+        if (index < 0) {
+            globalRepoFile[id].push(compDef);
+        } else {
+            globalRepoFile[id].splice(index, 1, compDef);
+        }
+        
+        fs.writeFile(fileName, JSON.stringify(globalRepoFile), function(err) {
+            if (err) return console.log(err);
+            console.log(JSON.stringify(globalRepoFile));
+            console.log('writing to ' + fileName);
+        });
+
+        return compDef;
+}
 
 app.post('/res/global_repo.json', function(req, res) {
     res.status(200).json(globalRepoFile);

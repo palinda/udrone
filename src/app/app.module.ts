@@ -44,6 +44,7 @@ import { MultiCountersComponent } from '@components/widget-templates/multi-count
 import { UPieChartComponent } from '@components/unit/u-pie-chart/u-pie-chart.component';
 import { ResizeService } from '@services/resize.service';
 import { TooltipDirective } from '@directives/tooltip.directive';
+import { WebSocketService } from '@app/services/web-socket.service';
 
 /**
  * Main app module
@@ -109,6 +110,7 @@ import { TooltipDirective } from '@directives/tooltip.directive';
         PopupDriverService,
         ThemeStoreService,
         PermissionManagerService,
+        WebSocketService,
         ResizeService
   ],
   bootstrap: [MainComponent]
