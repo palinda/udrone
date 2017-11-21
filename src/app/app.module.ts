@@ -45,7 +45,7 @@ import { UPieChartComponent } from '@components/unit/u-pie-chart/u-pie-chart.com
 import { ResizeService } from '@services/resize.service';
 import { TooltipDirective } from '@directives/tooltip.directive';
 import { WebSocketService } from '@app/services/web-socket.service';
-import { MenuComponent } from './menu/menu.component';
+import { MenuComponent } from '@components/menu/menu.component';
 
 /**
  * Main app module
