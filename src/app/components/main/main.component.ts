@@ -16,16 +16,30 @@ import { Component, OnInit, ViewContainerRef, ViewChild, ComponentFactoryResolve
 } from '@angular/core';
 import * as Utils from '@utilities/utils';
 import { ActionItem } from '@defs/action-item';
+import { trigger, state, style, transition, animate} from '@angular/animations';
 
 
 @Component({
   selector: 'app-root',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss']
+  styleUrls: ['./main.component.scss'],
+  animations: [
+    trigger('slideInOut', [
+      state('in', style({
+        transform: 'translate3d(0, 0, 0)'
+      })),
+      state('out', style({
+        transform: 'translate3d(100%, 0, 0)'
+      })),
+      transition('in => out', animate('400ms ease-in-out')),
+      transition('out => in', animate('400ms ease-in-out'))
+    ]),
+  ]
 })
 export class MainComponent implements AfterViewInit, OnDestroy {
 
   activeTitle: string;
+  menuState = 'out';
 
   @ViewChild('mainbody', {read: ViewContainerRef}) mainbody;
 
@@ -166,6 +180,9 @@ export class MainComponent implements AfterViewInit, OnDestroy {
           this.onCloseComponent();
         });
       }
+    }
+    toggleMenu() {
+      this.menuState = this.menuState === 'out' ? 'in' : 'out';
     }
 }
 

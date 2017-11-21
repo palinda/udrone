@@ -6,6 +6,7 @@ import { UserContextService } from '@services/user-context.service';
 import { ComponentDef } from '@defs/component-def';
 import { Component, OnInit, DoCheck, Input, Output, EventEmitter, Type, ElementRef, IterableDiffers } from '@angular/core';
 import { NgGridItemConfig } from 'angular2-grid';
+import { trigger, state, style, transition, animate} from '@angular/animations';
 
 @Component({
   selector: 'app-start-menu',
