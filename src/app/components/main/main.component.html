@@ -5,9 +5,9 @@
     <div id="window-title">{{activeTitle}} </div>
     
     <div class="header-search-row">
-        <button (click)="toggleMenu()" class="hamburger">
-            <span>toggle menu</span>
-          </button>
+        <a (click)="toggleMenu()" class="menu-icon"><!-- class="hamburger"-->
+            <!-- <span>toggle menu</span> --> <i class="flaticon-menu">&nbsp;</i>
+        </a>
       <app-u-icon-btn iconClass="dx-icon-preferences" (click)="openPreferencesWnd()"></app-u-icon-btn>
       <app-u-icon-btn iconClass="dx-icon-user" (click)="onStartMenuOpen()"></app-u-icon-btn>
       <app-u-icon-btn iconClass="icon-notifications" (click)="onStartMenuOpen()"></app-u-icon-btn>

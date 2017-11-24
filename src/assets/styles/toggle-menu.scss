@@ -1,4 +1,9 @@
 
+
+.menu-icon{position: absolute; right: 10px; top: 17px;
+ i{color: $primary;}
+ i:hover{color: $primary-dark; cursor: pointer}
+}
 .hamburger {
     display: block;
     position: absolute;
