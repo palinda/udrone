@@ -1,3 +1,4 @@
+import { MenuComponent } from './../menu/menu.component';
 import { GridsterConfig } from 'angular-gridster2';
 import { UserContextService } from '@services/user-context.service';
 import { PermissionManagerService } from '@services/permission-manager.service';
@@ -11,6 +12,7 @@ import * as Utils from '@utilities/utils';
 import { GridHelper, UGridItem } from '@services/grid-helper';
 import { WindowWidgetDef } from '@app/defs/window-widget-def';
 import { ResizeService } from '@services/resize.service';
+
 
 /**
  * [Item container CSS Class - wrapper]{@link CSS_CLASS}
