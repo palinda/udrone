@@ -1,5 +1,11 @@
+/*---Toggle Menu - Left----*/
+.menu-icon-left{position: absolute; left: 152px; top: 19px; width: 40px; z-index: 9999999; 
+  i{color: $primary;}
+  i:hover{color: $primary-dark; cursor: pointer}
+  .header{background-color: $primary; padding: 10px;}
+}
 
-
+/*---Toggle Menu - Right----*/
 .menu-icon{position: absolute; right: 10px; top: 17px;
  i{color: $primary;}
  i:hover{color: $primary-dark; cursor: pointer}

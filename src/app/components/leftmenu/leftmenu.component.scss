@@ -1,0 +1,18 @@
+@import '../../../assets/styles/colors';
+
+:host {
+    background: $white;
+    color: #000;
+    position: fixed;
+    left: auto;
+    top: 60px;
+    left: -208px;
+    bottom: 60px;
+    width: 206px;
+    min-width: 180px;
+    z-index: 9999;
+    padding: 0;
+    border-right: 1px solid $primary-light;
+    overflow-y:auto;
+  }
+  

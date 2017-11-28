@@ -1,7 +1,13 @@
 <app-menu [@slideInOut]="menuState"></app-menu>
+<app-leftmenu [@slideInOut]="menuStateLeft"></app-leftmenu>
 <div fxLayout="column" id="main-container" class="dx-clearfix">
   <div fxFlex="60px" id="header">
     <div class="pull-left" id="logo_image"></div>
+    <div class="pull-left">
+      <a (click)="toggleMenuLeft()" class="menu-icon-left">
+        <i class="flaticon-menu">&nbsp;</i>
+      </a>
+    </div>
     <div id="window-title">{{activeTitle}} </div>
     
     <div class="header-search-row">
