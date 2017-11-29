@@ -1,3 +1,4 @@
+import { LeftmenuComponent } from './../leftmenu/leftmenu.component';
 import { MenuComponent } from './../menu/menu.component';
 import { GridsterConfig } from 'angular-gridster2';
 import { UserContextService } from '@services/user-context.service';

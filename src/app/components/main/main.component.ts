@@ -41,6 +41,7 @@ export class MainComponent implements AfterViewInit, OnDestroy {
 
   activeTitle: string;
   menuState = 'out';
+  menuStateLeft = 'in';
 
   @ViewChild('mainbody', {read: ViewContainerRef}) mainbody;
 
@@ -184,6 +185,10 @@ export class MainComponent implements AfterViewInit, OnDestroy {
     }
     toggleMenu() {
       this.menuState = this.menuState === 'out' ? 'in' : 'out';
+    }
+    // Toggle left menu
+    toggleMenuLeft() {
+      this.menuStateLeft = this.menuStateLeft === 'in' ? 'out' : 'in';
     }
 }
 

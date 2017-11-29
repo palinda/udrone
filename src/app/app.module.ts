@@ -46,6 +46,7 @@ import { ResizeService } from '@services/resize.service';
 import { TooltipDirective } from '@directives/tooltip.directive';
 import { WebSocketService } from '@app/services/web-socket.service';
 import { MenuComponent } from '@components/menu/menu.component';
+import { LeftmenuComponent } from '@components/leftmenu/leftmenu.component';
 
 /**
  * Main app module
@@ -79,7 +80,8 @@ import { MenuComponent } from '@components/menu/menu.component';
     UPieChartComponent,
     SystemInfoComponent,
     TooltipDirective,
-    MenuComponent
+    MenuComponent,
+    LeftmenuComponent
   ],
   entryComponents: [
     CounterSparklineComponent,

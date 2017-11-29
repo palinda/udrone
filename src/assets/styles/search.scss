@@ -19,7 +19,7 @@
     /* Custom, iPhone Retina */ 
     @media only screen and (max-width : 479px) {
         .search-widget{width: calc(100% - 33px) !important;
-            z-index: 999999999;
+            z-index: 999;
             position: absolute;
             top: 60px;
             left: 0;}
@@ -28,7 +28,7 @@
     /* Extra Small Devices, Phones */ 
     @media only screen and (min-width : 480px) and (max-width: 767px)  {
         .search-widget{width: calc(100% - 33px) !important;
-            z-index: 999999999;
+            z-index: 999;
             position: absolute;
             top: 60px;
             left: 0;}
