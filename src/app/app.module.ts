@@ -48,6 +48,7 @@ import { WebSocketService } from '@app/services/web-socket.service';
 import { MenuComponent } from '@components/menu/menu.component';
 import { LeftmenuComponent } from '@components/leftmenu/leftmenu.component';
 
+
 /**
  * Main app module
  */
@@ -81,7 +82,7 @@ import { LeftmenuComponent } from '@components/leftmenu/leftmenu.component';
     SystemInfoComponent,
     TooltipDirective,
     MenuComponent,
-    LeftmenuComponent
+    LeftmenuComponent,
   ],
   entryComponents: [
     CounterSparklineComponent,
@@ -100,7 +101,7 @@ import { LeftmenuComponent } from '@components/leftmenu/leftmenu.component';
     FormsModule,
     HttpModule,
     BrowserAnimationsModule,
-    TpDepModule
+    TpDepModule,
   ],
   providers: [
         LogService,

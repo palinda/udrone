@@ -3,7 +3,6 @@
 
 :host {
     background: $white;
-    color: #000;
     position: fixed;
     left: auto;
     top: 60px;
@@ -12,8 +11,7 @@
     width: 14%;
     min-width: 180px;
     z-index: 9999;
-    padding: 20px;
+    padding:0;
     border-left: 1px solid $primary-light;
     overflow-y:auto;
   }
-  

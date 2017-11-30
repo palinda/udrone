@@ -2,10 +2,28 @@
 .menu-icon-left{position: absolute; left: 152px; top: 19px; width: 40px; z-index: 9999999; 
   i{color: $primary;}
   i:hover{color: $primary-dark; cursor: pointer}
-  .header{background-color: $primary; padding: 10px;}
+
+}
+app-leftmenu{
+  .header{background-color: $primary; padding: 10px;  display: list-item;
+    i::before{margin: 0 5px 0 0 !important; color: $white !important; line-height: 22px; }
+  }
+  h4{font-size: 16px !important; text-transform: uppercase; color: $white;}
+  .content{padding: 10px}
+  
 }
 
+
+
 /*---Toggle Menu - Right----*/
+app-menu{
+  .header{background-color: $primary; padding: 10px; display: list-item;
+    i::before{margin: 0 5px 0 0 !important; color: $white !important; line-height: 22px; }
+  }
+  h4{font-size: 14px !important; text-transform: uppercase; color: $white;}
+  .content{padding: 10px}
+}
+
 .menu-icon{position: absolute; right: 10px; top: 17px;
  i{color: $primary;}
  i:hover{color: $primary-dark; cursor: pointer}
