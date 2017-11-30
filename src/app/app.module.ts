@@ -47,7 +47,7 @@ import { TooltipDirective } from '@directives/tooltip.directive';
 import { WebSocketService } from '@app/services/web-socket.service';
 import { MenuComponent } from '@components/menu/menu.component';
 import { LeftmenuComponent } from '@components/leftmenu/leftmenu.component';
-
+import { NgDragDropModule } from 'ng-drag-drop';
 
 /**
  * Main app module
@@ -102,6 +102,7 @@ import { LeftmenuComponent } from '@components/leftmenu/leftmenu.component';
     HttpModule,
     BrowserAnimationsModule,
     TpDepModule,
+    NgDragDropModule.forRoot()
   ],
   providers: [
         LogService,

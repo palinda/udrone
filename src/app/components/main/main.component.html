@@ -14,9 +14,10 @@
         <a (click)="toggleMenu()" class="menu-icon"><!-- class="hamburger"-->
             <!-- <span>toggle menu</span> --> <i class="flaticon-menu">&nbsp;</i>
         </a>
-      <app-u-icon-btn iconClass="dx-icon-preferences" (click)="openPreferencesWnd()"></app-u-icon-btn>
-      <app-u-icon-btn iconClass="dx-icon-user" (click)="onStartMenuOpen()"></app-u-icon-btn>
-      <app-u-icon-btn iconClass="icon-notifications" (click)="onStartMenuOpen()"></app-u-icon-btn>
+      <app-u-icon-btn iconClass="flaticon-settings-work-tool" (click)="openPreferencesWnd()"></app-u-icon-btn>
+      <app-u-icon-btn iconClass="flaticon-man-user" (click)="onStartMenuOpen()"></app-u-icon-btn>
+      <app-u-icon-btn iconClass="flaticon-notification-1" (click)="onStartMenuOpen()"></app-u-icon-btn>
+      <app-u-icon-btn iconClass="flaticon-paint-board-and-brush"></app-u-icon-btn>
       <div class="dx-field-value search-widget">
         <dx-autocomplete placeholder="Search in start menu ..." [(value)]="searchValue" [dataSource]="windowDefList" displayExpr="inputs.shortname"
           valueExpr="this" showClearButton="true" (onItemClick)="searchWidget($event)">
@@ -26,8 +27,6 @@
         </div>
       </div>
     </div>
-
-
   </div>
   <div fxFlex="grow" id="container-body">
     <div class="main-wrap">
