@@ -45,6 +45,10 @@ import { UPieChartComponent } from '@components/unit/u-pie-chart/u-pie-chart.com
 import { ResizeService } from '@services/resize.service';
 import { TooltipDirective } from '@directives/tooltip.directive';
 import { WebSocketService } from '@app/services/web-socket.service';
+import { TileGridComponent } from '@components/widget-templates/tile-grid/tile-grid.component';
+import { ApplicationComponent } from '@components/application/application.component';
+import { DesignerComponent } from '@components/designer/designer.component';
+import { UnitTemplateComponent } from '@components/unit-template/unit-template.component';
 
 /**
  * Main app module
@@ -77,7 +81,11 @@ import { WebSocketService } from '@app/services/web-socket.service';
     MultiCountersComponent,
     UPieChartComponent,
     SystemInfoComponent,
-    TooltipDirective
+    TooltipDirective,
+    TileGridComponent,
+    ApplicationComponent,
+    DesignerComponent,
+    UnitTemplateComponent
   ],
   entryComponents: [
     CounterSparklineComponent,
@@ -89,7 +97,8 @@ import { WebSocketService } from '@app/services/web-socket.service';
     TemplateCreatorComponent,
     RealtimeSplineComponent,
     AdvanceQueryTableComponent,
-    MultiCountersComponent
+    MultiCountersComponent,
+    DesignerComponent
   ],
   imports: [
     BrowserModule,
@@ -112,6 +121,9 @@ import { WebSocketService } from '@app/services/web-socket.service';
         PermissionManagerService,
         WebSocketService,
         ResizeService
+  ],
+  exports: [
+    BgCounterComponent
   ],
   bootstrap: [MainComponent]
 })

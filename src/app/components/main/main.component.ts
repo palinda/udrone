@@ -16,6 +16,7 @@ import { Component, OnInit, ViewContainerRef, ViewChild, ComponentFactoryResolve
 } from '@angular/core';
 import * as Utils from '@utilities/utils';
 import { ActionItem } from '@defs/action-item';
+import { DesignerComponent } from '@components/designer/designer.component';
 
 
 @Component({
@@ -109,6 +110,12 @@ export class MainComponent implements AfterViewInit, OnDestroy {
       }
       this.activeTitle = undefined;
       this.activeIndex = -1;
+    }
+
+    openDesigner() {
+      this.createComponent(DesignerComponent, new DynamicMsg(), undefined);
+      this.activeIndex = -1;
+      this.activeTitle = 'UDrone Designer';
     }
 
     private openExistingComponent(newComponent: ComponentRef<Component>, newComponentDef: ComponentDef) {

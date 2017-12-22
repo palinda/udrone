@@ -6,6 +6,7 @@
       <app-u-icon-btn iconClass="dx-icon-preferences" (click)="openPreferencesWnd()"></app-u-icon-btn>
       <app-u-icon-btn iconClass="dx-icon-user" (click)="onStartMenuOpen()"></app-u-icon-btn>
       <app-u-icon-btn iconClass="icon-notifications" (click)="onStartMenuOpen()"></app-u-icon-btn>
+      <app-u-icon-btn iconClass="icon-notifications" (click)="openDesigner()"></app-u-icon-btn>
       <div class="dx-field-value search-widget">
         <dx-autocomplete placeholder="Search in start menu ..." [(value)]="searchValue" [dataSource]="windowDefList" displayExpr="inputs.shortname"
           valueExpr="this" showClearButton="true" (onItemClick)="searchWidget($event)">

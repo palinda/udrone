@@ -2,6 +2,7 @@ import { Size } from '@defs/size';
 import { TrackType } from '@defs/track-type';
 import * as Utils from '@utilities/utils';
 import { Component, OnInit, Input } from '@angular/core';
+import { UnitTemplateComponent } from '@components/unit-template/unit-template.component';
 
 /**
  * Guage Component Input Data Type
@@ -104,8 +105,9 @@ let cmpScope;
   templateUrl: './u-guage.component.html',
   styleUrls: ['./u-guage.component.scss']
 })
-export class UGuageComponent implements OnInit {
+export class UGuageComponent extends UnitTemplateComponent implements OnInit {
 
+  static key = 'UGuageComponent';
    /**
    * Guage Input value
    */
@@ -122,6 +124,7 @@ export class UGuageComponent implements OnInit {
   colorStep: number;
 
   constructor() {
+    super();
   }
 
   ngOnInit() {

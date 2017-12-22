@@ -20,13 +20,12 @@ export class StartMenuComponent implements OnInit, DoCheck {
   windowDefList: Array<ComponentDef>;
   differ: any;
 
-  dataSource: Object[] = [];
   /**
    * Start menu item select callback
    */
   @Output() onSelectContainer: EventEmitter<ComponentDef> = new EventEmitter<ComponentDef>();
 
-  constructor(private _userContext: UserContextService, private _permissionMan: PermissionManagerService, differs: IterableDiffers) {
+  constructor(private _userContext: UserContextService, differs: IterableDiffers) {
     this.windowDefList = _userContext.windowInsts;
     this.windowDefList.forEach( el => {
     });
@@ -40,14 +39,6 @@ export class StartMenuComponent implements OnInit, DoCheck {
   openComponent(compDef: ComponentDef): void {
     console.log('Clicked open component: ', compDef);
     this.onSelectContainer.emit(compDef);
-  }
-
-  OnAuthorizedPermission(element: ElementRef) {
-    element.nativeElement.parentNode.style.visibility = 'inherit';
-  }
-
-  OnUnauthorizedPermission(element: ElementRef) {
-    element.nativeElement.parentNode.style.visibility = 'hidden';
   }
 
   ngDoCheck() {

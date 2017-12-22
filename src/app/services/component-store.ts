@@ -8,6 +8,7 @@ export class ComponentStore {
 
     widgetTemplateDefs: Type<Component>[] = [];
     windowDefs: Type<Component>[] = [];
+    unitDefs: Type<Component>[] = [];
 
     constructor(private _resolver: ComponentFactoryResolver) {
         this.allComponents = Array.from<any>(_resolver['_factories'].keys());
@@ -32,6 +33,8 @@ export class ComponentStore {
             this.widgetTemplateDefs.push(val);
         } else if (val['type'] === 'WindowComponent') {
             this.windowDefs.push(val);
+        } else if (val['type'] === 'UnitTemplateComponent') {
+            this.unitDefs.push(val);
         }
     }
 }
