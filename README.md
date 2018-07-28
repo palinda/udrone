@@ -1,18 +1,15 @@
 
 # Web-Admin
 
-[![Build Status](https://travis-ci.com/ustocktrade/ust-ui.svg?token=e8EzsDsuxzkL1NY3sibq&branch=master)](https://travis-ci.com/ustocktrade/ust-ui)  [![Codacy Badge](https://api.codacy.com/project/badge/Grade/ea53fc7d0fc14d3bbb591876a5b8d5d2)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ustocktrade/ust-ui&amp;utm_campaign=Badge_Grade)  [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/ea53fc7d0fc14d3bbb591876a5b8d5d2)](https://www.codacy.com?utm_source=github.com&utm_medium=referral&utm_content=ustocktrade/ust-ui&utm_campaign=Badge_Coverage)
-
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.3.1.
 
-![alt text](https://github.com/ustocktrade/ust-ui/blob/master/imgs/diagram.png)
+![alt text](https://github.com/palinda/web-admin/blob/master/imgs/diagram.png)
 
--	Widget Components and Query Components can attach to Container Components
+-	Widget Components can attach to Container Components
 -	Container Component has 2 types 
-	Widget Container – Only Widget Components can attach
-	Query Container – Only Query Components can attach
--	Widget Templates, Query Templates and Container Templates predefined by the developer using unit components
--	Widget, Query and Container Component create dynamically. Saved in Widget Repository
+	Widget Container – Widget Components can attach
+-	Widget Templates and Container Templates predefined by the developer using unit components
+-	Widget and Container Component create dynamically. Saved in Widget Repository
 -	Widget Repository is in server side. This can implement as a JSON file and load using service worker to the client side. 
 -	 Widget Repository maintain globally
 -	Profile maintain per user for what user can customize
