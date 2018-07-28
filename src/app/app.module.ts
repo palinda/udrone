@@ -15,7 +15,7 @@ import { TpDepModule } from '@modules/tp-dep.module';
 import { HttpService } from '@services/http.service';
 import { LogService } from '@services/log.service';
 import { HttpModule } from '@angular/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchBoxComponent } from '@components/unit/search-box/search-box.component';
 import { BgCounterComponent } from '@components/unit/bg-counter/bg-counter.component';
 import { BrowserModule } from '@angular/platform-browser';
@@ -45,8 +45,11 @@ import { UPieChartComponent } from '@components/unit/u-pie-chart/u-pie-chart.com
 import { ResizeService } from '@services/resize.service';
 import { TooltipDirective } from '@directives/tooltip.directive';
 import { WebSocketService } from '@app/services/web-socket.service';
-import { MenuComponent } from '@components/menu/menu.component';
-import { LeftmenuComponent } from '@components/leftmenu/leftmenu.component';
+import { TileGridComponent } from '@components/widget-templates/tile-grid/tile-grid.component';
+import { ApplicationComponent } from '@components/application/application.component';
+import { DesignerComponent } from '@components/designer/designer.component';
+import { UnitTemplateComponent } from '@components/unit-template/unit-template.component';
+import { FormWindowComponent } from '@components/widget-templates/form-window/form-window.component';
 
 /**
  * Main app module
@@ -80,8 +83,11 @@ import { LeftmenuComponent } from '@components/leftmenu/leftmenu.component';
     UPieChartComponent,
     SystemInfoComponent,
     TooltipDirective,
-    MenuComponent,
-    LeftmenuComponent
+    TileGridComponent,
+    ApplicationComponent,
+    DesignerComponent,
+    UnitTemplateComponent,
+    FormWindowComponent
   ],
   entryComponents: [
     CounterSparklineComponent,
@@ -93,11 +99,14 @@ import { LeftmenuComponent } from '@components/leftmenu/leftmenu.component';
     TemplateCreatorComponent,
     RealtimeSplineComponent,
     AdvanceQueryTableComponent,
-    MultiCountersComponent
+    MultiCountersComponent,
+    FormWindowComponent,
+    DesignerComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     BrowserAnimationsModule,
     TpDepModule
@@ -116,6 +125,9 @@ import { LeftmenuComponent } from '@components/leftmenu/leftmenu.component';
         PermissionManagerService,
         WebSocketService,
         ResizeService
+  ],
+  exports: [
+    BgCounterComponent
   ],
   bootstrap: [MainComponent]
 })

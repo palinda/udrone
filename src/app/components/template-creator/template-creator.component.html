@@ -19,7 +19,7 @@
             </dxi-item>
         </dxi-item>
         <dxi-item itemType="group" [caption]="row.group" *ngFor="let row of selectedInputs" [colSpan]="2">
-            <dxi-item [dataField]="'inputs.' + entry.name" [editorType]="getEditorType(entry.dataType)" *ngFor="let entry of row.inputDefList" [editorOptions]="entry.options" [colSpan]="2" [label]="{text: toTitleStr(entry.leafName)}">
+            <dxi-item [dataField]="'inputs.' + entry.name" [editorType]="utils.getEditorType(entry.dataType)" *ngFor="let entry of row.inputDefList" [editorOptions]="entry.options" [colSpan]="2" [label]="{text: toTitleStr(entry.leafName)}">
                 <dxi-validation-rule type="required" message="Required field"></dxi-validation-rule>
             </dxi-item>
         </dxi-item>

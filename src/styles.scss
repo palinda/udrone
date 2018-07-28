@@ -12,18 +12,21 @@
 @import 'assets/styles/buttons.scss';
 @import 'assets/styles/dx-overide.scss';
 @import 'assets/styles/forms.scss';
-@import 'assets/styles/toggle-menu.scss';
+@import "~bootstrap/dist/css/bootstrap.css";
 
 
 .window {
     display: block;
     height: calc(100vh - 120px);
     overflow: auto;
+    background-color: white;
+    padding: 5px 10px;
 }
 
 .window{
     gridster {
         background-color: transparent;
+        height: calc(100vh - 200px);
         
     }
 }
@@ -33,6 +36,7 @@ gridster-item {
     app-advance-query-table {
         overflow: auto;
     }
+    z-index: 0 !important;
     
 }
 
@@ -115,4 +119,3 @@ app-start-menu {
         border-color: rgb(231, 231, 231);
     }
 }
-

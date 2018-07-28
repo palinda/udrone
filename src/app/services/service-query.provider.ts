@@ -13,8 +13,8 @@ import { WSServiceQuery } from '@app/services/wsservice-query';
 export const SERVICE_QUERY = new InjectionToken<IServiceQuery>('app.query');
 
 export function serviceQueryFactory(httpService: HttpService, websockerSerivice: WebSocketService) {
-    // return new SimpleServiceQuery(httpService);
-    return new WSServiceQuery(websockerSerivice);
+    return new SimpleServiceQuery(httpService);
+    // return new WSServiceQuery(websockerSerivice);
 }
 export let serviceQueryProvider = {
     provide: SERVICE_QUERY,

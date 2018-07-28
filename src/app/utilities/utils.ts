@@ -89,3 +89,37 @@ export function  deepCopy(oldObj: any) {
 export function  isEqual(obj1: any, obj2: any) {
   return (JSON.stringify(obj1) === JSON.stringify(obj2));
 }
+
+
+export function getEditorType (dataType: string) {
+  switch (dataType) {
+    case 'String':
+      return 'dxTextBox';
+    case 'Number':
+      return 'dxNumberBox';
+    case 'Date':
+      return 'dxDateBox';
+    case 'Object':
+      return 'dxTextArea';
+    case 'MultiSelect':
+      return 'dxTagBox';
+    case 'Select':
+      return 'dxSelectBox';
+    case 'Array':
+      return 'dxTextArea';
+  }
+  return 'dxTextBox';
+}
+
+export function isPrimitive(dataType: string) {
+  switch (dataType) {
+    case 'String':
+    case 'Number':
+    case 'Date':
+    case 'Boolean':
+    case 'Array':
+      return true;
+  }
+
+  return false;
+}

@@ -1,22 +1,12 @@
-<app-menu [@slideInOut]="menuState"></app-menu>
-<app-leftmenu [@slideInOut]="menuStateLeft"></app-leftmenu>
 <div fxLayout="column" id="main-container" class="dx-clearfix">
   <div fxFlex="60px" id="header">
     <div class="pull-left" id="logo_image"></div>
-    <div class="pull-left">
-      <a (click)="toggleMenuLeft()" class="menu-icon-left">
-        <i class="flaticon-menu">&nbsp;</i>
-      </a>
-    </div>
-    <div id="window-title">{{activeTitle}} </div>
-    
+    <!-- <div id="window-title">{{activeTitle}} </div> -->
     <div class="header-search-row">
-        <a (click)="toggleMenu()" class="menu-icon"><!-- class="hamburger"-->
-            <!-- <span>toggle menu</span> --> <i class="flaticon-menu">&nbsp;</i>
-        </a>
       <app-u-icon-btn iconClass="dx-icon-preferences" (click)="openPreferencesWnd()"></app-u-icon-btn>
       <app-u-icon-btn iconClass="dx-icon-user" (click)="onStartMenuOpen()"></app-u-icon-btn>
       <app-u-icon-btn iconClass="icon-notifications" (click)="onStartMenuOpen()"></app-u-icon-btn>
+      <app-u-icon-btn iconClass="icon-notifications" (click)="openDesigner()"></app-u-icon-btn>
       <div class="dx-field-value search-widget">
         <dx-autocomplete placeholder="Search in start menu ..." [(value)]="searchValue" [dataSource]="windowDefList" displayExpr="inputs.shortname"
           valueExpr="this" showClearButton="true" (onItemClick)="searchWidget($event)">
@@ -46,7 +36,7 @@
         placement="top">
       </app-u-icon-btn>
     </div>
-    <app-system-info class="system-info"></app-system-info>
+    <!-- <app-system-info class="system-info"></app-system-info> -->
   </div>
 </div>
 

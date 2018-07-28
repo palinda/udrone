@@ -1,25 +1,31 @@
 
 <div class="dx-clearfix ">
     <!-- action buttons -->
-    <div class="panel-action-btns" [hidden]="configureMode">
-            <div class="toggle-view">
-                    <span class="flaticon-pie-graphic"  appTooltip tooltip="Chart View" placement="bottom"></span>
-                    <span class="flaticon-web"  appTooltip tooltip="Grid View" placement="bottom"></span>
-            </div>
-            <span class="flaticon-pen" (click)="configureWindow(true)" appTooltip tooltip="Edit" placement="bottom"></span>
-            <span class="flaticon-arrows" (click)="onMinimizeComponent()" appTooltip tooltip="Minimize" placement="bottom"></span>
-            <span class="flaticon-close" (click)="onCloseComponent()" appTooltip tooltip="Close" placement="bottom"></span>
-    </div>
-    <div class="panel-action-btns" [hidden]="!configureMode">
-            <span class="flaticon-technology-1" (click)="saveConfigure()" appTooltip tooltip="Save" placement="bottom"></span>
-            <span class="flaticon-close" (click)="cancelConfigure()" appTooltip tooltip="Close" placement="bottom"></span>
-    </div>
+    
+
     <div class="window">
-            <gridster [options]="gridHelper.options">
+        <div class="top-bar">
+                <div class="inline sub-title">{{shortname}}</div>
+                <div class="inline pull-right" [hidden]="configureMode">
+
+                                <div class="toggle-view">
+                                        <span class="flaticon-pie-graphic"  appTooltip tooltip="Chart View" placement="bottom"></span>
+                                        <span class="flaticon-web"  appTooltip tooltip="Grid View" placement="bottom"></span>
+                                </div>
+                                <span class="flaticon-pen" (click)="configureWindow(true)" appTooltip tooltip="Edit" placement="bottom"></span>
+                                <span class="flaticon-arrows" (click)="onMinimizeComponent()" appTooltip tooltip="Minimize" placement="bottom"></span>
+                                <span class="flaticon-close" (click)="onCloseComponent()" appTooltip tooltip="Close" placement="bottom"></span>
+                </div>
+                <div class="inline pull-right" [hidden]="!configureMode">
+                                <span class="flaticon-technology-1" (click)="saveConfigure()" appTooltip tooltip="Save" placement="bottom"></span>
+                                <span class="flaticon-close" (click)="cancelConfigure()" appTooltip tooltip="Close" placement="bottom"></span>
+                </div>
+        </div>
+        <gridster [options]="gridHelper.options">
                 <gridster-item [item]="item.config" *ngFor="let item of componentDefList">
-                    <app-dcl-wrapper [componentDef]="item.data"></app-dcl-wrapper>
+                        <app-dcl-wrapper [componentDef]="item.data"></app-dcl-wrapper>
                 </gridster-item>
-            </gridster>
+        </gridster>
     </div>
     
 </div>

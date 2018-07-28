@@ -1,5 +1,7 @@
+import {TrackType} from '@defs/track-type';
 import { IntervalService } from '@services/interval.service';
 import { Component, OnInit, Input, OnChanges, SimpleChange } from '@angular/core';
+import { UnitTemplateComponent } from '@components/unit-template/unit-template.component';
 
 /**
  * Animated counter element
@@ -8,7 +10,7 @@ import { Component, OnInit, Input, OnChanges, SimpleChange } from '@angular/core
 @Component({
   selector: 'app-bg-counter',
   template: `
-    <div class="bg-counter text-info-h1" [ngStyle]="styles" [style.font-size.px]="size">
+    <div class="bg-counter text-info-h1" [ngStyle]="styles">
       {{displayValue}}
     </div>
   `,
@@ -22,27 +24,32 @@ import { Component, OnInit, Input, OnChanges, SimpleChange } from '@angular/core
   ],
   providers: [ IntervalService ]
 })
-export class BgCounterComponent implements OnInit, OnChanges {
+export class BgCounterComponent extends UnitTemplateComponent implements OnInit, OnChanges {
+
+  static key = 'BgCounterComponent';
+  /**
+   * Counter value
+   */
+  @TrackType(Number)
+  @Input() value: number;
 
   /**
    * Counter value
    */
-  @Input() value: number;
+  @TrackType(Number)
+  @Input() size: number;
+
 
   /**
    * Animating speed can configure
    */
+  @TrackType(Number)
   @Input() interval = 10;
 
   /**
-   * Counter Size
-   */
-  @Input() size = 30;
-
-
-    /**
    * Custom Style class
    */
+  @TrackType(Object)
   @Input() styles = {};
 
   /**
@@ -55,16 +62,11 @@ export class BgCounterComponent implements OnInit, OnChanges {
    */
   private timer;
 
-  constructor(private intervalService: IntervalService) { }
-
-  ngOnInit() {
-    this.onSizeChange(this.size);
+  constructor(private intervalService: IntervalService) {
+    super();
   }
 
-  onSizeChange(size: number) {
-    if (this.size !== undefined) {
-      // this.styles['font-size.px'] = this.size;
-    }
+  ngOnInit() {
   }
 
   onValueChange(value: string) {
@@ -84,10 +86,6 @@ export class BgCounterComponent implements OnInit, OnChanges {
     if (changes['value'] !== undefined) {
       this.intervalService.clearInterval(this.timer);
       this.onValueChange(changes['value'].currentValue);
-    }
-
-    if (changes['size'] !== undefined) {
-      this.onSizeChange(changes['size'].currentValue);
     }
   }
 

@@ -1,22 +1,5 @@
 
 <div class="landing-page-container">
-    <h1 class="p-y-20">Welcome to UDrone!<br>
-        <h4>The platform to customize  your data</h4>
-    </h1>
-    
-    <div class="box" *ngFor="let cp of windowDefList" [hasPermission]="cp.permissions.permissionGroups">
-      <app-u-icon-btn [iconClass]="cp.inputs.icon" [text]="cp.inputs.heading" (click)="openComponent(cp)"></app-u-icon-btn>
-    </div>
-    
-    <!--<h1 class="p-t-50 p-l-50">Welcome to UDrone!<br>
-        <h4>The platform to customize  your data</h4>
-    </h1>
-        
-    <div class="wrapper start-menu">
-        <div class="grid-item box" *ngFor="let comp of dataSource" [hasPermission]="comp.data.permissions.permissionGroups">
-            <app-u-icon-btn [iconClass]="comp.data.inputs.icon" [text]="comp.data.inputs.heading" (click)="openComponent(comp.data)"></app-u-icon-btn>
-        </div>
-    </div>
-    -->
+    <app-tile-grid [windowDefList]="windowDefList" (onSelectContainer)="openComponent($event)"></app-tile-grid>
 </div>
 
