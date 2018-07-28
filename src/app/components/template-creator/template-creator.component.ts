@@ -27,6 +27,7 @@ export class TemplateCreatorComponent implements OnInit {
   validationGroup = Utils.getRandomInt(0, 100);
   selectedInputs: Array<InputDefGroup> = new Array();
   updatingTemplate: ComponentDef;
+  utils = Utils;
 
   @ViewChild('dummy', {read: ViewContainerRef}) dummy;
 
@@ -81,7 +82,7 @@ export class TemplateCreatorComponent implements OnInit {
       if (factory.inputs.hasOwnProperty(key)) {
         const info = Reflect.getMetadata('design:type', dummyComp.instance, factory.inputs[key].propName);
 
-        if (this.isPrimitive(info.name)) {
+        if (Utils.isPrimitive(info.name)) {
           this.selectedInputs.push(new InputDefGroup(undefined, [new InputDef(factory.inputs[key].propName, info.name, undefined,
             undefined)]));
         } else if (!this.handleSpecialType(factory.inputs[key].propName, info, this.selectedInputs)) {
@@ -114,39 +115,6 @@ export class TemplateCreatorComponent implements OnInit {
     });
     this.saveCB(this.updatingTemplate);
     this.clearAdd();
-  }
-
-  getEditorType (dataType: string) {
-    switch (dataType) {
-      case 'String':
-        return 'dxTextBox';
-      case 'Number':
-        return 'dxNumberBox';
-      case 'Date':
-        return 'dxDateBox';
-      case 'Object':
-        return 'dxTextArea';
-      case 'MultiSelect':
-        return 'dxTagBox';
-      case 'Select':
-        return 'dxSelectBox';
-      case 'Array':
-        return 'dxTextArea';
-    }
-    return 'dxTextBox';
-  }
-
-  isPrimitive(dataType: string) {
-    switch (dataType) {
-      case 'String':
-      case 'Number':
-      case 'Date':
-      case 'Boolean':
-      case 'Array':
-        return true;
-    }
-
-    return false;
   }
 
   private genWindowWidgetDefs(widgetDefs: Array<ComponentDef>) {
@@ -186,6 +154,9 @@ export class TemplateCreatorComponent implements OnInit {
     }
     if (array.length > 0) {
       inputs.push(new InputDefGroup(Utils.toTitleStr(propName), array));
+    } else {
+      inputs.push(new InputDefGroup(undefined, [new InputDef(propName, info.name, undefined,
+        undefined)]));
     }
   }
 

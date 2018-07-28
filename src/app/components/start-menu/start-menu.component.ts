@@ -25,7 +25,7 @@ export class StartMenuComponent implements OnInit, DoCheck {
    */
   @Output() onSelectContainer: EventEmitter<ComponentDef> = new EventEmitter<ComponentDef>();
 
-  constructor(private _userContext: UserContextService, differs: IterableDiffers) {
+  constructor(private _userContext: UserContextService, differs: IterableDiffers, private _permissionManager: PermissionManagerService) {
     this.windowDefList = _userContext.windowInsts;
     this.windowDefList.forEach( el => {
     });

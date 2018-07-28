@@ -33,5 +33,4 @@ export class TileGridComponent {
   OnUnauthorizedPermission(element: ElementRef) {
     element.nativeElement.parentNode.style.visibility = 'hidden';
   }
-
 }

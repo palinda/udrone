@@ -219,3 +219,7 @@ function onGlobalComponent(req, id) {
 app.post('/res/global_repo.json', function(req, res) {
     res.status(200).json(globalRepoFile);
 })
+
+app.post('/res/usersave', function(req, res) {
+    res.status(200).json(req.body);
+})

@@ -14,6 +14,7 @@ export class ComponentStore {
         this.allComponents = Array.from<any>(_resolver['_factories'].keys());
         this.allComponents.forEach( element => {
             if (element !== undefined) {
+                console.log('Component: ', element['type'], element['key']);
                 this.componentsMap.put(element['key'], element);
                 this.categarizeComponent(element);
             }

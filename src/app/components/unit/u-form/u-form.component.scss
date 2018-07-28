@@ -1,0 +1,41 @@
+.error { 
+    color: red; 
+    margin: 0px 15px;
+}
+
+.group {
+    width: 100%;
+
+    label {
+        width: 100%;
+        margin: 5px 15px;
+    }
+
+    input[type=text],input[type=number]  {
+        width: 100%;
+        margin: 5px 15px;
+        line-height: 38px;
+        height: 38px;
+        padding: 4px 10px;
+        border-radius: 3px;
+    }
+
+    select {
+        width: 100%;
+        margin: 5px 15px;
+        line-height: 38px;
+        height: 38px;
+        padding: 4px 10px;
+        border-radius: 3px;
+    }
+    
+}
+
+.form-save {
+    margin: 15px;
+}
+
+.form {
+    padding: 20px 40px 20px 15px;
+}
+

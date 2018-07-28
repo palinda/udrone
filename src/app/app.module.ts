@@ -15,7 +15,7 @@ import { TpDepModule } from '@modules/tp-dep.module';
 import { HttpService } from '@services/http.service';
 import { LogService } from '@services/log.service';
 import { HttpModule } from '@angular/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchBoxComponent } from '@components/unit/search-box/search-box.component';
 import { BgCounterComponent } from '@components/unit/bg-counter/bg-counter.component';
 import { BrowserModule } from '@angular/platform-browser';
@@ -49,6 +49,7 @@ import { TileGridComponent } from '@components/widget-templates/tile-grid/tile-g
 import { ApplicationComponent } from '@components/application/application.component';
 import { DesignerComponent } from '@components/designer/designer.component';
 import { UnitTemplateComponent } from '@components/unit-template/unit-template.component';
+import { FormWindowComponent } from '@components/widget-templates/form-window/form-window.component';
 
 /**
  * Main app module
@@ -85,7 +86,8 @@ import { UnitTemplateComponent } from '@components/unit-template/unit-template.c
     TileGridComponent,
     ApplicationComponent,
     DesignerComponent,
-    UnitTemplateComponent
+    UnitTemplateComponent,
+    FormWindowComponent
   ],
   entryComponents: [
     CounterSparklineComponent,
@@ -98,11 +100,13 @@ import { UnitTemplateComponent } from '@components/unit-template/unit-template.c
     RealtimeSplineComponent,
     AdvanceQueryTableComponent,
     MultiCountersComponent,
+    FormWindowComponent,
     DesignerComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpModule,
     BrowserAnimationsModule,
     TpDepModule

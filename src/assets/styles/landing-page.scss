@@ -3,9 +3,9 @@
 
 
 
-.box{background-color: $primary-dark !important; color:$white !important;  height: 140px; width: 12%; 
+.box{background-color: $primary-dark !important; color:$white !important;  width: 140px; height: 110px;
     font-size: 14px; float: left; margin: 0 15px 15px 0; text-align: center;
- .u-btn-icon{ font-size: $font-30}
+
 }
 .box:hover{background-color: $primary-darker !important; color:$white !important;}
 
@@ -13,7 +13,6 @@ app-start-menu  {
     height: 100%;
     .landing-page-container{
         height: 100% !important;
-        background: #fff url('/assets/imgs/dashboard_bg.svg') no-repeat;
         background-position: bottom right;
         -webkit-background-size: contain;
         -moz-background-size: contain;
