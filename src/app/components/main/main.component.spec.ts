@@ -1,3 +1,5 @@
+import { LeftmenuComponent } from '@components/leftmenu/leftmenu.component';
+import { MenuComponent } from '@components/menu/menu.component';
 import { DclWrapperComponent } from '@components/dcl-wrapper/dcl-wrapper.component';
 import { PermissionManagerService } from '@services/permission-manager.service';
 import { ThemeStoreService } from '@services/theme-store.service';
@@ -20,7 +22,7 @@ describe('MainComponent', () => {
   beforeEach(function(this: TestContext<MainComponent, MainComponent>){
     this.create(MainComponent, MainComponent,
       [ PopupDriverService, ComponentStore, UserContextService, PermissionManagerService, ThemeStoreService ],
-      [ UPopupComponent, UIconBtnComponent, SystemInfoComponent, DclWrapperComponent ]);
+      [ UPopupComponent, UIconBtnComponent, SystemInfoComponent, DclWrapperComponent, MenuComponent, LeftmenuComponent ]);
   });
 
   it('should be created', function(this: TestContext<MainComponent, MainComponent>) {

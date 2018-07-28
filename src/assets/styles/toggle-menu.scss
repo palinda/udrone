@@ -1,0 +1,55 @@
+/*---Toggle Menu - Left----*/
+.menu-icon-left{position: absolute; left: 152px; top: 19px; width: 40px; z-index: 9999999; 
+  i{color: $primary;}
+  i:hover{color: $primary-dark; cursor: pointer}
+  .header{background-color: $primary; padding: 10px;}
+}
+
+/*---Toggle Menu - Right----*/
+.menu-icon{position: absolute; right: 10px; top: 17px;
+ i{color: $primary;}
+ i:hover{color: $primary-dark; cursor: pointer}
+}
+.hamburger {
+    display: block;
+    position: absolute;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    width: 24px;
+    height: 50px;
+    font-size: 0;
+    text-indent: -9999px;
+    cursor: pointer;
+    outline: none;
+    background: none;
+    border: 0;
+    right:10px;
+    span:hover {
+        background: $primary-dark;
+      }
+      span::before,
+      span::after {
+        display: block;
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background-color: $primary;
+        content: "";
+      }
+  }
+  
+  
+  
+ 
+  
+  .hamburger span::before {
+    top: -8px;
+  }
+  
+  .hamburger span::after {
+    bottom: -8px;
+  }
+
+  app-menu{top:60px}

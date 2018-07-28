@@ -39,7 +39,7 @@
     }
 }
 
-.header-search-row{float: right;  display: block}
+.header-search-row{float: right;  display: block; padding-right: 40px}
 
 #header .header-search-row app-u-icon-btn {color: $primary; padding: 20px;  float: right;
     :hover{color: $primary-dark }
