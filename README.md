@@ -1,5 +1,5 @@
 
-# Udrone
+# Web-Admin
 
 [![Build Status](https://travis-ci.com/ustocktrade/ust-ui.svg?token=e8EzsDsuxzkL1NY3sibq&branch=master)](https://travis-ci.com/ustocktrade/ust-ui)  [![Codacy Badge](https://api.codacy.com/project/badge/Grade/ea53fc7d0fc14d3bbb591876a5b8d5d2)](https://www.codacy.com?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=ustocktrade/ust-ui&amp;utm_campaign=Badge_Grade)  [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/ea53fc7d0fc14d3bbb591876a5b8d5d2)](https://www.codacy.com?utm_source=github.com&utm_medium=referral&utm_content=ustocktrade/ust-ui&utm_campaign=Badge_Coverage)
 
