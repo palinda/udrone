@@ -30,6 +30,7 @@ export class UFormComponent implements OnInit {
 
   form: FormGroup;
   objectProps;
+  submitted = false;
 
   constructor() {
   }
@@ -72,6 +73,7 @@ export class UFormComponent implements OnInit {
   }
 
   onSubmit(form) {
+    this.submitted = true;
     if (!this.form.valid) {
       console.log('Form is invalid:', this.form);
       return;

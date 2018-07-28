@@ -6,6 +6,10 @@
       <input *ngSwitchCase="'text'" 
         [formControlName]="prop.key"
         [id]="prop.key" [type]="prop.type">
+
+      <input *ngSwitchCase="'number'" 
+        [formControlName]="prop.key"
+        [id]="prop.key" [type]="prop.type" step="prop.step">
       
       <div *ngSwitchCase="'radio'">
         <label *ngFor="let option of prop.options">
@@ -26,7 +30,7 @@
       </div>
     </div>
 
-    <div class="error" *ngIf="form.get(prop.key).invalid && (form.get(prop.key).dirty || form.get(prop.key).touched)">
+    <div class="error" *ngIf="form.get(prop.key).invalid && (form.get(prop.key).dirty || form.get(prop.key).touched || submitted)">
         <div *ngIf="form.get(prop.key).errors.required">
           {{ prop.label }} is required.
         </div>
